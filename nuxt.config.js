@@ -51,7 +51,7 @@ export default {
    */
   css: ["~/assets/styles/style.css", "~/assets/styles/theme.scss"],
   styleResources: {
-    scss: ["~/assets/styles/bootstrap-override/_variables-bootstrap.scss"]
+    scss: ["~/assets/styles/_user-variables.scss"]
   },
   /*
    ** Plugins to load before mounting the App
@@ -82,7 +82,7 @@ export default {
   ],
   bootstrapVue: {
     bootstrapCSS: false, // Or `css: false`
-    bootstrapVueCSS: false // Or `bvCSS: false`
+    bootstrapVueCSS: true // Or `bvCSS: false`
   },
   /*
    ** Axios module configuration

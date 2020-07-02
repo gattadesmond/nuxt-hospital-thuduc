@@ -8,7 +8,7 @@
             <span></span>
             <span></span>
           </span>
-        </a> -->
+        </a>-->
         <a href="index.html" class="navbar-brand logo">
           <img
             src="http://benhvienkhuvucthuduc.vn/Content/assets/img/logo.png"
@@ -68,7 +68,9 @@
           </li>-->
         </ul>
       </div>
+
       <ul class="nav header-navbar-rht">
+
         <li class="nav-item contact-item">
           <div class="header-contact-img">
             <i class="far fa-hospital"></i>
@@ -90,7 +92,7 @@
         </li>
 
         <!-- User Menu -->
-        <li class="nav-item dropdown has-arrow logged-item">
+        <li class="nav-item dropdown has-arrow logged-item ">
           <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
             <span class="user-img">
               <img
