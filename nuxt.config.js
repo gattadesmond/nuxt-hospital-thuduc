@@ -78,8 +78,20 @@ export default {
     "bootstrap-vue/nuxt",
     // Doc: https://axios.nuxtjs.org/usage
     "@nuxtjs/axios",
+    "@nuxtjs/auth",
     "@nuxtjs/pwa"
   ],
+  auth: {
+    strategies: {
+      customStrategy: {
+        _scheme: '~/schemes/local',
+        /* ... */
+      }
+    }
+  },
+  router: {
+    middleware: ['auth']
+  },
   bootstrapVue: {
     bootstrapCSS: false, // Or `css: false`
     bootstrapVueCSS: true // Or `bvCSS: false`

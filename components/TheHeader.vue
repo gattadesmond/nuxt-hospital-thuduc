@@ -28,7 +28,7 @@
         </div>
         <ul class="main-nav">
           <li>
-            <a href="index.html">Trang chủ</a>
+             <nuxt-link to="/">Trang chủ</nuxt-link>
           </li>
           <!-- 
         <li>
@@ -36,7 +36,7 @@
           </li>-->
 
           <li>
-            <a href="thongtinbacsi.html">Thông tin Bác sĩ</a>
+            <nuxt-link to="/thongtinbacsi">Thông tin Bác sĩ</nuxt-link>
           </li>
 
           <li class="has-submenu">
