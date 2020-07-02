@@ -1,0 +1,31 @@
+.soju-breadcrumb {
+  padding: 0;
+  background-color: transparent;
+  .breadcrumb-item + .breadcrumb-item {
+    padding-left: 0.5rem;
+  }
+  .breadcrumb-item + .breadcrumb-item::before {
+    display: inline-block;
+    padding-right: 0.5rem;
+    color: #6c757d;
+    content: "·";
+  }
+  .breadcrumb-item{
+    color: gray("700");
+    a{
+
+    }
+  }
+}
+
+.soju-breadcrumb-white{
+  .breadcrumb-item + .breadcrumb-item::before {
+    color: rgba(255,255,255,0.6);
+  }
+  .breadcrumb-item{
+    color:  rgba(255,255,255,0.8);
+    a{
+      color: white;
+    }
+  }
+}

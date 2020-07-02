@@ -1,0 +1,26 @@
+@import "bootstrap/scss/_functions.scss"; // From bootstrap node module
+@import "bootstrap/scss/_variables.scss"; // From bootstrap node module
+@import "bootstrap-override/variables-bootstrap";
+@import "bootstrap-override/variables-theme";
+@import "user-variables"; 
+
+//Import Bootstrap 
+@import 'bootstrap/scss/bootstrap';
+@import 'bootstrap-vue/src/index';
+
+//Style Bootstrap components
+@import "vendor/index";
+@import "vendor/lunar/lunar"; 
+
+
+@import "components/global";
+@import "components/icons";
+@import "components/embed";
+
+@import "pages/home";
+@import "pages/thongtinbacsi";
+@import "pages/hoibacsi";
+
+body, html{
+    font-size: 14px;
+}
