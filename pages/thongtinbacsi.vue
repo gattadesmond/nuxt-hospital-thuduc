@@ -27,7 +27,7 @@
       <div class="container">
         <div class="row justify-content-center">
           <template v-if="doctors.length">
-            <ArticleDoctor v-for="(doctor,i) in doctors" :key="i" :doctor="doctor" />
+            <ArticleDoctor v-for="doctor in doctors" :key="doctor.id" :doctor="doctor" />
           </template>
         </div>
       </div>
@@ -48,20 +48,20 @@ export default {
   },
   async fetch() {
     const doctors = await fetch(
-      `https://api.jsonbin.io/b/5efe2af50bab551d2b6ace37`,
-      {
-        headers: {
-          "secret-key":
-            "$2b$10$OAM34eETVHwS6ZDQSNGlce6NeO7o.yOdMuHVNiH3Z9qK2ESAGoSC2"
-        }
-      }
+      `http://myhealthdemo.benhvienkhuvucthuduc.vn/api/Doctors/GetDoctors`
+      // ,{
+      //   headers: {
+      //     "secret-key":
+      //       "$2b$10$OAM34eETVHwS6ZDQSNGlce6NeO7o.yOdMuHVNiH3Z9qK2ESAGoSC2"
+      //   }
+      // }
     ).then(res => res.json());
 
     // console.log(doctors.doctor);
 
-    this.doctors = this.doctors.concat(doctors.doctor);
+    this.doctors = this.doctors.concat(doctors.results);
 
-    //  console.log(this.doctors);
+     console.log(this.doctors);
   },
   data() {
     return {

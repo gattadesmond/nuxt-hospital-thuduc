@@ -4,7 +4,7 @@
       <div class="doctor__image">
         <a href="#" data-toggle="modal" data-target="#modal-bacsi">
           <div class="embed-responsive embed-responsive-9by16 overflow-hidden">
-            <img :src="doctor.image" class="embed-responsive-img img-cover" alt />
+            <img :src="`http://benhvienkhuvucthuduc.vn/Content/uploads/ImageDoctors/${doctor.imageLink}`" class="embed-responsive-img img-cover" alt />
           </div>
         </a>
       </div>
@@ -15,17 +15,17 @@
           <span></span>
         </div>
 
-        <div class="doctor__title">{{doctor.chucvu}}</div>
+        <div class="doctor__title">{{doctor.position}}</div>
 
         <div class="doctor__meta">
           <div class="doctor__meta__item">
             <span>Học vị :</span>
-            {{doctor.hocvi}}
+            {{doctor.certificate}}
           </div>
 
           <div class="doctor__meta__item">
             <span>Chuyên khoa :</span>
-            {{doctor.chuyenkhoa}}
+            {{doctor.department}}
           </div>
         </div>
       </div>
