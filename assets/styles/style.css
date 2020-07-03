@@ -2960,7 +2960,8 @@ html.menu-opened body {
     font-size: 13px;
     font-weight: 500;
     margin: 6px auto auto 8px;
-    padding: 0 7px;
+	padding: 0 7px;
+	position: relative;
 }
 .card-label > input {
     background-color: #fff;

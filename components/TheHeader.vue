@@ -9,13 +9,13 @@
             <span></span>
           </span>
         </a>-->
-        <a href="index.html" class="navbar-brand logo">
+        <nuxt-link to="/" class="navbar-brand logo">
           <img
             src="http://benhvienkhuvucthuduc.vn/Content/assets/img/logo.png"
             class="img-fluid"
             alt="Logo"
           />
-        </a>
+        </nuxt-link>
       </div>
       <div class="main-menu-wrapper">
         <div class="menu-header">
@@ -28,7 +28,7 @@
         </div>
         <ul class="main-nav">
           <li>
-             <nuxt-link to="/">Trang chủ</nuxt-link>
+            <nuxt-link to="/">Trang chủ</nuxt-link>
           </li>
           <!-- 
         <li>
@@ -70,7 +70,6 @@
       </div>
 
       <ul class="nav header-navbar-rht">
-
         <li class="nav-item contact-item">
           <div class="header-contact-img">
             <i class="far fa-hospital"></i>
@@ -92,7 +91,7 @@
         </li>
 
         <!-- User Menu -->
-        <li class="nav-item dropdown has-arrow logged-item ">
+        <li class="nav-item dropdown has-arrow logged-item">
           <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
             <span class="user-img">
               <img

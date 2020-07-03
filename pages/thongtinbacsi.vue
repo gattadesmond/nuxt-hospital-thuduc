@@ -7,7 +7,7 @@
             <nav aria-label="breadcrumb ">
               <ol class="breadcrumb soju-breadcrumb soju-breadcrumb-white">
                 <li class="breadcrumb-item">
-                  <a href="#">Trang chủ</a>
+                  <nuxt-link to="/">Trang chủ</nuxt-link>
                 </li>
                 <li class="breadcrumb-item active" aria-current="page">Bác sĩ</li>
               </ol>
@@ -26,9 +26,36 @@
     <section class="section section-space pt-0 section-bacsi">
       <div class="container">
         <div class="row justify-content-center">
-          <template v-if="doctors.length">
-            <ArticleDoctor v-for="doctor in doctors" :key="doctor.id" :doctor="doctor" />
+
+          <template v-if="$fetchState.pending && !doctors.length">
+            <content-placeholders v-for="p in 8" :key="p" rounded class="col-3 mb-5">
+              <content-placeholders-img />
+              <content-placeholders-text :lines="3" />
+            </content-placeholders>
           </template>
+
+          <template v-else-if="$fetchState.error">
+            <inline-error-block :error="$fetchState.error" />
+          </template>
+
+          <template v-else>
+            <ArticleDoctor
+              v-for="(doctor, i) in doctors"
+              :key="`${doctor.id}abc`"
+              :doctor="doctor"
+              v-observe-visibility="
+                  i === doctors.length - 1 ? lazyLoadArticles : false
+                "
+            />
+          </template>
+
+          <template v-if="$fetchState.pending && doctors.length">
+            <content-placeholders v-for="p in 8" :key="p" rounded class="col-3 mb-5">
+              <content-placeholders-img />
+              <content-placeholders-text :lines="3" />
+            </content-placeholders>
+          </template>
+
         </div>
       </div>
     </section>
@@ -48,7 +75,7 @@ export default {
   },
   async fetch() {
     const doctors = await fetch(
-      `http://myhealthdemo.benhvienkhuvucthuduc.vn/api/Doctors/GetDoctors`
+      `http://myhealthdemo.benhvienkhuvucthuduc.vn/api/Doctors/GetDoctors?pageNumber=${this.currentPage}&pageSize=12`
       // ,{
       //   headers: {
       //     "secret-key":
@@ -60,15 +87,28 @@ export default {
     // console.log(doctors.doctor);
 
     this.doctors = this.doctors.concat(doctors.results);
-
-     console.log(this.doctors);
   },
   data() {
     return {
+      currentPage: 1,
       doctors: []
     };
   },
-  methods: {}
+  methods: {
+    lazyLoadArticles(isVisible) {
+      if (isVisible) {
+        if (this.currentPage < 10) {
+          this.currentPage++;
+          this.$fetch();
+        }
+      }
+    }
+  },
+  head() {
+    return {
+      title: "Thông tin bác sĩ"
+    };
+  }
 };
 </script>
 

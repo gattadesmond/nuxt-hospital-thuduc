@@ -34,6 +34,11 @@ export default {
       {
         rel: "stylesheet",
         href:
+          "https://unpkg.com/element-ui/lib/theme-chalk/index.css"
+      },
+      {
+        rel: "stylesheet",
+        href:
           "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap"
       },
       {
@@ -59,7 +64,8 @@ export default {
    */
   plugins: [
     "~/plugins/vue-placeholders.js",
-    "~/plugins/vue-observe-visibility.client.js"
+    "~/plugins/vue-observe-visibility.client.js",
+    "~/plugins/vue-element-ui.js"
   ],
   /*
    ** Auto import components
