@@ -53,11 +53,13 @@
 
                     <el-form-item>
                       <div class="form-soju">
-                        <div class="form-soju-label">Bác sĩ</div>
+                        <div class="form-soju-label">Danh sách Bác sĩ</div>
 
                         <el-select
                           v-model="form.bacsi"
+                          filterable
                           class="form-soju-input"
+                          no-match-text="Không có Bác sĩ "
                           placeholder="Vui lòng chọn Bác sĩ"
                         >
                           <el-option
@@ -149,58 +151,72 @@
                 </div>
               </div>
             </div>
-
           </div>
         </div>
 
         <div class="mt-5">
-          <h3>Danh sách câu hỏi trước</h3>
+          <h4 class="mb-4">Danh sách câu hỏi trước</h4>
+
+          <div class></div>
+
           <div class="doc-review review-listing">
             <!-- Review Listing -->
             <ul class="comments-list">
+              <li>
+                <div class="comment">
+                  <img
+                    class="avatar rounded-circle"
+                    alt="User Image"
+                    src="img/patients/patient6.jpg"
+                  />
+                  <div class="comment-body">
+                    <div class="meta-data">
+                      <span class="comment-author">Nguyễn Thị Dung</span>
+                      <span class="comment-date">Vào 2 ngày trước</span>
+                      <!-- <div class="review-count rating">
+                        <i class="fas fa-star filled"></i>
+                        <i class="fas fa-star filled"></i>
+                        <i class="fas fa-star filled"></i>
+                        <i class="fas fa-star filled"></i>
+                        <i class="fas fa-star"></i>
+                      </div>-->
+                    </div>
+
+                    <p class="recommended"><i class="far fa-clock"></i> Đang chờ</p>
+
+                    <div
+                      class="comment-content"
+                    >Em bị đau dạ dày 7 năm nay rồi, mà cứ tái đi tái lại nhiều lần k hết được bác sĩ ạ ? E đang có ý định dùng thuốc LacbioMax của Pháp vì dược chị cùng cty mách cho , không biết thuốc này có tốt không ạ bs cho e xin thêm ý kiến với ạ, vì chữa nhiều thuốc rồi k khỏi nên e cũng lăn tăn.</div>
+                  </div>
+                </div>
+
+           
+              </li>
+
               <!-- Comment List -->
               <li>
                 <div class="comment">
                   <img
                     class="avatar rounded-circle"
                     alt="User Image"
-                    src="img/patients/patient.jpg"
+                    src="img/patients/patient6.jpg"
                   />
                   <div class="comment-body">
                     <div class="meta-data">
-                      <span class="comment-author">Richard Wilson</span>
-                      <span class="comment-date">Reviewed 2 Days ago</span>
-                      <div class="review-count rating">
+                      <span class="comment-author">Nguyễn Thị Dung</span>
+                      <span class="comment-date">Vào 2 ngày trước</span>
+                      <!-- <div class="review-count rating">
                         <i class="fas fa-star filled"></i>
                         <i class="fas fa-star filled"></i>
                         <i class="fas fa-star filled"></i>
                         <i class="fas fa-star filled"></i>
                         <i class="fas fa-star"></i>
-                      </div>
+                      </div>-->
                     </div>
-                    <p class="recommended">
-                      <i class="far fa-thumbs-up"></i> I recommend the doctor
-                    </p>
-                    <p class="comment-content">
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                      Ut enim ad minim veniam, quis nostrud exercitation.
-                      Curabitur non nulla sit amet nisl tempus
-                    </p>
-                    <div class="comment-reply">
-                      <a class="comment-btn" href="#">
-                        <i class="fas fa-reply"></i> Reply
-                      </a>
-                      <p class="recommend-btn">
-                        <span>Recommend?</span>
-                        <a href="#" class="like-btn">
-                          <i class="far fa-thumbs-up"></i> Yes
-                        </a>
-                        <a href="#" class="dislike-btn">
-                          <i class="far fa-thumbs-down"></i> No
-                        </a>
-                      </p>
-                    </div>
+
+                    <div
+                      class="comment-content"
+                    >Bác sĩ ơi cho cháu hỏi cháu 19 tuổi sáng dậy bị đau chân đi mấy bước lại bình thường là bệnh gì ạ</div>
                   </div>
                 </div>
 
@@ -212,23 +228,26 @@
                       <img
                         class="avatar rounded-circle"
                         alt="User Image"
-                        src="img/doctors/doctor-thumb-02.jpg"
+                        src="http://benhvienkhuvucthuduc.vn/Content/uploads/ImageDoctors/6fb28875-81e8-4f0b-8340-a9d00120a18b_truong-khoa.jpg"
                       />
                       <div class="comment-body">
                         <div class="meta-data">
-                          <span class="comment-author">Dr. Darren Elder</span>
-                          <span class="comment-date">Reviewed 3 Days ago</span>
+                          <span class="comment-author">
+                            <a href>BS CKII.Từ Văn Lai</a>
+                          </span>
+                          <span class="comment-date">Trả lời 1 ngày trước</span>
                         </div>
-                        <p class="comment-content">
-                          Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                          sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                          Ut enim ad minim veniam.
-                          Curabitur non nulla sit amet nisl tempus
-                        </p>
-                        <div class="comment-reply">
-                          <a class="comment-btn" href="#">
-                            <i class="fas fa-reply"></i> Reply
-                          </a>
+                        <div class="comment-content">
+                          <p>@Lê Quang Hà: Chào bạn! Trường hợp của bạn nhiều khả năng chỉ bị đau do sinh lý, nguyên nhân do tư thế ngủ, do thay đổi thời tiết,... cũng có thể biểu hiện của thiếu canxi (rất hay gặp ở tuổi đang phát triển). Để khắc phục tình trạng này, bạn nên thực hiện các biện pháp sau đây:</p>
+
+                          <p>- Tăng chế độ ăn nhiều dinh dưỡng, giầu canxi</p>
+                          <p>- Tăng cường thể dục thể thao, nhất là luyện tập buổi tối, trước khi đi ngủ. Nên tập thường xuyên, mỗi ngày ít nhất 60 phút, ít nhất 5 ngày mỗi tuần.</p>
+                          <p>- Vật lý trị liệu, xông hơi, chườm nóng..... cũng có tác dụng tốt</p>
+                          <p>- Ngoài ra, nên uống thêm các sản phẩm có chứa vitamin nhóm B giúp bảo vệ tế bào thần kinh, chứa thành phần Ginkgo biloba giúp tăng lưu thông máu, tăng tuần hoàn ngoại vi, chứa cao blueberry giúp chống lão hóa. Các thành phần này có trong viên uống Vindermen Plus, giúp giảm đau, giảm tê, tăng lưu thông máu. Bạn có thể uống thường xuyên hoặc ít nhất 6 tháng để duy trì kết quả.</p>
+                          <p>
+                            Chúc bạn mạnh khỏe !
+                            Nếu còn thắc mắc nào cần giải đáp vui lòng gọi 19001259 !
+                          </p>
                         </div>
                       </div>
                     </div>
