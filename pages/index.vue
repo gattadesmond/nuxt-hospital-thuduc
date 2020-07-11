@@ -46,7 +46,7 @@
 
         <div class="col-6 col-md-4 mb-5">
           <div class="function__item h-100">
-            <a href class="link-absolute"></a>
+            <nuxt-link to="/kqxetnghiem" class="link-absolute"></nuxt-link>
             <div class="function__image">
               <div class="embed-responsive embed-responsive-21by9 overflow-hidden">
                 <img
@@ -156,13 +156,26 @@
 </template>
 
 <script>
+import { SVGInjector } from "@tanem/svg-injector";
+
 export default {
-    auth: false
+  auth: false,
+  mounted() {
+    SVGInjector(document.querySelectorAll("[data-inject-svg]"), {
+      afterEach(err, svg) {
+        if (typeof jarallax === "function") {
+          svg.dispatchEvent(
+            new CustomEvent("injected.mr.SVGInjector", { bubbles: true })
+          );
+        }
+      }
+    });
+  }
 };
 </script>
 
 <style lang="scss" scoped>
-    .section-home {
-    min-height: calc(100vh - 60px);
-    }
+.section-home {
+  min-height: calc(100vh - 60px);
+}
 </style>

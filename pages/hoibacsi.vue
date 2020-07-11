@@ -150,6 +150,16 @@
                   >Các bác sĩ cùng đội ngũ CSKH chuyên nghiệp luôn sẵn sàng giải đáp mọi thắc mắc về sức khỏe ngay trong ứng dụng hoặc qua đường dây nóng.</div>
                 </div>
               </div>
+
+              <div class="service__item">
+                <div class="service__icon">
+                  <i class="el-icon-money"></i>
+                </div>
+                <div class="service__body">
+                  <div class="service__name">Giá tiền</div>
+                  <div class="service__desc"><strong>300.000</strong> đồng/ 1 câu hỏi</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -182,15 +192,15 @@
                       </div>-->
                     </div>
 
-                    <p class="recommended"><i class="far fa-clock"></i> Đang chờ</p>
+                    <p class="recommended">
+                      <i class="far fa-clock"></i> Đang chờ
+                    </p>
 
                     <div
                       class="comment-content"
                     >Em bị đau dạ dày 7 năm nay rồi, mà cứ tái đi tái lại nhiều lần k hết được bác sĩ ạ ? E đang có ý định dùng thuốc LacbioMax của Pháp vì dược chị cùng cty mách cho , không biết thuốc này có tốt không ạ bs cho e xin thêm ý kiến với ạ, vì chữa nhiều thuốc rồi k khỏi nên e cũng lăn tăn.</div>
                   </div>
                 </div>
-
-           
               </li>
 
               <!-- Comment List -->
