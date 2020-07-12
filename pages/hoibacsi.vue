@@ -13,7 +13,7 @@
               </ol>
             </nav>
             <div class="banner-header text-left">
-              <h1 class="text-white">Tư vấn Bác sĩ</h1>
+              <h1 class="text-white">Tư vấn sức khỏe</h1>
               <p
                 class="lead text-white"
               >Bác sĩ sẽ dành 30 phút để cẩn thận kiểm tra sức khỏe, tư vấn kỹ lưỡng cho bạn.</p>
@@ -115,15 +115,34 @@
             <!-- Booking Summary -->
 
             <div class="service__card h-100">
-              <h4 class="text-white pb-4">Quy trình Khám sức khỏe</h4>
+              <h4 class="text-white pb-2">Quy định</h4>
+
+              <div class="service__item">
+                <div class="service__icon">
+                  <i class="el-icon-money"></i>
+                </div>
+                <div class="service__body">
+                  <div class="service__name">Phí dịch vụ</div>
+                  <div class="service__desc">
+                    <strong>50.000</strong> đồng
+                  </div>
+                </div>
+              </div>
 
               <div class="service__item">
                 <div class="service__icon">
                   <i class="el-icon-alarm-clock"></i>
                 </div>
                 <div class="service__body">
-                  <div class="service__name">Trả lời trong 8h</div>
-                  <div class="service__desc">Các bác sĩ sẽ trả lời tròng vòng 8h</div>
+                  <div class="service__name">Thời gian tiếp nhận</div>
+                  <div class="service__desc">
+                    <div class="mb-2">Các bác sĩ sẽ dành 30 phút để trả lời</div>
+                    <div class="mb-2">7h – 11h, trả lời vào 15h cùng ngày</div>
+                    <div class="mb-2">12h – 7h ngày hôm sau, 10h cùng ngày</div>
+                    <div
+                      class="mb-2"
+                    >TB, CN, Lễ - 10h ngày thứ 2 (TB,CN), ngày đi làm đầu tiên sau lễ (Lễ)</div>
+                  </div>
                 </div>
               </div>
 
@@ -148,16 +167,6 @@
                   <div
                     class="service__desc"
                   >Các bác sĩ cùng đội ngũ CSKH chuyên nghiệp luôn sẵn sàng giải đáp mọi thắc mắc về sức khỏe ngay trong ứng dụng hoặc qua đường dây nóng.</div>
-                </div>
-              </div>
-
-              <div class="service__item">
-                <div class="service__icon">
-                  <i class="el-icon-money"></i>
-                </div>
-                <div class="service__body">
-                  <div class="service__name">Giá tiền</div>
-                  <div class="service__desc"><strong>300.000</strong> đồng/ 1 câu hỏi</div>
                 </div>
               </div>
             </div>

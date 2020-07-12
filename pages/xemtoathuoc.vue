@@ -9,12 +9,12 @@
                 <li class="breadcrumb-item">
                   <nuxt-link to="/">Trang chủ</nuxt-link>
                 </li>
-                <li class="breadcrumb-item active" aria-current="page">Kết quả xét nghiệm</li>
+                <li class="breadcrumb-item active" aria-current="page">Xem toa thuốc</li>
               </ol>
             </nav>
             <div class="banner-header text-left">
-              <h1 class="text-white">Xem kết quả xét nghiệm</h1>
-              <p class="lead text-white">Xem và tải về kết quả cận lâm sàng</p>
+              <h1 class="text-white">Xem toa thuốc</h1>
+              <p class="lead text-white">Xem và tải về toa thuốc</p>
             </div>
           </div>
         </div>
@@ -29,18 +29,19 @@
           <div class="col-md-8">
             <div class="row no-gutters align-items-center mb-4">
               <div class="col">
-                <div class="card-title kq-title">Danh sách kết quả</div>
+                <div class="card-title kq-title">Danh sách toa thuốc</div>
               </div>
               <div class="col-auto">
                 <div class="kq-filter">
-                  <el-select v-model="filters" placeholder="Select">
-                    <el-option
-                      v-for="item in filtersList"
-                      :key="item.value"
-                      :label="item.label"
-                      :value="item.value"
-                    ></el-option>
-                  </el-select>
+                  <el-date-picker
+                    v-model="dateValue"
+                    type="daterange"
+                    align="right"
+                    start-placeholder="Ngày bắt đầu"
+                    end-placeholder="Ngày kết thúc"
+                    default-value="2010-10-01"
+                    format="dd-MM-yyyy"
+                  ></el-date-picker>
                 </div>
               </div>
             </div>
@@ -234,158 +235,6 @@
         </div>
       </div>
     </section>
-
-    <section class="section section-space" style="background-color: rgba(238, 242, 247, 1)">
-      <div class="container">
-        <div class="row no-gutters align-items-center mb-4">
-          <div class="col">
-            <div class="card-title kq-title">Danh sách kết quả</div>
-          </div>
-          <div class="col-auto">
-            <div class="kq-filter">
-              <el-select v-model="filters" placeholder="Select">
-                <el-option
-                  v-for="item in filtersList"
-                  :key="item.value"
-                  :label="item.label"
-                  :value="item.value"
-                ></el-option>
-              </el-select>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-4" v-for="i in [1,2]">
-            <div class="kq__box mb-4">
-              <div class="kq__box__body">
-                <div class="kq__overlay">
-                  <a href class="btn btn-success">Tải về</a>
-                </div>
-                <div class="kq__box__img">
-                  <img src="http://html.iwthemes.com/mas/img/authorizations/doc.jpg" alt />
-                </div>
-              </div>
-
-              <div class="kq__box__footer py-1">
-                <div class="tt">Xét nghiệm</div>
-                <div class="ff border-top">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col">Ngày</div>
-                    <div class="col-auto">22/05/2020</div>
-                  </div>
-                </div>
-                <div class="ff border-top">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col">Trạng thái</div>
-                    <div class="col-auto">
-                      <span class="alert p-1 px-2 m-0 alert-success d-inline-block">
-                        <i class="fas fa-file-download"></i> Miễn phí
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-4">
-            <div class="kq__box mb-4">
-              <div class="kq__box__body">
-                <div class="kq__overlay">
-                  <a href class="btn btn-success">Tải về</a>
-                </div>
-                <div class="kq__box__img">
-                  <img src="http://html.iwthemes.com/mas/img/authorizations/doc.jpg" alt />
-                </div>
-              </div>
-
-              <div class="kq__box__footer py-1">
-                <div class="tt">CT, Scanner MRI</div>
-                <div class="ff border-top">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col">Ngày</div>
-                    <div class="col-auto">22/05/2020</div>
-                  </div>
-                </div>
-                <div class="ff border-top">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col">Trạng thái</div>
-                    <div class="col-auto">
-                      <span class="alert p-1 px-2 m-0 alert-warning d-inline-block">
-                        <i class="fas fa-file-invoice-dollar"></i>
-                        Tốn phí
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-4">
-            <div class="kq__box mb-4">
-              <div class="kq__box__body">
-                <div class="kq__box__img">
-                  <img src="http://html.iwthemes.com/mas/img/authorizations/doc.jpg" alt />
-                </div>
-              </div>
-
-              <div class="kq__box__footer py-1">
-                <div class="tt">X-quang</div>
-                <div class="ff border-top">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col">Ngày</div>
-                    <div class="col-auto">22/05/2020</div>
-                  </div>
-                </div>
-                <div class="ff border-top">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col">Trạng thái</div>
-                    <div class="col-auto">
-                      <span class="alert p-1 px-2 m-0 alert-primary-2 d-inline-block">
-                        <i class="fas fa-spinner"></i>
-                        Đang chờ
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-4">
-            <div class="kq__box mb-4">
-              <div class="kq__box__body">
-                <div class="kq__box__img">
-                  <img src="http://html.iwthemes.com/mas/img/authorizations/doc.jpg" alt />
-                </div>
-              </div>
-
-              <div class="kq__box__footer py-1">
-                <div class="tt">Nội soi</div>
-                <div class="ff border-top">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col">Ngày</div>
-                    <div class="col-auto">22/05/2020</div>
-                  </div>
-                </div>
-                <div class="ff border-top">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col">Trạng thái</div>
-                    <div class="col-auto">
-                      <span class="alert p-1 px-2 m-0 alert-primary-3 d-inline-block">
-                        <i class="fas fa-spinner"></i>
-                        Không có sẵn
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
   </div>
 </template>
 
@@ -396,39 +245,12 @@ export default {
   methods: {},
   data() {
     return {
-      filtersList: [
-        {
-          value: "1q",
-          label: "Tất cả"
-        },
-        {
-          value: "2q",
-          label: "Xét nghiệm"
-        },
-        {
-          value: "3q",
-          label: "X-Quang"
-        },
-        {
-          value: "4q",
-          label: "CT Scanner, MRI"
-        },
-        {
-          value: "5q",
-          label: "Siêu âm"
-        },
-        {
-          value: "6q",
-          label: "Nội soi"
-        }
-      ],
-
-      filters: "1q"
+      dateValue: ""
     };
   },
   head() {
     return {
-      title: "Kết quả cận lâm sàng"
+      title: "Xem toa thuốc"
     };
   }
 };

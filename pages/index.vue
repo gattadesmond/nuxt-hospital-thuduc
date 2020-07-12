@@ -74,7 +74,7 @@
 
         <div class="col-6 col-md-4 mb-5">
           <div class="function__item h-100">
-            <a href class="link-absolute"></a>
+            <nuxt-link to="/xemtoathuoc" class="link-absolute"></nuxt-link>
             <div class="function__image">
               <div class="embed-responsive embed-responsive-21by9 overflow-hidden">
                 <img
@@ -102,7 +102,7 @@
 
         <div class="col-6 col-md-4 mb-5">
           <div class="function__item h-100">
-            <a href class="link-absolute"></a>
+             <nuxt-link to="/datlichkham" class="link-absolute"></nuxt-link>
             <div class="function__image">
               <div class="embed-responsive embed-responsive-21by9 overflow-hidden">
                 <img
@@ -130,7 +130,7 @@
 
         <div class="col-6 col-md-4 mb-5">
           <div class="function__item h-100">
-            <a href class="link-absolute"></a>
+            <nuxt-link to="/dongvienphi" class="link-absolute"></nuxt-link>
             <div class="function__image">
               <div class="embed-responsive embed-responsive-21by9 overflow-hidden">
                 <img

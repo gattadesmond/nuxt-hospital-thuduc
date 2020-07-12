@@ -1,60 +1,126 @@
-.kq-filter{
-
+.kq-filter {
 }
 
-.kq__box{
+.kq__box {
   border: 1px solid #dfe1e5;
   border-radius: 3px;
   box-shadow: none;
-  cursor: pointer;
+  // cursor: pointer;
   opacity: 1;
+  overflow: hidden;
   background-color: white;
+  @include hover-focus() {
+    border-color: $primary;
+    .kq__overlay {
+      opacity: 1;
+
+      transition: 0.3s all ease;
+    }
+  }
 }
 
-.kq__box__body{
-
-  
+.kq__overlay {
+  background: #ccc;
+  background: rgba(0, 0, 0, 0.3);
+  width: 100%;
+  height: 100%;
+  padding: 20px 30px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  z-index: 5;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  transition: 0.3s all ease;
 }
 
-.kq__box__footer{
-
+.kq__box__body {
+  position: relative;
 }
 
-.kq__box__img{
+.kq__box__footer {
+}
+
+.kq__box__img {
   position: relative;
   display: block;
   width: 100%;
   padding: 0;
   overflow: hidden;
-  &:before{
+  &:before {
     display: block;
-    content : "";
+    content: "";
     padding-top: percentage(0.6);
   }
-  img{
+  img {
     width: 100%;
     height: 100%;
     position: absolute;
-    top:0;
+    top: 0;
     left: 0;
     object-fit: cover;
   }
 }
 
-.kq__box__footer{
+.kq__box__footer {
   padding: 15px 15px;
-  .tt{
+  .tt {
     font-weight: bold;
     font-size: 15px;
     padding: 13px 0;
   }
-  .ff{
+  .ff {
     padding: 13px 0;
   }
 }
 
-.kq-title{
+.kq-title {
   font-size: 18px;
   font-weight: bold;
+}
 
+.box-listed {
+  .box-item-list {
+    border: 1px solid #eeeeee;
+    margin-bottom: 30px;
+    > li {
+      border-bottom: 1px solid #eeeeee;
+      padding: 20px;
+    }
+    > li:last-child {
+      border-bottom: none;
+    }
+
+    > li{
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
+    }
+    .ic{
+      flex: 0 0 30px;
+      font-size: 24px;
+      color: gray("600");
+    }
+    .date{
+      flex: 0 0 150px;
+    }
+    .name{
+      flex: 1;
+      min-width: 0;
+      font-size: 15px;
+      font-weight: bold;
+    }
+    .func{
+      flex: 0 0 170px;
+    }
+  }
+}
+
+.box-listed .box-title-list {
+  background-color: rgba(236, 237, 240, 0.6);
+  border: 1px solid #eeeeee;
+  border-bottom: none;
+  padding: 20px 23px;
 }

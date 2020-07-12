@@ -17,7 +17,7 @@
           />
         </nuxt-link>
       </div>
-      <div class="main-menu-wrapper">
+      <div class="main-menu-wrapper pl-lg-3">
         <div class="menu-header">
           <a href="index.html" class="menu-logo">
             <img src="/img/logo.png" class="img-fluid" alt="Logo" />
