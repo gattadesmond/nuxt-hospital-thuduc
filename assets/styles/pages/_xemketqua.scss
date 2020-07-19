@@ -124,3 +124,18 @@
   border-bottom: none;
   padding: 20px 23px;
 }
+
+
+.required__box{
+  padding: 15px 15px;
+  border-radius: 5px;
+  text-align: center;
+  border: 2px solid rgba($primary,0.3);
+  background-color: rgba($primary,0.05);;
+}
+
+.info__card{
+  font-size: 13px;
+  padding: 15px;
+  background-color: gray("100");
+}

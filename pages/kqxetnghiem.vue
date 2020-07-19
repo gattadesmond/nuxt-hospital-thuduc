@@ -14,7 +14,7 @@
             </nav>
             <div class="banner-header text-left">
               <h1 class="text-white">Xem kết quả xét nghiệm</h1>
-              <p class="lead text-white">Xem và tải về kết quả cận lâm sàng</p>
+              <p class="lead text-white mb-0">Xem và tải về kết quả cận lâm sàng</p>
             </div>
           </div>
         </div>
@@ -42,6 +42,88 @@
                     ></el-option>
                   </el-select>
                 </div>
+              </div>
+            </div>
+
+            <div class="required__box mb-4">
+              <div
+                class
+              >Chưa có kết quả xét nghiệm, bạn có thể yêu cầu Bệnh viện gửi kết quả xét nghiệm tại đây</div>
+              <div class="text-center mt-3">
+                <b-button v-b-modal.modal-1 variant="primary" size="sm">Yêu cầu kết quả xét nghiệm</b-button>
+
+                <b-modal id="modal-1" centered title="Yêu cầu kết quả xét nghiệm">
+                  <el-form ref="form" :model="form" label-width="0px">
+                    <div class="row">
+                      <div class="col-12">
+                        <h5 class="font-weight-bold mb-3">Chọn ngày khám</h5>
+
+                        <div class="row sm-gutters mt-4">
+                          <div class="col-6">
+                            <div class="mb-2">Chọn lại xét nghiệm:</div>
+                            <el-select v-model="form.loaiHinh" placeholder="Select">
+                              <el-option
+                                v-for="item in filtersList"
+                                :key="item.value"
+                                :label="item.label"
+                                :value="item.value"
+                              ></el-option>
+                            </el-select>
+                          </div>
+
+                          <div class="col-6">
+                            <div class="mb-2">Chọn ngày xét nghiệm</div>
+                            <el-date-picker
+                              v-model="form.dateSelect"
+                              type="date"
+                              placeholder="Pick a day"
+                            ></el-date-picker>
+                          </div>
+                        </div>
+
+                        <div class="card mt-4 info__card">
+                          <div class="font-weight-bold mb-3">Thông tin bệnh nhân</div>
+
+                          <div class="row sm-gutters mt-0">
+                            <div class="col-6">
+                              Họ tên :
+                              <strong>Nguyễn Văn A</strong>
+                            </div>
+
+                            <div class="col-6">
+                              Tuổi :
+                              <strong>21</strong>
+                            </div>
+                          </div>
+
+                          <div class="row sm-gutters mt-4">
+                            <div class="col-6">
+                              Địa chỉ :
+                              <strong>302 Lê Văn Sỹ</strong>
+                            </div>
+
+                            <div class="col-6">
+                              Điện thoại :
+                              <strong>0909090909</strong>
+                            </div>
+                          </div>
+
+                          <div class="row sm-gutters mt-4">
+                            <div class="col-6">
+                              Email:
+                              <strong>test@mail.com</strong>
+                            </div>
+
+                            <div class="col-6">
+                              Bảo hiểm:
+                              <strong>Không</strong>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </el-form>
+                </b-modal>
               </div>
             </div>
 
@@ -396,6 +478,12 @@ export default {
   methods: {},
   data() {
     return {
+      form: {
+        loaiKham: "1",
+        noidung: "",
+        loaiHinh: "",
+        dateSelect: ""
+      },
       filtersList: [
         {
           value: "1q",
