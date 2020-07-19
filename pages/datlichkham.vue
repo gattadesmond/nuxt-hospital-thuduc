@@ -14,9 +14,7 @@
             </nav>
             <div class="banner-header text-left">
               <h1 class="text-white">Đặt lịch khám</h1>
-              <p class="lead text-white">
-                Đồng ý sử dụng và thanh toán phí dịch vụ.
-              </p>
+              <p class="lead text-white">Đồng ý sử dụng và thanh toán phí dịch vụ.</p>
             </div>
           </div>
         </div>
@@ -86,32 +84,27 @@
                             <div class="form-soju">
                               <div class="form-soju-label">Chọn chuyên khoa</div>
 
-                              <el-select
-                                v-model="form.chuyenkhoa"
-                                filterable
-                                class="form-soju-input"
-                                no-match-text="Không có Chuyên khoa "
-                                placeholder="Vui lòng chọn Chuyên khoa"
-                                width="400px"
-                              >
-                                <el-option
-                                  v-for="item in chuyenkhoa"
-                                  :key="item.id"
-                                  :label="item.name"
-                                  :value="item.name"
-                                >
-                                  <div class="row no-gutters flex-nowrap align-items-center">
-                                    <div class="col mr-2">
-                                      <span style>{{ item.name }}</span>
-                                    </div>
-                                  </div>
-                                </el-option>
-                              </el-select>
+                              <SelectChuyenKhoa />
                             </div>
                           </el-form-item>
                         </div>
 
-                        <div class="col-md-6 " v-if="form.loaiKham == 2">
+                        <div class="col-md-10">
+                          <el-form-item>
+                            <div class="form-soju">
+                              <div class="form-soju-label">Mô tả triệu chứng </div>
+                              <el-input
+                                type="textarea"
+                                :autosize="{ minRows: 3, maxRows: 10}"
+                                class="form-soju-input"
+                                placeholder="Vui lòng ghi rõ vấn đề của bạn để chúng tôi có thể sắp xếp đúng chuyên khoa nếu cần."
+                                v-model="form.noidung"
+                              ></el-input>
+                            </div>
+                          </el-form-item>
+                        </div>
+
+                        <div class="col-md-6" v-if="form.loaiKham == 2">
                           <el-form-item>
                             <div class="form-soju">
                               <div class="form-soju-label">Chọn Bác sĩ</div>
@@ -124,18 +117,14 @@
                                 placeholder="Vui lòng chọn Bác sĩ"
                               >
                                 <el-option
-                                  v-for="item in doctors"
+                                  v-for="item in doctorsList"
                                   :key="item.id"
                                   :label="item.name"
                                   :value="item.name"
                                 >
                                   <div class="row no-gutters flex-nowrap align-items-center">
                                     <div class="col-auto mr-2">
-                                      <b-avatar
-                                        square
-                                        size="sm"
-                                        :src="`http://benhvienkhuvucthuduc.vn/Content/uploads/ImageDoctors/${item.imageLink}`"
-                                      ></b-avatar>
+                                      <b-avatar square size="sm" :src="`${item.imageLink}`"></b-avatar>
                                     </div>
                                     <div class="col mr-2">
                                       <span style>{{ item.name }}</span>
@@ -424,145 +413,22 @@
 <script>
 //API THONG TIN BAC SI
 // https://api.jsonbin.io/b/5efe2af50bab551d2b6ace37
+import SelectChuyenKhoa from "@/components/blocks/SelectChuyenKhoa";
 
 export default {
   auth: false,
-  components: {},
+  components: {
+    SelectChuyenKhoa
+  },
 
   data() {
     return {
       form: {
         loaiKham: "1",
-        bacsi: "",
-        chuyenkhoa: "",
+        noidung: "",
         checkrule: false
       },
-      doctors: [
-        {
-          id: 4,
-          name: "Bs CKI.Hồ Thanh Phong",
-          position: "Trưởng khoa",
-          imageLink: "749aea9c-ec80-409c-89fb-a9e000a341e9_capcuu-phong.jpg"
-        },
-        {
-          id: 5,
-          position: "Điều dưỡng trưởng",
-          name: "CN ĐD.Phạm Quốc Trung",
-          imageLink: ""
-        },
-        {
-          id: 6,
-          position: "Bác sĩ điều trị",
-          name: "BS.Phạm Thi Thu",
-          imageLink: "a900ab86-4eb6-4d98-a94f-a9dc01017e4c_capcuu-thu.jpg"
-        },
-        {
-          id: 7,
-          position: "Bác sĩ điều trị",
-          name: "BS CKI.Trần Thị Tú",
-
-          imageLink: "28a98e02-7373-4a0b-8307-a9dc01018c9c_capcuu-tu.jpg"
-        },
-        {
-          id: 8,
-          position: "Bác sĩ điều trị",
-          name: "BS.Trần Thị Hiếu",
-
-          imageLink: "8ba10650-803a-4eaf-b42a-a9dc0100941d_capcuu-hieu.jpg"
-        },
-        {
-          id: 9,
-          position: "Bác sĩ điều trị",
-          name: "BS.Nguyễn Tiến Hoàn",
-
-          imageLink: "1044759c-b9a8-460e-bb20-a9dc0100ac22_capcuu-hoan.jpg"
-        },
-        {
-          id: 10,
-          position: "Bác sĩ điều trị",
-          name: "BS.Lê Văn Hưng",
-
-          imageLink: "fa639536-6182-4f66-b7f3-a9dc010123fe_capcuu-hung`.jpg"
-        },
-        {
-          id: 11,
-          position: "Bác sĩ điều trị",
-          name: "BS.Vũ Minh Hoàng",
-
-          imageLink: "987e1a0c-9541-4103-8c44-a9dc0100cbba_capcuu-hoang.jpg"
-        },
-        {
-          id: 12,
-          position: "Bác sĩ điều trị",
-          name: "BS.Trương Cao Đường",
-
-          imageLink: "48623d1f-55ac-4fd4-ba16-a9dc01007542_capcuu-duong.jpg"
-        },
-        {
-          id: 13,
-          position: "Bác sĩ điều trị",
-          name: "BS.Lê Hồng Quân",
-
-          imageLink: "ec087c50-a2e1-42da-8767-a9dc01015b91_capcuu-quan.jpg"
-        },
-        {
-          id: 14,
-          position: "Bác sĩ điều trị",
-          name: "BS CKII.Nguyễn Xuân Tuyến",
-
-          imageLink: "b2f7e801-9558-4657-81ca-a9d0012003ff_truong-khoa.jpg"
-        },
-        {
-          id: 15,
-          position: "Bác sĩ điều trị",
-          name: "CN ĐD.Nguyễn Thị Kim My",
-
-          imageLink: ""
-        },
-        {
-          id: 16,
-          position: "Bác sĩ điều trị",
-          name: "Ths.BS.Nguyễn Lê Hoàng Phi",
-
-          imageLink: "a259121d-bba5-483f-b523-a9dc01031468_hscc-phi.jpg"
-        },
-        {
-          id: 17,
-          position: "Bác sĩ điều trị",
-          name: "Bs CKI.Dương Hoàng Hà",
-
-          imageLink: "291a4f11-76c2-432d-95d4-a9dc01030444_hscc-ha.jpg"
-        },
-        {
-          id: 18,
-          position: "Bác sĩ điều trị",
-          name: "BS CKI.Nguyễn Thị Thanh Tú",
-
-          imageLink: "084dc47c-35a7-47b6-9f7b-a9dc01033b5a_hscc-tu.jpg"
-        }
-      ],
-      chuyenkhoa: [
-        {
-          id: 1,
-          name: "Khoa Tai mũi họng"
-        },
-        {
-          id: 2,
-          name: "Nội khoa"
-        },
-        {
-          id: 3,
-          name: "Nội tổng quát"
-        },
-        {
-          id: 4,
-          name: "Nội tổng quát"
-        },
-        {
-          id: 5,
-          name: "Nội tổng quát"
-        }
-      ]
+      doctorsList: []
     };
   },
   methods: {
@@ -570,7 +436,13 @@ export default {
       console.log(this.form);
     }
   },
-  async fetch() {},
+  async fetch() {
+    const doctorsList = await fetch(
+      "http://myhealthdemo.benhvienkhuvucthuduc.vn/api/Doctors/GetAllDoctorForQnA"
+    ).then(res => res.json());
+
+    this.doctorsList = this.doctorsList.concat(doctorsList);
+  },
 
   head() {
     return {
@@ -583,3 +455,6 @@ export default {
 
 <style lang="scss" scoped>
 </style>
+
+
+

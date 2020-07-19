@@ -17,6 +17,29 @@
               <p class="lead text-white">Chúng tôi có 234 Bác Sĩ</p>
             </div>
           </div>
+          <div class="col-12 col-lg-4 text-right">
+            <el-select
+              v-model="chuyenkhoaSelect"
+              filterable
+              class=""
+              no-match-text="Không có Chuyên khoa "
+              placeholder="Chuyên khoa"
+              width="400px"
+            >
+              <el-option
+                v-for="item in chuyenkhoa"
+                :key="item.id"
+                :label="item.name"
+                :value="item.name"
+              >
+                <div class="row no-gutters flex-nowrap align-items-center">
+                  <div class="col mr-2">
+                    <span style>{{ item.name }}</span>
+                  </div>
+                </div>
+              </el-option>
+            </el-select>
+          </div>
         </div>
       </div>
 
@@ -26,7 +49,6 @@
     <section class="section section-space pt-0 section-bacsi">
       <div class="container">
         <div class="row justify-content-center">
-
           <template v-if="$fetchState.pending && !doctors.length">
             <content-placeholders v-for="p in 8" :key="p" rounded class="col-3 mb-5">
               <content-placeholders-img />
@@ -55,7 +77,6 @@
               <content-placeholders-text :lines="3" />
             </content-placeholders>
           </template>
-
         </div>
       </div>
     </section>
@@ -91,7 +112,30 @@ export default {
   data() {
     return {
       currentPage: 1,
-      doctors: []
+      doctors: [],
+      chuyenkhoaSelect: "",
+      chuyenkhoa: [
+        {
+          id: 1,
+          name: "Khoa Tai mũi họng"
+        },
+        {
+          id: 2,
+          name: "Nội khoa"
+        },
+        {
+          id: 3,
+          name: "Nội tổng quát"
+        },
+        {
+          id: 4,
+          name: "Nội tổng quát"
+        },
+        {
+          id: 5,
+          name: "Nội tổng quát"
+        }
+      ]
     };
   },
   methods: {
