@@ -52,13 +52,13 @@
               <div class="text-center mt-3">
                 <b-button v-b-modal.modal-1 variant="primary" size="sm">Yêu cầu kết quả xét nghiệm</b-button>
 
-                <b-modal id="modal-1" centered title="Yêu cầu kết quả xét nghiệm">
-                  <el-form ref="form" :model="form" label-width="0px">
+                <b-modal id="modal-1" centered cancelTitle="Đóng cửa sổ" okTitle="Thanh toán" title="Yêu cầu kết quả xét nghiệm">
+                  <el-form ref="form" class="px-3" :model="form" label-width="0px">
                     <div class="row">
                       <div class="col-12">
                         <!-- <h5 class="font-weight-bold mb-3">Chọn ngày khám</h5> -->
 
-                        <div class="row sm-gutters mt-4">
+                        <div class="row sm-gutters mt-3">
                           <div class="col-6">
                             <div class="mb-2">Chọn lại xét nghiệm:</div>
                             <el-select v-model="form.loaiHinh" placeholder="Select">
@@ -80,8 +80,16 @@
                             ></el-date-picker>
                           </div>
 
-                          <div>
-                            Tôi đồng ý gửi yêu cầu theo quy định</div> 
+                          <div class="col-12">
+                            <el-form-item class="mt-3 mb-0" label>
+                              <el-checkbox-group v-model="form.checkrule">
+                                <el-checkbox
+                                  label="Tôi đồng ý gửi yêu cầu theo quy định"
+                                  name="type"
+                                ></el-checkbox>
+                              </el-checkbox-group>
+                            </el-form-item>
+                          </div>
                         </div>
 
                         <div class="card mt-4 info__card">
@@ -485,7 +493,8 @@ export default {
         loaiKham: "1",
         noidung: "",
         loaiHinh: "",
-        dateSelect: ""
+        dateSelect: "",
+        checkrule: ""
       },
       filtersList: [
         {
