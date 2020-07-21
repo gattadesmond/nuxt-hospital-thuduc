@@ -12,10 +12,11 @@
                 <li class="breadcrumb-item active" aria-current="page">Hỏi Bác sĩ</li>
               </ol>
             </nav>
+
             <div class="banner-header text-left">
               <h1 class="text-white">Tư vấn sức khỏe</h1>
               <p
-                class="lead text-white"
+                class="lead text-white mb-0"
               >Bác sĩ sẽ dành 30 phút để cẩn thận kiểm tra sức khỏe, tư vấn kỹ lưỡng cho bạn.</p>
             </div>
           </div>
@@ -70,11 +71,7 @@
                           >
                             <div class="row no-gutters flex-nowrap align-items-center">
                               <div class="col-auto mr-2">
-                                <b-avatar
-                                  square
-                                  size="sm"
-                                  :src="`${item.imageLink}`"
-                                ></b-avatar>
+                                <b-avatar square size="sm" :src="`${item.imageLink}`"></b-avatar>
                               </div>
                               <div class="col mr-2">
                                 <span style>{{ item.name }}</span>
@@ -320,7 +317,9 @@ export default {
     }
   },
   async fetch() {
-    const doctorsList = await fetch("http://myhealthdemo.benhvienkhuvucthuduc.vn/api/Doctors/GetAllDoctorForQnA").then(res => res.json());
+    const doctorsList = await fetch(
+      "http://myhealthdemo.benhvienkhuvucthuduc.vn/api/Doctors/GetAllDoctorForQnA"
+    ).then(res => res.json());
 
     this.doctorsList = this.doctorsList.concat(doctorsList);
   },

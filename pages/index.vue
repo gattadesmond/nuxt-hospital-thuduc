@@ -106,7 +106,7 @@
             <div class="function__image">
               <div class="embed-responsive embed-responsive-21by9 overflow-hidden">
                 <img
-                  src="http://benhvienkhuvucthuduc.vn/Content/assets/img/service/service_6.jpg"
+                  src="img/func/func-datlichkham.jpg"
                   class="embed-responsive-img img-cover"
                   alt
                 />
@@ -159,7 +159,7 @@
 import { SVGInjector } from "@tanem/svg-injector";
 
 export default {
-  auth: false,
+  auth: true,
   mounted() {
     SVGInjector(document.querySelectorAll("[data-inject-svg]"), {
       afterEach(err, svg) {

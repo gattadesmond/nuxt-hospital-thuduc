@@ -89,21 +89,6 @@
                           </el-form-item>
                         </div>
 
-                        <div class="col-md-10">
-                          <el-form-item>
-                            <div class="form-soju">
-                              <div class="form-soju-label">Mô tả triệu chứng </div>
-                              <el-input
-                                type="textarea"
-                                :autosize="{ minRows: 3, maxRows: 10}"
-                                class="form-soju-input"
-                                placeholder="Vui lòng ghi rõ vấn đề của bạn để chúng tôi có thể sắp xếp đúng chuyên khoa nếu cần."
-                                v-model="form.noidung"
-                              ></el-input>
-                            </div>
-                          </el-form-item>
-                        </div>
-
                         <div class="col-md-6" v-if="form.loaiKham == 2">
                           <el-form-item>
                             <div class="form-soju">
@@ -163,6 +148,21 @@
                             </div>
                           </div>
                         </div>
+
+                        <div class="col-md-10">
+                          <el-form-item>
+                            <div class="form-soju">
+                              <div class="form-soju-label">Mô tả triệu chứng</div>
+                              <el-input
+                                type="textarea"
+                                :autosize="{ minRows: 3, maxRows: 10}"
+                                class="form-soju-input"
+                                placeholder="Vui lòng ghi rõ vấn đề của bạn để chúng tôi có thể sắp xếp đúng chuyên khoa nếu cần."
+                                v-model="form.noidung"
+                              ></el-input>
+                            </div>
+                          </el-form-item>
+                        </div>
                       </div>
                     </div>
 
@@ -208,180 +208,124 @@
                     </div>
 
                     <div class="col-12">
-                      <h4 class="mt-4 mb-1">Chọn ngày khám</h4>
+                      <h4 class="mt-4 mb-1">Chọn ngày khám và giờ khám</h4>
 
-                      <div class="booking-schedule schedule-widget mt-4">
-                        <!-- Schedule Header -->
-                        <div class="schedule-header">
-                          <div class="row">
-                            <div class="col-md-12">
-                              <!-- Day Slot -->
-                              <div class="day-slot">
-                                <ul>
-                                  <li class="left-arrow">
-                                    <a href>
-                                      <i class="fa fa-chevron-left"></i>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <span>Thứ 2</span>
-                                    <span class="slot-date">11/06</span>
-                                  </li>
-                                  <li>
-                                    <span>Thứ 3</span>
-                                    <span class="slot-date">11/06</span>
-                                  </li>
-                                  <li>
-                                    <span>Thứ 4</span>
-                                    <span class="slot-date">12/06</span>
-                                  </li>
-                                  <li>
-                                    <span>Thứ 5</span>
-                                    <span class="slot-date">13/06</span>
-                                  </li>
-                                  <li>
-                                    <span>Thứ 6</span>
-                                    <span class="slot-date">14/06</span>
-                                  </li>
-                                  <li>
-                                    <span>Thứ 7</span>
-                                    <span class="slot-date">15/06</span>
-                                  </li>
-                                  <li>
-                                    <span>Chủ nhật</span>
-                                    <span class="slot-date">
-                                      17 Nov
-                                      <small class="slot-year">2019</small>
-                                    </span>
-                                  </li>
-                                  <li class="right-arrow">
-                                    <a href>
-                                      <i class="fa fa-chevron-right"></i>
-                                    </a>
-                                  </li>
-                                </ul>
+                      <div class="mt-4">
+                        <el-tabs type="border-card">
+                          <el-tab-pane>
+                            <div slot="label">
+                              <div class="date__item">
+                                <div class="date">THỨ 2</div>
+                                <div class="day">11/06</div>
                               </div>
-                              <!-- /Day Slot -->
                             </div>
-                          </div>
-                        </div>
-                        <!-- /Schedule Header -->
 
-                        <!-- Schedule Content -->
-                        <div class="schedule-cont">
-                          <div class="row">
-                            <div class="col-md-12">
-                              <!-- Time Slot -->
-                              <div class="time-slot">
-                                <ul class="clearfix">
-                                  <li>
-                                    <a class="timing" href="#">
-                                      <span>9:00</span>
-                                      <span>AM</span>
-                                    </a>
-                                    <a class="timing" href="#">
-                                      <span>10:00</span>
-                                      <span>AM</span>
-                                    </a>
-                                    <a class="timing" href="#">
-                                      <span>11:00</span>
-                                      <span>AM</span>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a class="timing" href="#">
-                                      <span>9:00</span>
-                                      <span>AM</span>
-                                    </a>
-                                    <a class="timing" href="#">
-                                      <span>10:00</span>
-                                      <span>AM</span>
-                                    </a>
-                                    <a class="timing" href="#">
-                                      <span>11:00</span>
-                                      <span>AM</span>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a class="timing" href="#">
-                                      <span>9:00</span>
-                                      <span>AM</span>
-                                    </a>
-                                    <a class="timing" href="#">
-                                      <span>10:00</span>
-                                      <span>AM</span>
-                                    </a>
-                                    <a class="timing" href="#">
-                                      <span>11:00</span>
-                                      <span>AM</span>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a class="timing" href="#">
-                                      <span>9:00</span>
-                                      <span>AM</span>
-                                    </a>
-                                    <a class="timing" href="#">
-                                      <span>10:00</span>
-                                      <span>AM</span>
-                                    </a>
-                                    <a class="timing" href="#">
-                                      <span>11:00</span>
-                                      <span>AM</span>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a class="timing" href="#">
-                                      <span>9:00</span>
-                                      <span>AM</span>
-                                    </a>
-                                    <a class="timing selected" href="#">
-                                      <span>10:00</span>
-                                      <span>AM</span>
-                                    </a>
-                                    <a class="timing" href="#">
-                                      <span>11:00</span>
-                                      <span>AM</span>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a class="timing" href="#">
-                                      <span>9:00</span>
-                                      <span>AM</span>
-                                    </a>
-                                    <a class="timing" href="#">
-                                      <span>10:00</span>
-                                      <span>AM</span>
-                                    </a>
-                                    <a class="timing" href="#">
-                                      <span>11:00</span>
-                                      <span>AM</span>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a class="timing" href="#">
-                                      <span>9:00</span>
-                                      <span>AM</span>
-                                    </a>
-                                    <a class="timing" href="#">
-                                      <span>10:00</span>
-                                      <span>AM</span>
-                                    </a>
-                                    <a class="timing" href="#">
-                                      <span>11:00</span>
-                                      <span>AM</span>
-                                    </a>
-                                  </li>
-                                </ul>
-                              </div>
-                              <!-- /Time Slot -->
+                            <div class="time-slot">
+                              <ul class="clearfix">
+                                <li>
+                                  <a class="timing selected" href="#">
+                                    <span>8:00</span>
+                                    <span>AM</span>
+                                  </a>
+                                </li>
+
+                                <li v-for="item in [9,10,11,12,13, 14,15,16,17]" :key="item">
+                                  <a class="timing" href="#">
+                                    <span>{{item}}:00</span>
+                                    <span>AM</span>
+                                  </a>
+                                </li>
+                              </ul>
                             </div>
-                          </div>
-                        </div>
-                        <!-- /Schedule Content -->
+                          </el-tab-pane>
+                          <el-tab-pane>
+                            <div slot="label">
+                              <div class="date__item">
+                                <div class="date">THỨ 3</div>
+                                <div class="day">12/06</div>
+                              </div>
+                            </div>
+
+                            <div class="time-slot">
+                              <ul class="clearfix">
+                                <li>
+                                  <a class="timing selected" href="#">
+                                    <span>8:00</span>
+                                    <span>AM</span>
+                                  </a>
+                                </li>
+
+                                <li v-for="item in [9,10,11,12,13]" :key="item">
+                                  <a class="timing" href="#">
+                                    <span>{{item}}:00</span>
+                                    <span>AM</span>
+                                  </a>
+                                </li>
+                              </ul>
+                            </div>
+                          </el-tab-pane>
+                          <el-tab-pane>
+                            <div slot="label">
+                              <div class="date__item">
+                                <div class="date">THỨ 4</div>
+                                <div class="day">13/06</div>
+                              </div>
+                            </div>
+                            <div class="p-5">
+                              <div class="text-black-50 text-center">Chưa có thông tin đặt phòng, cảm phiền bạn quay lại sau</div>
+                            </div>
+                          </el-tab-pane>
+                          <el-tab-pane>
+                            <div slot="label">
+                              <div class="date__item">
+                                <div class="date">THỨ 5</div>
+                                <div class="day">14/06</div>
+                              </div>
+                            </div>
+                            <div class="p-5">
+                             <div class="text-black-50 text-center">Chưa có thông tin đặt phòng, cảm phiền bạn quay lại sau</div>
+                            </div>
+                          </el-tab-pane>
+
+                           <el-tab-pane>
+                            <div slot="label">
+                              <div class="date__item">
+                                <div class="date">THỨ 6</div>
+                                <div class="day">15/06</div>
+                              </div>
+                            </div>
+                            <div class="p-5">
+                             <div class="text-black-50 text-center">Chưa có thông tin đặt phòng, cảm phiền bạn quay lại sau</div>
+                            </div>
+                          </el-tab-pane>
+
+                           <el-tab-pane>
+                            <div slot="label">
+                              <div class="date__item">
+                                <div class="date">THỨ 7</div>
+                                <div class="day">16/06</div>
+                              </div>
+                            </div>
+                            <div class="p-5">
+                             <div class="text-black-50 text-center">Chưa có thông tin đặt phòng, cảm phiền bạn quay lại sau</div>
+                            </div>
+                          </el-tab-pane>
+
+                           <el-tab-pane>
+                            <div slot="label">
+                              <div class="date__item">
+                                <div class="date">CHỦ NHẬT</div>
+                                <div class="day">17/06</div>
+                              </div>
+                            </div>
+                            <div class="p-5">
+                             <div class="text-black-50 text-center">Chưa có thông tin đặt phòng, cảm phiền bạn quay lại sau</div>
+                            </div>
+                          </el-tab-pane>
+                        </el-tabs>
                       </div>
 
-                      <el-form-item label>
+                      <el-form-item class="mt-4" label>
                         <el-checkbox-group v-model="form.checkrule">
                           <el-checkbox label="Tôi đồng ý đặt lịch khám theo quy định" name="type"></el-checkbox>
                         </el-checkbox-group>
@@ -454,7 +398,33 @@ export default {
 
 
 <style lang="scss" scoped>
+.date__item {
+  text-align: center;
+  font-weight: normal;
+
+  .date {
+    font-weight: bold;
+    line-height: 1.5;
+    color: #2b2b2b;
+  }
+  .day {
+    line-height: 1.5;
+    color: #909399;
+  }
+}
 </style>
 
 
+
+<style lang="scss">
+.el-tabs__item {
+  height: auto;
+  padding: 12px 20px 8px;
+  &.is-active {
+    .date {
+      color: #0a8d68;
+    }
+  }
+}
+</style>
 

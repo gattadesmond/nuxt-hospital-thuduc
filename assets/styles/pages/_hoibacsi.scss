@@ -213,6 +213,7 @@
   float: left;
   padding-left: 5px;
   padding-right: 5px;
+  margin-bottom: 10px;
   width: 14.28%;
 }
 .time-slot li .timing {
@@ -234,8 +235,8 @@
   margin-bottom: 0;
 }
 .time-slot li .timing.selected {
-  background-color: #42c0fb;
-  border: 1px solid #42c0fb;
+  background-color: $primary;
+  border: 1px solid $primary;
   color: #fff;
 }
 .time-slot li .timing.selected::before {

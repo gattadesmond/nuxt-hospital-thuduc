@@ -1,5 +1,21 @@
 <template>
   <div>
+    <!-- <div v-if="$auth.loggedIn">
+      {{$auth.user.email}}
+      <b-button>Logout</b-button>
+    </div>
+      <div v-else>
+       <b-button href="/login">Login</b-button>
+    </div> -->
+    <!-- <div v-if="$auth.loggedIn">
+      {{$auth.user.email}}
+      <b-button>Logout</b-button>
+    </div>
+
+    <div v-else>
+       <b-button href="/login">Login</b-button>
+    </div>-->
+
     <the-header />
     <Nuxt keep-alive />
     <the-footer />
@@ -18,8 +34,6 @@ export default {
     TheHeader,
     TheFooter
   },
-  mounted() {
-
-  }
+  mounted() {}
 };
 </script>

@@ -56,7 +56,7 @@
                   <el-form ref="form" :model="form" label-width="0px">
                     <div class="row">
                       <div class="col-12">
-                        <h5 class="font-weight-bold mb-3">Chọn ngày khám</h5>
+                        <!-- <h5 class="font-weight-bold mb-3">Chọn ngày khám</h5> -->
 
                         <div class="row sm-gutters mt-4">
                           <div class="col-6">
@@ -79,6 +79,9 @@
                               placeholder="Pick a day"
                             ></el-date-picker>
                           </div>
+
+                          <div>
+                            Tôi đồng ý gửi yêu cầu theo quy định</div> 
                         </div>
 
                         <div class="card mt-4 info__card">

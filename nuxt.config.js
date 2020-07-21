@@ -3,7 +3,7 @@ export default {
    ** Nuxt rendering mode
    ** See https://nuxtjs.org/api/configuration-mode
    */
-  mode: "universal",
+  mode: "spa",
   /*
    ** Nuxt target
    ** See https://nuxtjs.org/api/configuration-target
@@ -33,8 +33,7 @@ export default {
       },
       {
         rel: "stylesheet",
-        href:
-          "https://unpkg.com/element-ui/lib/theme-chalk/index.css"
+        href: "https://unpkg.com/element-ui/lib/theme-chalk/index.css"
       },
       {
         rel: "stylesheet",
@@ -89,14 +88,37 @@ export default {
   ],
   auth: {
     strategies: {
-      customStrategy: {
-        _scheme: '~/schemes/local',
-        /* ... */
+      local: {
+        endpoints: {
+          login: {
+            url: "api/Users/login",
+            method: "post",
+            propertyName: "token.accessToken"
+          },
+          logout: { url: "/api/auth/logout", method: "post" },
+          user: {
+            url:"http://myhealthdemo.benhvienkhuvucthuduc.vn/api/Users/MyProfile",
+            method: "get",
+            propertyName: "fullName"
+          },
+          // tokenRequired: true,
+          tokenType: "Bearer"
+        },
+        tokenRequired: true,
+        
+        globalToken: true,
+        // autoFetchUser: false
+      },
+      redirect: {
+        login: "/login",
+        logout: "/",
+        callback: "/login",
+        home: "/"
       }
     }
   },
   router: {
-    middleware: ['auth']
+    middleware: ["auth"]
   },
   bootstrapVue: {
     bootstrapCSS: false, // Or `css: false`
@@ -106,7 +128,12 @@ export default {
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
-  axios: {},
+  axios: {
+    baseURL: process.env.API_URL || 'http://myhealthdemo.benhvienkhuvucthuduc.vn/api/',
+    debug: process.env.DEBUG || false,
+    proxyHeaders: false,
+    credentials: false,
+  },
   /*
    ** Content module configuration
    ** See https://content.nuxtjs.org/configuration
