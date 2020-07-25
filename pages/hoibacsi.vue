@@ -207,7 +207,7 @@
           <div class="doc-review review-listing">
             <!-- Review Listing -->
             <ul class="comments-list">
-              <li>
+              <li v-for="question in questionsList" :key="question.id">
                 <div class="comment">
                   <img
                     class="avatar rounded-circle"
@@ -216,30 +216,54 @@
                   />
                   <div class="comment-body">
                     <div class="meta-data">
-                      <span class="comment-author">Nguyễn Thị Dung</span>
-                      <span class="comment-date">Vào 2 ngày trước</span>
-                      <!-- <div class="review-count rating">
-                        <i class="fas fa-star filled"></i>
-                        <i class="fas fa-star filled"></i>
-                        <i class="fas fa-star filled"></i>
-                        <i class="fas fa-star filled"></i>
-                        <i class="fas fa-star"></i>
-                      </div>-->
+                      <span class="comment-author">{{
+                        question.userAskFullName
+                      }}</span>
+                      <span class="comment-date"
+                        >Vào ngày {{ question.prettyCreatedDate }}
+                      </span>
                     </div>
 
-                    <p class="recommended">
-                      <i class="far fa-clock"></i> Đang chờ
+                    <p
+                      class="recommended"
+                      v-bind:class="[
+                        question.statusId == 3 ? '' : 'text-warning'
+                      ]"
+                    >
+                      <i class="far fa-clock"></i> {{ question.status }}
                     </p>
 
-                    <div class="comment-content">
-                      Em bị đau dạ dày 7 năm nay rồi, mà cứ tái đi tái lại nhiều
-                      lần k hết được bác sĩ ạ ? E đang có ý định dùng thuốc
-                      LacbioMax của Pháp vì dược chị cùng cty mách cho , không
-                      biết thuốc này có tốt không ạ bs cho e xin thêm ý kiến với
-                      ạ, vì chữa nhiều thuốc rồi k khỏi nên e cũng lăn tăn.
+                    <div class="comment-content" v-html="question.questionContent">
                     </div>
                   </div>
                 </div>
+
+                <!-- Comment Reply -->
+                <ul class="comments-reply" v-if="question.statusId == 3">
+                  <!-- Comment Reply List -->
+                  <li>
+                    <div class="comment">
+                      <img
+                        class="avatar rounded-circle"
+                        alt="User Image"
+                        src="http://benhvienkhuvucthuduc.vn/Content/uploads/ImageDoctors/6fb28875-81e8-4f0b-8340-a9d00120a18b_truong-khoa.jpg"
+                      />
+                      <div class="comment-body">
+                        <div class="meta-data">
+                          <span class="comment-author">
+                            <a href>BS CKII.Từ Văn Lai</a>
+                          </span>
+                          <span class="comment-date">Trả lời 1 ngày trước</span>
+                        </div>
+                        <div class="comment-content" v-html="question.replyContent">
+
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <!-- /Comment Reply List -->
+                </ul>
+                <!-- /Comment Reply -->
               </li>
 
               <!-- Comment List -->
@@ -366,7 +390,8 @@ export default {
           }
         ]
       },
-      doctorsList: []
+      doctorsList: [],
+      questionsList: []
     };
   },
   methods: {
@@ -391,20 +416,16 @@ export default {
                 }
               });
             } else {
-              this.$alert(
-                response.data.message,
-                "Thông báo",
-                {
-                  confirmButtonText: "Đóng",
-                  type: "error",
-                  callback: action => {
-                    // this.$message({
-                    //   type: "info",
-                    //   message: `action: ${action}`
-                    // });
-                  }
+              this.$alert(response.data.message, "Thông báo", {
+                confirmButtonText: "Đóng",
+                type: "error",
+                callback: action => {
+                  // this.$message({
+                  //   type: "info",
+                  //   message: `action: ${action}`
+                  // });
                 }
-              );
+              });
             }
           })
           .catch(error => {
@@ -436,6 +457,20 @@ export default {
       )
       .then(response => {
         this.doctorsList = response.data;
+      })
+      .catch(error => {
+        console.log(error);
+        // this.errored = true;
+      });
+
+    this.$axios
+      .get(
+        "http://myhealthdemo.benhvienkhuvucthuduc.vn/api/Question/GetByQuestionbyUser"
+      )
+      .then(rds => {
+        // console.log(rds.data.results);
+        this.questionsList = rds.data.results;
+        // console.log(this.questionsList);
       })
       .catch(error => {
         console.log(error);
