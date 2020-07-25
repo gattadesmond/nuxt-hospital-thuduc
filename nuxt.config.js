@@ -97,17 +97,19 @@ export default {
           },
           logout: { url: "/api/auth/logout", method: "post" },
           user: {
-            url:"http://myhealthdemo.benhvienkhuvucthuduc.vn/api/Users/MyProfile",
+            url:
+              "http://myhealthdemo.benhvienkhuvucthuduc.vn/api/Users/MyProfile",
             method: "get",
             propertyName: "fullName"
-          },
+          }
           // tokenRequired: true,
-          tokenType: "Bearer"
+          // globalToken: true,
         },
         tokenRequired: true,
-        
+        tokenName : "Authorization",
+        tokenType: "Bearer",
         globalToken: true,
-        // autoFetchUser: false
+        autoFetchUser: true
       },
       redirect: {
         login: "/login",
@@ -129,10 +131,11 @@ export default {
    ** See https://axios.nuxtjs.org/options
    */
   axios: {
-    baseURL: process.env.API_URL || 'http://myhealthdemo.benhvienkhuvucthuduc.vn/api/',
+    baseURL:
+      process.env.API_URL || "http://myhealthdemo.benhvienkhuvucthuduc.vn/api/",
     debug: process.env.DEBUG || false,
     proxyHeaders: false,
-    credentials: false,
+    credentials: false
   },
   /*
    ** Content module configuration
