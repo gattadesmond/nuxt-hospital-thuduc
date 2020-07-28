@@ -4,20 +4,6 @@
     style="background-color: rgb(247, 247, 247)"
   >
     <div class="container">
-      <!-- <div>
-      <div>
-        <label>Username</label>
-        <input type="text" v-model="login.userName" />
-      </div>
-      <div>
-        <label>Password</label>
-        <input type="text" v-model="login.password" />
-      </div>
-      <div>
-        <button @click="userLogin">Submit</button>
-      </div>
-      </div>-->
-
       <div class="row align-items-center" style="min-height: 489px;">
         <div class="col-md-10 offset-md-1">
           <!-- Login Tab Content -->
@@ -33,19 +19,31 @@
                     <span>Hệ thống</span>
                   </h3>
                 </div>
-                <div class="form-group">
-                  <label class>Tên tài khoản</label>
+                <el-form :model="login" :rules="rules" ref="login">
+                  <div class="form-group">
+                    <label class>Tên tài khoản</label>
 
-                  <input type="text" v-model="login.userName" class="form-control" />
-                </div>
-                <div class="form-group">
-                  <label class="focus-label">Mật khẩu</label>
-                  <input type="password" v-model="login.password" class="form-control" />
-                </div>
-                <!-- <div class="text-right">
-                  <a class="forgot-link" href="forgot-password.html">Forgot Password ?</a>
-                </div>-->
-                <button class="btn btn-primary btn-block" @click="userLogin">Đăng nhập</button>
+                    <el-form-item label prop="userName">
+                      <el-input v-model="login.userName"></el-input>
+                    </el-form-item>
+                  </div>
+
+                  <div class="form-group">
+                    <label class>Mật khẩu</label>
+
+                    <el-form-item label prop="password">
+                      <el-input type="password" v-model="login.password"></el-input>
+                    </el-form-item>
+                  </div>
+
+                  <el-form-item>
+                    <button
+                      class="btn btn-primary btn-block"
+                      @click.stop.prevent="submitForm('login')"
+                    >Đăng nhập</button>
+                  </el-form-item>
+                </el-form>
+
                 <div class="login-or">
                   <span class="or-line"></span>
                   <span class="span-or">or</span>
@@ -78,41 +76,64 @@ export default {
     return {
       login: {
         userName: "",
-        password: ""
-      }
+        password: "",
+      },
+      rules: {
+        userName: [
+          {
+            required: true,
+            message: "Bạn chưa nhập tên tài khoản",
+            trigger: "blur",
+          },
+          {
+            min: 3,
+            message: "Tên tài khoản không hợp lệ",
+            trigger: "blur",
+          },
+        ],
+        password: [
+          {
+            required: true,
+            message: "Bạn chưa nhập mật khẩu",
+            trigger: "blur",
+          },
+          {
+            min: 6,
+            message: "Mật khẩu có ít nhất 6 kí tự",
+            trigger: "blur",
+          },
+        ],
+      },
     };
   },
   methods: {
     async userLogin() {
       try {
-        const response = await this.$axios.post(
-          "http://myhealthdemo.benhvienkhuvucthuduc.vn/api/Users/login",
-          {
-            userName: this.login.userName,
-            password: this.login.password
-          }
-        );
+        let response = await this.$auth.loginWith("local", {
+          data: this.login,
+        });
         console.log(response);
-        await this.$auth.setToken(
-          "local",
-          "Bearer " + response.data.token.accessToken
-        );
-        // await this.$auth.setRefreshToken("local", response.data.refresh);
-        await this.$auth.setUserToken(response.data.token.accessToken);
-      } catch (e) {
-        this.error = "Username or Password not valid";
+      } catch (err) {
+        console.log(err.response);
+        console.log(err.response.data.message);
+
+        this.$alert(err.response.data.message, "Có lỗi xảy ra", {
+          confirmButtonText: "Đóng",
+        });
       }
-      // try {
-      //   let response = await this.$auth.loginWith("local", {
-      //     data: this.login
-      //   });
-      //   console.log(response);
-      // } catch (err) {
-      //   console.log(err);
-      //   console.log("32432423");
-      // }
-    }
-  }
+    },
+
+    submitForm(formName) {
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          this.userLogin();
+        } else {
+          console.log("error submit!!");
+          return false;
+        }
+      });
+    },
+  },
 };
 </script>
 

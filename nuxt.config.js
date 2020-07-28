@@ -91,14 +91,14 @@ export default {
       local: {
         endpoints: {
           login: {
-            url: "api/Users/login",
+            url: "Users/login",
             method: "post",
             propertyName: "token.accessToken"
           },
           logout: { url: "/api/auth/logout", method: "post" },
           user: {
             url:
-              "http://myhealthdemo.benhvienkhuvucthuduc.vn/api/Users/MyProfile",
+              "Users/MyProfile",
             method: "get",
             propertyName: "fullName"
           }
