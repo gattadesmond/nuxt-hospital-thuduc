@@ -9,9 +9,7 @@
                 <li class="breadcrumb-item">
                   <nuxt-link to="/">Trang chủ</nuxt-link>
                 </li>
-                <li class="breadcrumb-item active" aria-current="page">
-                  Hỏi Bác sĩ
-                </li>
+                <li class="breadcrumb-item active" aria-current="page">Hỏi Bác sĩ</li>
               </ol>
             </nav>
 
@@ -26,32 +24,21 @@
         </div>
       </div>
 
-      <div
-        class="s-heading-bg w-100"
-        style="background-image: url(img/bv/bg-heading.jpg)"
-      ></div>
+      <div class="s-heading-bg w-100" style="background-image: url(img/bv/bg-heading.jpg)"></div>
     </section>
 
-    <section
-      class="section section-space"
-      style="background-color: rgba(238, 242, 247, 1)"
-    >
+    <section class="section section-space" style="background-color: rgba(238, 242, 247, 1)">
       <div class="container">
         <div class="row">
           <div class="col-md-7 col-lg-8">
             <div class="card border-0 card__soju">
               <div class="card-body">
                 <div>
-                  <el-form
-                    ref="form"
-                    :rules="rules"
-                    :model="form"
-                    label-width="0px"
-                  >
+                  <el-form ref="form" :rules="rules" :model="form" label-width="0px">
                     <!-- <div class="info-widget"> -->
                     <h4 class="card-title">Nội dung cần tư vấn</h4>
 
-                    <el-form-item>
+                    <el-form-item prop="questionContent">
                       <div class="form-soju">
                         <div class="form-soju-label">Nội dung</div>
                         <el-input
@@ -83,15 +70,9 @@
                             :label="item.name"
                             :value="item.id"
                           >
-                            <div
-                              class="row no-gutters flex-nowrap align-items-center"
-                            >
+                            <div class="row no-gutters flex-nowrap align-items-center">
                               <div class="col-auto mr-2">
-                                <b-avatar
-                                  square
-                                  size="sm"
-                                  :src="`${item.imageLink}`"
-                                ></b-avatar>
+                                <b-avatar square size="sm" :src="`${item.imageLink}`"></b-avatar>
                               </div>
                               <div class="col mr-2">
                                 <span style>{{ item.name }}</span>
@@ -100,8 +81,7 @@
                               <div class="col-auto">
                                 <span
                                   style="float: right; color: #8492a6; font-size: 13px"
-                                  >{{ item.position }}</span
-                                >
+                                >{{ item.position }}</span>
                               </div>
                             </div>
                           </el-option>
@@ -109,23 +89,19 @@
                       </div>
                     </el-form-item>
 
-                    <el-form-item label>
+                    <el-form-item prop="checkrule">
                       <el-checkbox-group v-model="form.checkrule">
-                        <el-checkbox
-                          label="Tôi đồng ý gửi câu hỏi theo quy định"
-                          name="type"
-                        ></el-checkbox>
+                        <el-checkbox label="Tôi đồng ý gửi câu hỏi theo quy định" name="type"></el-checkbox>
                       </el-checkbox-group>
                     </el-form-item>
 
-                    <el-form-item>
+                    <el-form-item class="mt-5">
                       <!-- <el-button>Hủy</el-button> -->
                       <el-button
                         type="primary"
                         class="btn btn-primary submit-btn"
-                        @click="onSubmit"
-                        >Gửi câu hỏi</el-button
-                      >
+                        @click.stop.prevent="submitForm('form')"
+                      >Gửi câu hỏi</el-button>
                     </el-form-item>
                   </el-form>
                 </div>
@@ -145,7 +121,9 @@
                 </div>
                 <div class="service__body">
                   <div class="service__name">Phí dịch vụ</div>
-                  <div class="service__desc"><strong>50.000</strong> đồng</div>
+                  <div class="service__desc">
+                    <strong>50.000</strong> đồng
+                  </div>
                 </div>
               </div>
 
@@ -156,9 +134,7 @@
                 <div class="service__body">
                   <div class="service__name">Thời gian tiếp nhận</div>
                   <div class="service__desc">
-                    <div class="mb-2">
-                      Các bác sĩ sẽ dành 30 phút để trả lời
-                    </div>
+                    <div class="mb-2">Các bác sĩ sẽ dành 30 phút để trả lời</div>
                     <div class="mb-2">7h – 11h, trả lời vào 15h cùng ngày</div>
                     <div class="mb-2">12h – 7h ngày hôm sau, 10h cùng ngày</div>
                     <div class="mb-2">
@@ -216,12 +192,12 @@
                   />
                   <div class="comment-body">
                     <div class="meta-data">
-                      <span class="comment-author">{{
+                      <span class="comment-author">
+                        {{
                         question.userAskFullName
-                      }}</span>
-                      <span class="comment-date"
-                        >Vào ngày {{ question.prettyCreatedDate }}
+                        }}
                       </span>
+                      <span class="comment-date">Vào ngày {{ question.prettyCreatedDate }}</span>
                     </div>
 
                     <p
@@ -230,11 +206,11 @@
                         question.statusId == 3 ? '' : 'text-warning'
                       ]"
                     >
-                      <i class="far fa-clock"></i> {{ question.status }}
+                      <i class="far fa-clock"></i>
+                      {{ question.status }}
                     </p>
 
-                    <div class="comment-content" v-html="question.questionContent">
-                    </div>
+                    <div class="comment-content" v-html="question.questionContent"></div>
                   </div>
                 </div>
 
@@ -255,9 +231,7 @@
                           </span>
                           <span class="comment-date">Trả lời 1 ngày trước</span>
                         </div>
-                        <div class="comment-content" v-html="question.replyContent">
-
-                        </div>
+                        <div class="comment-content" v-html="question.replyContent"></div>
                       </div>
                     </div>
                   </li>
@@ -379,100 +353,120 @@ export default {
       form: {
         questionContent: "",
         doctorId: null,
-        checkrule: false
+        checkrule: "",
       },
       rules: {
-        noidung: [
+        questionContent: [
           {
             required: true,
             message: "Vui lòng ghi câu hỏi",
-            trigger: "change"
-          }
-        ]
+            trigger: "blur",
+          },
+          {
+            min: 20,
+            message: "Nội dung câu hỏi cần lớn hơn 20 kí tự",
+            trigger: "blur",
+          },
+        ],
+        checkrule: [
+          {
+            required: true,
+            message: "Bạn chưa đồng ý các điều khoản",
+            trigger: "change",
+          },
+        ],
       },
       doctorsList: [],
-      questionsList: []
+      questionsList: [],
     };
   },
   methods: {
-    onSubmit() {
-      if (this.form.checkrule === true) {
-        this.$axios
-          .post("Question/Insert", {
-            doctorId: this.form.doctorId | 0,
-            questionContent: this.form.questionContent
-          })
-          .then(response => {
-            console.log(response);
-            if (response.data.success === true) {
-              this.$alert(response.data.message, "Thông báo", {
-                confirmButtonText: "OK",
-                type: "success",
-                callback: action => {
-                  // this.$message({
-                  //   type: "info",
-                  //   message: `action: ${action}`
-                  // });
-                }
-              });
-            } else {
-              this.$alert(response.data.message, "Thông báo", {
-                confirmButtonText: "Đóng",
-                type: "error",
-                callback: action => {
-                  // this.$message({
-                  //   type: "info",
-                  //   message: `action: ${action}`
-                  // });
-                }
-              });
-            }
-          })
-          .catch(error => {
-            this.$alert(
-              "Đặt câu hỏi thất bại, vui lòng kiểm tra lại thông tin.",
-              "Thông báo",
-              {
-                confirmButtonText: "Đóng",
-                type: "error",
-                callback: action => {
-                  // this.$message({
-                  //   type: "info",
-                  //   message: `action: ${action}`
-                  // });
-                }
+    submitForm(formName) {
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          this.$axios
+            .post("Question/Insert", {
+              doctorId: this.form.doctorId | 0,
+              questionContent: this.form.questionContent,
+            })
+            .then((response) => {
+              console.log(response);
+              if (response.data.success === true) {
+                this.$alert(response.data.message, "Thông báo", {
+                  confirmButtonText: "OK",
+                  type: "success",
+                  callback: (action) => {
+                    // this.$message({
+                    //   type: "info",
+                    //   message: `action: ${action}`
+                    // });
+                  },
+                });
+              } else {
+                this.$alert(response.data.message, "Thông báo", {
+                  confirmButtonText: "Đóng",
+                  type: "error",
+                  callback: (action) => {
+                    // this.$message({
+                    //   type: "info",
+                    //   message: `action: ${action}`
+                    // });
+                  },
+                });
               }
-            );
-            // this.errored = true;
-          });
-      } else {
-        alert("check vo di");
-      }
-    }
+            })
+            .catch((error) => {
+              this.$alert(
+                "Đặt câu hỏi thất bại, vui lòng kiểm tra lại thông tin.",
+                "Thông báo",
+                {
+                  confirmButtonText: "Đóng",
+                  type: "error",
+                  callback: (action) => {
+                    // this.$message({
+                    //   type: "info",
+                    //   message: `action: ${action}`
+                    // });
+                  },
+                }
+              );
+              // this.errored = true;
+            });
+        } else {
+           this.$alert("Có lỗi xảy ra, vui lòng thử lại", "Thông báo", {
+                  confirmButtonText: "Đóng",
+                  type: "error",
+                  callback: (action) => {
+                    // this.$message({
+                    //   type: "info",
+                    //   message: `action: ${action}`
+                    // });
+                  },
+                });
+          return false;
+        }
+      });
+    },
   },
   mounted() {
     this.$axios
-      .get(
-        "http://myhealthdemo.benhvienkhuvucthuduc.vn/api/Doctors/GetAllDoctorForQnA"
-      )
-      .then(response => {
+      .get("Doctors/GetAllDoctorForQnA")
+      .then((response) => {
         this.doctorsList = response.data;
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error);
         // this.errored = true;
       });
 
     this.$axios
-      .get(
-        "http://myhealthdemo.benhvienkhuvucthuduc.vn/api/Question/GetByQuestionbyUser"
-      )
-      .then(rds => {
+      .get("Question/GetByQuestionbyUser")
+      .then((rds) => {
         // console.log(rds.data.results);
         this.questionsList = rds.data.results;
         // console.log(this.questionsList);
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error);
         // this.errored = true;
       });
@@ -480,9 +474,9 @@ export default {
 
   head() {
     return {
-      title: "Tư vấn bác sĩ"
+      title: "Tư vấn bác sĩ",
     };
-  }
+  },
 };
 </script>
 

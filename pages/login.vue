@@ -112,11 +112,8 @@ export default {
         let response = await this.$auth.loginWith("local", {
           data: this.login,
         });
-        console.log(response);
       } catch (err) {
-        console.log(err.response);
-        console.log(err.response.data.message);
-
+     
         this.$alert(err.response.data.message, "Có lỗi xảy ra", {
           confirmButtonText: "Đóng",
         });
