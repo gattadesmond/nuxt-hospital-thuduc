@@ -21,8 +21,13 @@
             <nuxt-link to="/hoibacsi" class="link-absolute"></nuxt-link>
             <div class="function__image">
               <div class="embed-responsive embed-responsive-21by9 overflow-hidden">
-                <img
+                <!-- <img
                   src="http://benhvienkhuvucthuduc.vn/Content/assets/img/healthcare/NoiKhoa.jpg"
+                  class="embed-responsive-img img-cover"
+                  alt
+                /> -->
+                  <img
+                  src="img/func/BacSiTuVan.jpg"
                   class="embed-responsive-img img-cover"
                   alt
                 />
@@ -49,8 +54,8 @@
             <nuxt-link to="/kqxetnghiem" class="link-absolute"></nuxt-link>
             <div class="function__image">
               <div class="embed-responsive embed-responsive-21by9 overflow-hidden">
-                <img
-                  src="http://benhvienkhuvucthuduc.vn/Content/assets/img/healthcare/healthcare_2.jpg"
+              <img
+                  src="img/func/XemCanLamSang.jpg"
                   class="embed-responsive-img img-cover"
                   alt
                 />
@@ -77,8 +82,8 @@
             <nuxt-link to="/xemtoathuoc" class="link-absolute"></nuxt-link>
             <div class="function__image">
               <div class="embed-responsive embed-responsive-21by9 overflow-hidden">
-                <img
-                  src="http://benhvienkhuvucthuduc.vn/Content/assets/img/healthcare/CanLamSang.jpg"
+               <img
+                  src="img/func/XemToaThuoc.jpg"
                   class="embed-responsive-img img-cover"
                   alt
                 />
@@ -105,8 +110,8 @@
              <nuxt-link to="/datlichkham" class="link-absolute"></nuxt-link>
             <div class="function__image">
               <div class="embed-responsive embed-responsive-21by9 overflow-hidden">
-                <img
-                  src="img/func/func-datlichkham.jpg"
+             <img
+                  src="img/func/DatLichKham.jpg"
                   class="embed-responsive-img img-cover"
                   alt
                 />
@@ -133,8 +138,8 @@
             <nuxt-link to="/dongvienphi" class="link-absolute"></nuxt-link>
             <div class="function__image">
               <div class="embed-responsive embed-responsive-21by9 overflow-hidden">
-                <img
-                  src="http://benhvienkhuvucthuduc.vn/Content/assets/img/service/service_3.jpg"
+               <img
+                  src="img/func/ThanhToanOnline.jpg"
                   class="embed-responsive-img img-cover"
                   alt
                 />
