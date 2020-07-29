@@ -18,27 +18,7 @@
             </div>
           </div>
           <div class="col-12 col-lg-4 text-right">
-            <el-select
-              v-model="chuyenkhoaSelect"
-              filterable
-              class=""
-              no-match-text="Không có Chuyên khoa "
-              placeholder="Chuyên khoa"
-              width="400px"
-            >
-              <el-option
-                v-for="item in chuyenkhoa"
-                :key="item.id"
-                :label="item.name"
-                :value="item.name"
-              >
-                <div class="row no-gutters flex-nowrap align-items-center">
-                  <div class="col mr-2">
-                    <span style>{{ item.name }}</span>
-                  </div>
-                </div>
-              </el-option>
-            </el-select>
+            <SelectChuyenKhoa />
           </div>
         </div>
       </div>
@@ -49,15 +29,11 @@
     <section class="section section-space pt-0 section-bacsi">
       <div class="container">
         <div class="row justify-content-center">
-          <template v-if="$fetchState.pending && !doctors.length">
+          <template v-if="loading && !doctors.length">
             <content-placeholders v-for="p in 8" :key="p" rounded class="col-3 mb-5">
               <content-placeholders-img />
               <content-placeholders-text :lines="3" />
             </content-placeholders>
-          </template>
-
-          <template v-else-if="$fetchState.error">
-            <inline-error-block :error="$fetchState.error" />
           </template>
 
           <template v-else>
@@ -71,7 +47,7 @@
             />
           </template>
 
-          <template v-if="$fetchState.pending && doctors.length">
+          <template v-if="loading && doctors.length">
             <content-placeholders v-for="p in 8" :key="p" rounded class="col-3 mb-5">
               <content-placeholders-img />
               <content-placeholders-text :lines="3" />
@@ -88,71 +64,50 @@
 // https://api.jsonbin.io/b/5efe2af50bab551d2b6ace37
 
 import ArticleDoctor from "@/components/blocks/ArticleDoctor";
+import SelectChuyenKhoa from "@/components/blocks/SelectChuyenKhoa";
 
 export default {
   auth: false,
   components: {
-    ArticleDoctor
+    ArticleDoctor,
+    SelectChuyenKhoa,
   },
-  async fetch() {
-    const doctors = await fetch(
-      `http://myhealthdemo.benhvienkhuvucthuduc.vn/api/Doctors/GetDoctors?pageNumber=${this.currentPage}&pageSize=12`
-      // ,{
-      //   headers: {
-      //     "secret-key":
-      //       "$2b$10$OAM34eETVHwS6ZDQSNGlce6NeO7o.yOdMuHVNiH3Z9qK2ESAGoSC2"
-      //   }
-      // }
-    ).then(res => res.json());
 
-    // console.log(doctors.doctor);
-
-    this.doctors = this.doctors.concat(doctors.results);
-  },
   data() {
     return {
       currentPage: 1,
       doctors: [],
-      chuyenkhoaSelect: "",
-      chuyenkhoa: [
-        {
-          id: 1,
-          name: "Khoa Tai mũi họng"
-        },
-        {
-          id: 2,
-          name: "Nội khoa"
-        },
-        {
-          id: 3,
-          name: "Nội tổng quát"
-        },
-        {
-          id: 4,
-          name: "Nội tổng quát"
-        },
-        {
-          id: 5,
-          name: "Nội tổng quát"
-        }
-      ]
+      loading: true,
     };
   },
+
   methods: {
+    async getDoctors() {
+      const data = await this.$axios.$get(
+        `Doctors/GetDoctors?pageNumber=${this.currentPage}&pageSize=12`
+      );
+      this.doctors = this.doctors.concat(data.results);
+      this.loading = false;
+    },
+
     lazyLoadArticles(isVisible) {
       if (isVisible) {
         if (this.currentPage < 10) {
+          this.loading = true;
           this.currentPage++;
-          this.$fetch();
+          this.getDoctors();
         }
       }
-    }
+    },
+  },
+  mounted: function () {
+    this.getDoctors();
   },
   head() {
     return {
-      title: "Thông tin bác sĩ"
+      title: "Thông tin bác sĩ",
     };
-  }
+  },
 };
 </script>
 

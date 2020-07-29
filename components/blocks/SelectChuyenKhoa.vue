@@ -4,7 +4,7 @@
     filterable
     class="form-soju-input"
     no-match-text="Không có Chuyên khoa "
-    placeholder="Vui lòng chọn Chuyên khoa"
+    placeholder="Chọn Chuyên khoa"
     width="400px"
   >
     <el-option v-for="item in chuyenKhoa" :key="item.id" :label="item.name" :value="item.name">
@@ -29,14 +29,18 @@ export default {
       chuyenKhoaSelect: ""
     };
   },
-
-  methods: {},
-  async fetch() {
-    const chuyenKhoa = await fetch(
-      "http://myhealthdemo.benhvienkhuvucthuduc.vn/api/Doctors/GetSpecialists"
-    ).then(res => res.json());
-
-    this.chuyenKhoa = this.chuyenKhoa.concat(chuyenKhoa);
+  methods: {
+     async getChuyenKhoa() {
+      const data = await this.$axios.$get(
+        `Doctors/GetSpecialists`
+      );
+      this.chuyenKhoa = this.chuyenKhoa.concat(data);
+      this.loading = false;
+    },
+  },
+  mounted: function() {
+     this.getChuyenKhoa();
+    //  console.log(this.chuyenKhoa);
   }
 };
 </script>

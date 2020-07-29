@@ -35,44 +35,44 @@
   .el-select {
     display: block;
   }
-}
 
-.form-soju-label {
-  background-color: #fff;
-  color: #959595;
-  display: inline-block;
-  font-size: 13px;
-  font-weight: 500;
-  margin: 6px auto auto 8px;
-  padding: 5px 7px;
-  position: relative;
-  z-index: 1;
-  line-height: 1;
-}
-
-.form-soju-input {
-  .el-input__inner {
+  .form-soju-label {
     background-color: #fff;
-    border: 1px solid #dbdbdb;
-    border-radius: 4px;
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
-    display: block;
-    height: 50px;
-    margin-top: -18px;
-    padding: 5px 15px 0;
-    transition: border-color 0.3s;
-    width: 100%;
+    color: #959595;
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 500;
+    margin: 6px auto auto 8px;
+    padding: 5px 7px;
+    position: relative;
+    z-index: 1;
+    line-height: 1;
   }
-  .el-textarea__inner {
-    background-color: #fff;
-    border: 1px solid #dbdbdb;
-    border-radius: 4px;
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
-    display: block;
-    margin-top: -18px;
-    padding: 15px 15px 15px;
-    transition: border-color 0.3s;
-    width: 100%;
+
+  .form-soju-input {
+    .el-input__inner {
+      background-color: #fff;
+      border: 1px solid #dbdbdb;
+      border-radius: 4px;
+      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+      display: block;
+      height: 50px;
+      margin-top: -18px;
+      padding: 5px 15px 0;
+      transition: border-color 0.3s;
+      width: 100%;
+    }
+    .el-textarea__inner {
+      background-color: #fff;
+      border: 1px solid #dbdbdb;
+      border-radius: 4px;
+      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+      display: block;
+      margin-top: -18px;
+      padding: 15px 15px 15px;
+      transition: border-color 0.3s;
+      width: 100%;
+    }
   }
 }
 
