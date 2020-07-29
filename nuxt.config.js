@@ -31,9 +31,13 @@ export default {
         href:
           "https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
       },
+      // {
+      //   rel: "stylesheet",
+      //   href: "https://unpkg.com/element-ui/lib/theme-chalk/index.css"
+      // },
       {
         rel: "stylesheet",
-        href: "https://unpkg.com/element-ui/lib/theme-chalk/index.css"
+        href: "/element/index.css"
       },
       {
         rel: "stylesheet",

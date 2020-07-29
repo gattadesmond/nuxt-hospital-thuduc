@@ -522,7 +522,6 @@ export default {
           label: "Nội soi"
         }
       ],
-
       filters: "1q"
     };
   },

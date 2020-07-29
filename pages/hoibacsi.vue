@@ -433,16 +433,16 @@ export default {
               // this.errored = true;
             });
         } else {
-           this.$alert("Có lỗi xảy ra, vui lòng thử lại", "Thông báo", {
-                  confirmButtonText: "Đóng",
-                  type: "error",
-                  callback: (action) => {
-                    // this.$message({
-                    //   type: "info",
-                    //   message: `action: ${action}`
-                    // });
-                  },
-                });
+          //  this.$alert("Có lỗi xảy ra, vui lòng thử lại", "Thông báo", {
+          //         confirmButtonText: "Đóng",
+          //         type: "error",
+          //         callback: (action) => {
+          //           // this.$message({
+        //           //   type: "info",
+          //           //   message: `action: ${action}`
+          //           // });
+          //         },
+          //       });
           return false;
         }
       });

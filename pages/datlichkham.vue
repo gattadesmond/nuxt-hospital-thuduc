@@ -94,35 +94,7 @@
                             <div class="form-soju">
                               <div class="form-soju-label">Chọn Bác sĩ</div>
 
-                              <el-select
-                                v-model="form.bacsi"
-                                filterable
-                                class="form-soju-input"
-                                no-match-text="Không có Bác sĩ "
-                                placeholder="Vui lòng chọn Bác sĩ"
-                              >
-                                <el-option
-                                  v-for="item in doctorsList"
-                                  :key="item.id"
-                                  :label="item.name"
-                                  :value="item.name"
-                                >
-                                  <div class="row no-gutters flex-nowrap align-items-center">
-                                    <div class="col-auto mr-2">
-                                      <b-avatar square size="sm" :src="`${item.imageLink}`"></b-avatar>
-                                    </div>
-                                    <div class="col mr-2">
-                                      <span style>{{ item.name }}</span>
-                                    </div>
-
-                                    <div class="col-auto">
-                                      <span
-                                        style="float: right; color: #8492a6; font-size: 13px"
-                                      >{{ item.position }}</span>
-                                    </div>
-                                  </div>
-                                </el-option>
-                              </el-select>
+                              <SelectDoctor />
                             </div>
                           </el-form-item>
                         </div>
@@ -272,7 +244,9 @@
                               </div>
                             </div>
                             <div class="p-5">
-                              <div class="text-black-50 text-center">Chưa có thông tin đặt phòng, cảm phiền bạn quay lại sau</div>
+                              <div
+                                class="text-black-50 text-center"
+                              >Chưa có thông tin đặt phòng, cảm phiền bạn quay lại sau</div>
                             </div>
                           </el-tab-pane>
                           <el-tab-pane>
@@ -283,11 +257,13 @@
                               </div>
                             </div>
                             <div class="p-5">
-                             <div class="text-black-50 text-center">Chưa có thông tin đặt phòng, cảm phiền bạn quay lại sau</div>
+                              <div
+                                class="text-black-50 text-center"
+                              >Chưa có thông tin đặt phòng, cảm phiền bạn quay lại sau</div>
                             </div>
                           </el-tab-pane>
 
-                           <el-tab-pane>
+                          <el-tab-pane>
                             <div slot="label">
                               <div class="date__item">
                                 <div class="date">THỨ 6</div>
@@ -295,11 +271,13 @@
                               </div>
                             </div>
                             <div class="p-5">
-                             <div class="text-black-50 text-center">Chưa có thông tin đặt phòng, cảm phiền bạn quay lại sau</div>
+                              <div
+                                class="text-black-50 text-center"
+                              >Chưa có thông tin đặt phòng, cảm phiền bạn quay lại sau</div>
                             </div>
                           </el-tab-pane>
 
-                           <el-tab-pane>
+                          <el-tab-pane>
                             <div slot="label">
                               <div class="date__item">
                                 <div class="date">THỨ 7</div>
@@ -307,11 +285,13 @@
                               </div>
                             </div>
                             <div class="p-5">
-                             <div class="text-black-50 text-center">Chưa có thông tin đặt phòng, cảm phiền bạn quay lại sau</div>
+                              <div
+                                class="text-black-50 text-center"
+                              >Chưa có thông tin đặt phòng, cảm phiền bạn quay lại sau</div>
                             </div>
                           </el-tab-pane>
 
-                           <el-tab-pane>
+                          <el-tab-pane>
                             <div slot="label">
                               <div class="date__item">
                                 <div class="date">CHỦ NHẬT</div>
@@ -319,7 +299,9 @@
                               </div>
                             </div>
                             <div class="p-5">
-                             <div class="text-black-50 text-center">Chưa có thông tin đặt phòng, cảm phiền bạn quay lại sau</div>
+                              <div
+                                class="text-black-50 text-center"
+                              >Chưa có thông tin đặt phòng, cảm phiền bạn quay lại sau</div>
                             </div>
                           </el-tab-pane>
                         </el-tabs>
@@ -358,11 +340,13 @@
 //API THONG TIN BAC SI
 // https://api.jsonbin.io/b/5efe2af50bab551d2b6ace37
 import SelectChuyenKhoa from "@/components/blocks/SelectChuyenKhoa";
+import SelectDoctor from "@/components/blocks/SelectDoctor";
 
 export default {
   auth: true,
   components: {
-    SelectChuyenKhoa
+    SelectChuyenKhoa,
+    SelectDoctor,
   },
 
   data() {
@@ -370,29 +354,21 @@ export default {
       form: {
         loaiKham: "1",
         noidung: "",
-        checkrule: false
+        checkrule: false,
       },
-      doctorsList: []
     };
   },
   methods: {
     onSubmit() {
       console.log(this.form);
-    }
-  },
-  async fetch() {
-    const doctorsList = await fetch(
-      "http://myhealthdemo.benhvienkhuvucthuduc.vn/api/Doctors/GetAllDoctorForQnA"
-    ).then(res => res.json());
-
-    this.doctorsList = this.doctorsList.concat(doctorsList);
+    },
   },
 
   head() {
     return {
-      title: "Tư vấn bác sĩ"
+      title: "Tư vấn bác sĩ",
     };
-  }
+  },
 };
 </script>
 
