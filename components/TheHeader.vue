@@ -46,19 +46,19 @@
             </a>
             <ul class="submenu">
               <li>
-                <a href="doctor-dashboard.html">Hỏi Bác sĩ</a>
+                <nuxt-link to="/hoibacsi">Hỏi Bác sĩ Chuyên khoa</nuxt-link>
               </li>
               <li>
-                <a href="appointments.html">Xem kết quả xét nghiệm</a>
+                <nuxt-link to="/kqxetnghiem">Xem kết quả xét nghiệm</nuxt-link>
               </li>
               <li>
-                <a href="schedule-timings.html">Xem toa thuốc</a>
+                <nuxt-link to="/xemtoathuoc">Xem toa thuốc</nuxt-link>
               </li>
               <li>
-                <a href="my-patients.html">Đặt lịch khám Bác sĩ</a>
+                <nuxt-link to="/datlichkham">Đặt lịch khám Bác sĩ</nuxt-link>
               </li>
               <li>
-                <a href="patient-profile.html">Đóng tiền viện phí</a>
+                <nuxt-link to="/dongvienphi">Đóng tiền viện phí</nuxt-link>
               </li>
             </ul>
           </li>
@@ -81,49 +81,42 @@
             </p>
           </div>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a
             class="nav-link header-login"
             href="#"
             data-toggle="modal"
             data-target="#modal-login"
           >Đăng nhập</a>
-        </li>
+        </li>-->
 
         <!-- User Menu -->
-        <li class="nav-item dropdown has-arrow logged-item">
+
+        <li class="nav-item dropdown has-arrow logged-item" v-if="this.$auth.loggedIn">
           <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
             <span class="user-img">
-              <img
-                class="rounded-circle"
-                src="/img/doctors/doctor-thumb-02.jpg"
-                width="31"
-                alt="Darren Elder"
-              />
+             <b-avatar variant="primary" class="font-weight-bold" v-text="this.$auth.user.fullName.charAt(0).toUpperCase()"></b-avatar>
             </span>
           </a>
           <div class="dropdown-menu dropdown-menu-right">
             <div class="user-header">
               <div class="avatar avatar-sm">
-                <img
-                  src="/img/doctors/doctor-thumb-02.jpg"
-                  alt="User Image"
-                  class="avatar-img rounded-circle"
-                />
+              <b-avatar variant="primary" class="font-weight-bold" v-text="this.$auth.user.fullName.charAt(0).toUpperCase()"></b-avatar>
               </div>
 
               <div class="user-text">
                 <div>
-                  <strong>Nguyễn Văn A</strong>
+                  <strong>{{this.$auth.user.fullName}}</strong>
                 </div>
-                <p class="text-muted mb-0">Bác sĩ</p>
+                <p class="text-muted mb-0">{{this.$auth.user.email}}</p>
               </div>
             </div>
-            <a class="dropdown-item" href="doctor-dashboard.html">Quản lý</a>
-            <a class="dropdown-item" href="doctor-profile-settings.html">Tùy chọn</a>
-            <a class="dropdown-item" href="login.html">Thoát</a>
+            <nuxt-link to="/profile" class="dropdown-item">Thông tin</nuxt-link>
+            <!-- <a class="dropdown-item" href="doctor-profile-settings.html">Tùy chọn</a> -->
+            <a class="dropdown-item" href @click.stop.prevent="logout()">Thoát</a>
           </div>
         </li>
+
         <!-- /User Menu -->
       </ul>
     </nav>
@@ -135,7 +128,12 @@ export default {
   components: {},
   data() {
     return {};
-  }
+  },
+  methods: {
+    logout() {
+      this.$auth.logout();
+    },
+  },
 };
 </script>
 

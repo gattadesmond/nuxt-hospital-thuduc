@@ -1309,7 +1309,8 @@ table.table td h2 span {
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
-    padding: 10px 15px;
+	padding: 10px 15px;
+	align-items: center;
 }
 .user-header .user-text {
 	margin-left: 10px;

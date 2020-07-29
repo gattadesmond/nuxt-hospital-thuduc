@@ -87,6 +87,12 @@ export default {
     "@nuxtjs/pwa"
   ],
   auth: {
+    redirect: {
+      login: "/login",
+      logout: "/login",
+      callback: "/",
+      home: "/"
+    },
     strategies: {
       local: {
         endpoints: {
@@ -97,25 +103,18 @@ export default {
           },
           logout: { url: "/api/auth/logout", method: "post" },
           user: {
-            url:
-              "Users/MyProfile",
+            url: "Users/MyProfile",
             method: "get",
-            propertyName: "fullName"
+            propertyName: ""
           }
           // tokenRequired: true,
           // globalToken: true,
         },
         tokenRequired: true,
-        tokenName : "Authorization",
+        tokenName: "Authorization",
         tokenType: "Bearer",
         globalToken: true,
         autoFetchUser: true
-      },
-      redirect: {
-        login: "/login",
-        logout: "/",
-        callback: "/login",
-        home: "/"
       }
     }
   },
