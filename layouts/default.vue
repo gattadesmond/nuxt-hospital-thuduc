@@ -17,7 +17,7 @@
     </div>-->
 
     <the-header />
-    <Nuxt keep-alive />
+    <Nuxt />
     <the-footer />
   </div>
 </template>

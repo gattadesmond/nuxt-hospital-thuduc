@@ -4,7 +4,11 @@
       <div class="doctor__image">
         <a href="#" data-toggle="modal" data-target="#modal-bacsi">
           <div class="embed-responsive embed-responsive-9by16 overflow-hidden">
-            <img :src="`http://benhvienkhuvucthuduc.vn/Content/uploads/ImageDoctors/${doctor.imageLink}`" class="embed-responsive-img img-cover" alt />
+            <img
+              :src="`http://benhvienkhuvucthuduc.vn/Content/uploads/ImageDoctors/${doctor.imageLink}`"
+              class="embed-responsive-img img-cover"
+              alt
+            />
           </div>
         </a>
       </div>
@@ -31,14 +35,16 @@
       </div>
 
       <div class="doctor__footer">
-        <a class="btn btn-block f1" href="doctor-profile.html">
+        <nuxt-link to="/hoibacsi" class="btn btn-block f1">
           <i class="far fa-calendar-alt"></i>
           Đặt lịch khám
-        </a>
-        <a class="btn btn-block f2" href="booking.html">
+        </nuxt-link>
+
+        <!-- <nuxt-link to="/hoibacsi" class="btn btn-block f2"> -->
+        <nuxt-link :to="{ path : 'hoibacsi', query: {doctorId: `${doctor.id}`}}" class="btn btn-block f2">
           <i class="far fa-question-circle"></i>
           Gửi câu hỏi
-        </a>
+        </nuxt-link>
       </div>
     </div>
   </div>
@@ -50,8 +56,8 @@ export default {
   props: {
     doctor: {
       type: Object,
-      default: null
-    }
+      default: null,
+    },
   },
   async fetch() {
     // const article = await fetch(
@@ -71,7 +77,7 @@ export default {
   data() {
     return {};
   },
-  methods: {}
+  methods: {},
 };
 </script>
 

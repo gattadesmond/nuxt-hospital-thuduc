@@ -349,11 +349,18 @@ export default {
   components: {},
 
   data() {
+      var checkBoxValidate = (rule, value, callback) => {
+        if (value === false) {
+          callback(new Error('Bạn cần đồng ý các điều khoản'));
+        } else {
+          callback();
+        }
+      };
     return {
       form: {
         questionContent: "",
-        doctorId: null,
-        checkrule: "",
+        doctorId: this.$route.query.doctorId | "",
+        checkrule: false
       },
       rules: {
         questionContent: [
@@ -370,8 +377,7 @@ export default {
         ],
         checkrule: [
           {
-            required: true,
-            message: "Bạn chưa đồng ý các điều khoản",
+            validator: checkBoxValidate,
             trigger: "change",
           },
         ],
@@ -438,7 +444,7 @@ export default {
           //         type: "error",
           //         callback: (action) => {
           //           // this.$message({
-        //           //   type: "info",
+          //           //   type: "info",
           //           //   message: `action: ${action}`
           //           // });
           //         },
@@ -448,6 +454,11 @@ export default {
       });
     },
   },
+  // watch: {
+  //   "this.$route.query.doctorId": function () {
+  //     this.doctorId= this.$route.query.doctorId
+  //   },
+  // },
   mounted() {
     this.$axios
       .get("Doctors/GetAllDoctorForQnA")
