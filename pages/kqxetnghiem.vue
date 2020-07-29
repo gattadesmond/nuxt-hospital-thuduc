@@ -484,7 +484,7 @@
 
 <script>
 export default {
-  auth: false,
+  auth: true,
   components: {},
   methods: {},
   data() {

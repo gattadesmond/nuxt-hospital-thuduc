@@ -360,7 +360,7 @@
 import SelectChuyenKhoa from "@/components/blocks/SelectChuyenKhoa";
 
 export default {
-  auth: false,
+  auth: true,
   components: {
     SelectChuyenKhoa
   },

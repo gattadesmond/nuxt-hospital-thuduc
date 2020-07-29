@@ -111,7 +111,7 @@
                 <p class="text-muted mb-0">{{this.$auth.user.email}}</p>
               </div>
             </div>
-            <nuxt-link to="/profile" class="dropdown-item">Thông tin</nuxt-link>
+            <!-- <nuxt-link to="/profile" class="dropdown-item">Thông tin</nuxt-link> -->
             <!-- <a class="dropdown-item" href="doctor-profile-settings.html">Tùy chọn</a> -->
             <a class="dropdown-item" href @click.stop.prevent="logout()">Thoát</a>
           </div>

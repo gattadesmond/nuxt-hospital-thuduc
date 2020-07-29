@@ -67,7 +67,7 @@ import ArticleDoctor from "@/components/blocks/ArticleDoctor";
 import SelectChuyenKhoa from "@/components/blocks/SelectChuyenKhoa";
 
 export default {
-  auth: false,
+  auth: true,
   components: {
     ArticleDoctor,
     SelectChuyenKhoa,

@@ -344,7 +344,7 @@
 // https://api.jsonbin.io/b/5efe2af50bab551d2b6ace37
 
 export default {
-  // auth: false,
+  auth: true,
 
   components: {},
 
