@@ -1,7 +1,7 @@
 <template>
   <section
     class="section section-space section-bg section-home"
-    style="background-image: url(http://denticare.bold-themes.com/allen/wp-content/uploads/sites/16/2020/03/background-doctor.jpg)"
+    style="background-image: url(img/background-doctor.jpg)"
   >
     <div class="container">
       <div class="row">
@@ -25,12 +25,8 @@
                   src="http://benhvienkhuvucthuduc.vn/Content/assets/img/healthcare/NoiKhoa.jpg"
                   class="embed-responsive-img img-cover"
                   alt
-                /> -->
-                  <img
-                  src="img/func/BacSiTuVan.jpg"
-                  class="embed-responsive-img img-cover"
-                  alt
-                />
+                />-->
+                <img src="img/func/BacSiTuVan.jpg" class="embed-responsive-img img-cover" alt />
               </div>
             </div>
 
@@ -54,11 +50,7 @@
             <nuxt-link to="/kqxetnghiem" class="link-absolute"></nuxt-link>
             <div class="function__image">
               <div class="embed-responsive embed-responsive-21by9 overflow-hidden">
-              <img
-                  src="img/func/XemCanLamSang.jpg"
-                  class="embed-responsive-img img-cover"
-                  alt
-                />
+                <img src="img/func/XemCanLamSang.jpg" class="embed-responsive-img img-cover" alt />
               </div>
             </div>
 
@@ -82,11 +74,7 @@
             <nuxt-link to="/xemtoathuoc" class="link-absolute"></nuxt-link>
             <div class="function__image">
               <div class="embed-responsive embed-responsive-21by9 overflow-hidden">
-               <img
-                  src="img/func/XemToaThuoc.jpg"
-                  class="embed-responsive-img img-cover"
-                  alt
-                />
+                <img src="img/func/XemToaThuoc.jpg" class="embed-responsive-img img-cover" alt />
               </div>
             </div>
 
@@ -107,14 +95,10 @@
 
         <div class="col-6 col-md-4 mb-5">
           <div class="function__item h-100">
-             <nuxt-link to="/datlichkham" class="link-absolute"></nuxt-link>
+            <nuxt-link to="/datlichkham" class="link-absolute"></nuxt-link>
             <div class="function__image">
               <div class="embed-responsive embed-responsive-21by9 overflow-hidden">
-             <img
-                  src="img/func/DatLichKham.jpg"
-                  class="embed-responsive-img img-cover"
-                  alt
-                />
+                <img src="img/func/DatLichKham.jpg" class="embed-responsive-img img-cover" alt />
               </div>
             </div>
 
@@ -138,11 +122,7 @@
             <nuxt-link to="/dongvienphi" class="link-absolute"></nuxt-link>
             <div class="function__image">
               <div class="embed-responsive embed-responsive-21by9 overflow-hidden">
-               <img
-                  src="img/func/ThanhToanOnline.jpg"
-                  class="embed-responsive-img img-cover"
-                  alt
-                />
+                <img src="img/func/ThanhToanOnline.jpg" class="embed-responsive-img img-cover" alt />
               </div>
             </div>
 
@@ -173,9 +153,9 @@ export default {
             new CustomEvent("injected.mr.SVGInjector", { bubbles: true })
           );
         }
-      }
+      },
     });
-  }
+  },
 };
 </script>
 

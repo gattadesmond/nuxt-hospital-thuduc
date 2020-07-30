@@ -349,19 +349,20 @@ export default {
   components: {},
 
   data() {
-      var checkBoxValidate = (rule, value, callback) => {
-        if (value === false) {
-          callback(new Error('Bạn cần đồng ý các điều khoản'));
-        } else {
-          callback();
-        }
-      };
+    var checkBoxValidate = (rule, value, callback) => {
+      if (value === false) {
+        callback(new Error("Bạn cần đồng ý các điều khoản"));
+      } else {
+        callback();
+      }
+    };
     return {
       form: {
         questionContent: "",
         doctorId: this.$route.query.doctorId | "",
-        checkrule: false
+        checkrule: false,
       },
+      computed: {},
       rules: {
         questionContent: [
           {
@@ -392,22 +393,37 @@ export default {
         if (valid) {
           this.$axios
             .post("Question/Insert", {
-              doctorId: this.form.doctorId | 0,
+              doctorId: this.form.doctorId | "",
               questionContent: this.form.questionContent,
             })
             .then((response) => {
               console.log(response);
               if (response.data.success === true) {
-                this.$alert(response.data.message, "Thông báo", {
-                  confirmButtonText: "OK",
-                  type: "success",
-                  callback: (action) => {
-                    // this.$message({
-                    //   type: "info",
-                    //   message: `action: ${action}`
-                    // });
-                  },
+                const loading = this.$loading({
+                  lock: true,
+                  text: "Đang xử lý",
+                  spinner: "el-icon-loading",
+                  background: "rgba(0, 0, 0, 0.7)",
                 });
+                setTimeout(() => {
+                  loading.close();
+                  this.$router.push({
+                    name: "thanhcong",
+                    params: { message: response.data.message,
+                    doctorId: this.form.doctorId },
+                  });
+                }, 2000);
+
+                // this.$alert(response.data.message, "Thông báo", {
+                //   confirmButtonText: "OK",
+                //   type: "success",
+                //   callback: (action) => {
+                //     // this.$message({
+                //     //   type: "info",
+                //     //   message: `action: ${action}`
+                //     // });
+                //   },
+                // });
               } else {
                 this.$alert(response.data.message, "Thông báo", {
                   confirmButtonText: "Đóng",
@@ -460,6 +476,12 @@ export default {
   //   },
   // },
   mounted() {
+    // console.log(this.$route.query.doctorId);
+    if (this.$route.query.doctorId != undefined) {
+      this.form.doctorId = this.$route.query.doctorId
+    } else {
+      this.form.doctorId = ""
+    };
     this.$axios
       .get("Doctors/GetAllDoctorForQnA")
       .then((response) => {
