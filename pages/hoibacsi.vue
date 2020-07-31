@@ -359,7 +359,7 @@ export default {
     return {
       form: {
         questionContent: "",
-        doctorId: this.$route.query.doctorId | "",
+        doctorId: "",
         checkrule: false,
       },
       computed: {},
@@ -409,8 +409,10 @@ export default {
                   loading.close();
                   this.$router.push({
                     name: "thanhcong",
-                    params: { message: response.data.message,
-                    doctorId: this.form.doctorId },
+                    params: {
+                      message: response.data.message,
+                      doctorId: this.form.doctorId,
+                    },
                   });
                 }, 2000);
 
@@ -475,13 +477,15 @@ export default {
   //     this.doctorId= this.$route.query.doctorId
   //   },
   // },
+  updated: function () {},
   mounted() {
     // console.log(this.$route.query.doctorId);
     if (this.$route.query.doctorId != undefined) {
-      this.form.doctorId = this.$route.query.doctorId
+      this.form.doctorId = parseInt(this.$route.query.doctorId);
     } else {
-      this.form.doctorId = ""
-    };
+      this.form.doctorId = "";
+    }
+
     this.$axios
       .get("Doctors/GetAllDoctorForQnA")
       .then((response) => {
