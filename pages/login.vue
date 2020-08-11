@@ -113,7 +113,6 @@ export default {
           data: this.login,
         });
       } catch (err) {
-     
         this.$alert(err.response.data.message, "Có lỗi xảy ra", {
           confirmButtonText: "Đóng",
         });
@@ -123,7 +122,16 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          this.userLogin();
+          const loading = this.$loading({
+            lock: true,
+            text: "Đang xử lý",
+            spinner: "el-icon-loading",
+            background: "rgba(0, 0, 0, 0.7)",
+          });
+          setTimeout(() => {
+            loading.close();
+            this.userLogin();
+          }, 1000);
         } else {
           console.log("error submit!!");
           return false;

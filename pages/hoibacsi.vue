@@ -227,7 +227,7 @@
                       <div class="comment-body">
                         <div class="meta-data">
                           <span class="comment-author">
-                            <a href>BS CKII.Từ Văn Lai</a>
+                            <a href> <b>BS CKII.Từ Văn Lai</b> </a>
                           </span>
                           <span class="comment-date">Trả lời 1 ngày trước</span>
                         </div>
@@ -239,95 +239,6 @@
                 </ul>
                 <!-- /Comment Reply -->
               </li>
-
-              <!-- Comment List -->
-              <li>
-                <div class="comment">
-                  <img
-                    class="avatar rounded-circle"
-                    alt="User Image"
-                    src="img/patients/patient6.jpg"
-                  />
-                  <div class="comment-body">
-                    <div class="meta-data">
-                      <span class="comment-author">Nguyễn Thị Dung</span>
-                      <span class="comment-date">Vào 2 ngày trước</span>
-                      <!-- <div class="review-count rating">
-                        <i class="fas fa-star filled"></i>
-                        <i class="fas fa-star filled"></i>
-                        <i class="fas fa-star filled"></i>
-                        <i class="fas fa-star filled"></i>
-                        <i class="fas fa-star"></i>
-                      </div>-->
-                    </div>
-
-                    <div class="comment-content">
-                      Bác sĩ ơi cho cháu hỏi cháu 19 tuổi sáng dậy bị đau chân
-                      đi mấy bước lại bình thường là bệnh gì ạ
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Comment Reply -->
-                <ul class="comments-reply">
-                  <!-- Comment Reply List -->
-                  <li>
-                    <div class="comment">
-                      <img
-                        class="avatar rounded-circle"
-                        alt="User Image"
-                        src="http://benhvienkhuvucthuduc.vn/Content/uploads/ImageDoctors/6fb28875-81e8-4f0b-8340-a9d00120a18b_truong-khoa.jpg"
-                      />
-                      <div class="comment-body">
-                        <div class="meta-data">
-                          <span class="comment-author">
-                            <a href>BS CKII.Từ Văn Lai</a>
-                          </span>
-                          <span class="comment-date">Trả lời 1 ngày trước</span>
-                        </div>
-                        <div class="comment-content">
-                          <p>
-                            @Lê Quang Hà: Chào bạn! Trường hợp của bạn nhiều khả
-                            năng chỉ bị đau do sinh lý, nguyên nhân do tư thế
-                            ngủ, do thay đổi thời tiết,... cũng có thể biểu hiện
-                            của thiếu canxi (rất hay gặp ở tuổi đang phát
-                            triển). Để khắc phục tình trạng này, bạn nên thực
-                            hiện các biện pháp sau đây:
-                          </p>
-
-                          <p>- Tăng chế độ ăn nhiều dinh dưỡng, giầu canxi</p>
-                          <p>
-                            - Tăng cường thể dục thể thao, nhất là luyện tập
-                            buổi tối, trước khi đi ngủ. Nên tập thường xuyên,
-                            mỗi ngày ít nhất 60 phút, ít nhất 5 ngày mỗi tuần.
-                          </p>
-                          <p>
-                            - Vật lý trị liệu, xông hơi, chườm nóng..... cũng có
-                            tác dụng tốt
-                          </p>
-                          <p>
-                            - Ngoài ra, nên uống thêm các sản phẩm có chứa
-                            vitamin nhóm B giúp bảo vệ tế bào thần kinh, chứa
-                            thành phần Ginkgo biloba giúp tăng lưu thông máu,
-                            tăng tuần hoàn ngoại vi, chứa cao blueberry giúp
-                            chống lão hóa. Các thành phần này có trong viên uống
-                            Vindermen Plus, giúp giảm đau, giảm tê, tăng lưu
-                            thông máu. Bạn có thể uống thường xuyên hoặc ít nhất
-                            6 tháng để duy trì kết quả.
-                          </p>
-                          <p>
-                            Chúc bạn mạnh khỏe ! Nếu còn thắc mắc nào cần giải
-                            đáp vui lòng gọi 19001259 !
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </li>
-                  <!-- /Comment Reply List -->
-                </ul>
-                <!-- /Comment Reply -->
-              </li>
-              <!-- /Comment List -->
 
               <!-- /Comment List -->
             </ul>
@@ -517,4 +428,33 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.comments-reply {
+  background: red;
+}
+.review-listing.doc-review > ul > li {
+  border-radius: 5px;
+}
+.review-listing > ul li .comment {
+  margin-bottom: 10px;
+}
+
+.review-listing > ul li .comments-reply {
+  background: #f7f7f7;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin-left: 55px;
+  position: relative;
+  &:before {
+    position: absolute;
+    content: "";
+    width: 0;
+    height: 0;
+    top: -10px;
+    left: 35px;
+    border-style: solid;
+    border-width: 0 10px 10px 10px;
+    border-color: transparent transparent #f7f7f7 transparent;
+  }
+}
+</style>

@@ -35,16 +35,21 @@
       </div>
 
       <div class="doctor__footer">
-        <nuxt-link to="/hoibacsi" class="btn btn-block f1">
-          <i class="far fa-calendar-alt"></i>
-          Đặt lịch khám
-        </nuxt-link>
-
-        <!-- <nuxt-link to="/hoibacsi" class="btn btn-block f2"> -->
-        <nuxt-link :to="{ path : 'hoibacsi', query: {doctorId: `${doctor.id}`}}" class="btn btn-block f2">
-          <i class="far fa-question-circle"></i>
-          Gửi câu hỏi
-        </nuxt-link>
+        <template v-if="doctor.isInChargeofQnAForPatient">
+          <nuxt-link to="/hoibacsi" class="btn btn-block f1">
+            <i class="far fa-calendar-alt"></i>
+            Đặt lịch khám
+          </nuxt-link>
+        </template>
+        <template v-if="doctor.isBooking">
+          <nuxt-link
+            :to="{ path : 'hoibacsi', query: {doctorId: `${doctor.id}`}}"
+            class="btn btn-block f2"
+          >
+            <i class="far fa-question-circle"></i>
+            Gửi câu hỏi
+          </nuxt-link>
+        </template>
       </div>
     </div>
   </div>
