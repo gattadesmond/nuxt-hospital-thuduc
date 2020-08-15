@@ -47,9 +47,7 @@
             </div>
 
             <div class="required__box mb-4">
-              <div
-                class
-              >Bạn cần đóng viện phí, vui lòng nhấn nút bên dưới</div>
+              <div class>Bạn cần đóng viện phí, vui lòng nhấn nút bên dưới</div>
               <div class="text-center mt-3">
                 <b-button v-b-modal.modal-3 variant="primary" size="sm">Đóng viện phí</b-button>
 
@@ -76,7 +74,7 @@
                                 :value="item.value"
                               ></el-option>
                             </el-select>
-                          </div> -->
+                          </div>-->
 
                           <div class="col-6">
                             <div class="mb-2">Chọn ngày khám</div>
@@ -102,41 +100,7 @@
                         <div class="card mt-4 info__card">
                           <div class="font-weight-bold mb-3">Thông tin bệnh nhân</div>
 
-                          <div class="row sm-gutters mt-0">
-                            <div class="col-6">
-                              Họ tên :
-                              <strong>Nguyễn Văn A</strong>
-                            </div>
-
-                            <div class="col-6">
-                              Tuổi :
-                              <strong>21</strong>
-                            </div>
-                          </div>
-
-                          <div class="row sm-gutters mt-4">
-                            <div class="col-6">
-                              Địa chỉ :
-                              <strong>302 Lê Văn Sỹ</strong>
-                            </div>
-
-                            <div class="col-6">
-                              Điện thoại :
-                              <strong>0909090909</strong>
-                            </div>
-                          </div>
-
-                          <div class="row sm-gutters mt-4">
-                            <div class="col-6">
-                              Email:
-                              <strong>test@mail.com</strong>
-                            </div>
-
-                            <div class="col-6">
-                              Bảo hiểm:
-                              <strong>Không</strong>
-                            </div>
-                          </div>
+                          <PersonalInfo />
                         </div>
                       </div>
                     </div>
@@ -262,8 +226,12 @@
 </template>
 
 <script>
+
+import PersonalInfo from "@/components/blocks/PersonalInfo";
+
+
 export default {
- auth: true,
+  auth: true,
   components: {},
   methods: {},
   data() {
@@ -272,15 +240,15 @@ export default {
       form: {
         loaiKham: "1",
         noidung: "",
-        checkrule: false
+        checkrule: false,
       },
     };
   },
   head() {
     return {
-      title: "Xem toa thuốc"
+      title: "Xem toa thuốc",
     };
-  }
+  },
 };
 </script>
 

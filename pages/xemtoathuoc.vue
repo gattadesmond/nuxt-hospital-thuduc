@@ -89,7 +89,7 @@
 
                           <div class="col-md-10">
                             <div class="mb-2 mt-3">Thông tin về đơn thuốc (nếu có)</div>
-                            <el-form-item class=" mb-0" label>
+                            <el-form-item class="mb-0" label>
                               <el-input
                                 type="textarea"
                                 :autosize="{ minRows: 3, maxRows: 10}"
@@ -114,41 +114,7 @@
                         <div class="card mt-4 info__card">
                           <div class="font-weight-bold mb-3">Thông tin bệnh nhân</div>
 
-                          <div class="row sm-gutters mt-0">
-                            <div class="col-6">
-                              Họ tên :
-                              <strong>Nguyễn Văn A</strong>
-                            </div>
-
-                            <div class="col-6">
-                              Tuổi :
-                              <strong>21</strong>
-                            </div>
-                          </div>
-
-                          <div class="row sm-gutters mt-4">
-                            <div class="col-6">
-                              Địa chỉ :
-                              <strong>302 Lê Văn Sỹ</strong>
-                            </div>
-
-                            <div class="col-6">
-                              Điện thoại :
-                              <strong>0909090909</strong>
-                            </div>
-                          </div>
-
-                          <div class="row sm-gutters mt-4">
-                            <div class="col-6">
-                              Email:
-                              <strong>test@mail.com</strong>
-                            </div>
-
-                            <div class="col-6">
-                              Bảo hiểm:
-                              <strong>Không</strong>
-                            </div>
-                          </div>
+                          <PersonalInfo />
                         </div>
                       </div>
                     </div>
@@ -350,8 +316,12 @@
 </template>
 
 <script>
+
+import PersonalInfo from "@/components/blocks/PersonalInfo";
+
+
 export default {
- auth: true,
+  auth: true,
   components: {},
   methods: {},
   data() {
@@ -360,15 +330,15 @@ export default {
       form: {
         loaiKham: "1",
         noidung: "",
-        checkrule: false
-      }
+        checkrule: false,
+      },
     };
   },
   head() {
     return {
-      title: "Xem toa thuốc"
+      title: "Xem toa thuốc",
     };
-  }
+  },
 };
 </script>
 

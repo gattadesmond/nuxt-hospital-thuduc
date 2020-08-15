@@ -52,7 +52,13 @@
               <div class="text-center mt-3">
                 <b-button v-b-modal.modal-1 variant="primary" size="sm">Yêu cầu kết quả xét nghiệm</b-button>
 
-                <b-modal id="modal-1" centered cancelTitle="Đóng cửa sổ" okTitle="Thanh toán" title="Yêu cầu kết quả xét nghiệm">
+                <b-modal
+                  id="modal-1"
+                  centered
+                  cancelTitle="Đóng cửa sổ"
+                  okTitle="Thanh toán"
+                  title="Yêu cầu kết quả xét nghiệm"
+                >
                   <el-form ref="form" class="px-3" :model="form" label-width="0px">
                     <div class="row">
                       <div class="col-12">
@@ -95,41 +101,7 @@
                         <div class="card mt-4 info__card">
                           <div class="font-weight-bold mb-3">Thông tin bệnh nhân</div>
 
-                          <div class="row sm-gutters mt-0">
-                            <div class="col-6">
-                              Họ tên :
-                              <strong>Nguyễn Văn A</strong>
-                            </div>
-
-                            <div class="col-6">
-                              Tuổi :
-                              <strong>21</strong>
-                            </div>
-                          </div>
-
-                          <div class="row sm-gutters mt-4">
-                            <div class="col-6">
-                              Địa chỉ :
-                              <strong>302 Lê Văn Sỹ</strong>
-                            </div>
-
-                            <div class="col-6">
-                              Điện thoại :
-                              <strong>0909090909</strong>
-                            </div>
-                          </div>
-
-                          <div class="row sm-gutters mt-4">
-                            <div class="col-6">
-                              Email:
-                              <strong>test@mail.com</strong>
-                            </div>
-
-                            <div class="col-6">
-                              Bảo hiểm:
-                              <strong>Không</strong>
-                            </div>
-                          </div>
+                          <PersonalInfo />
                         </div>
                       </div>
                     </div>
@@ -483,6 +455,10 @@
 </template>
 
 <script>
+
+import PersonalInfo from "@/components/blocks/PersonalInfo";
+
+
 export default {
   auth: true,
   components: {},
@@ -494,42 +470,42 @@ export default {
         noidung: "",
         loaiHinh: "",
         dateSelect: "",
-        checkrule: ""
+        checkrule: "",
       },
       filtersList: [
         {
           value: "1q",
-          label: "Tất cả"
+          label: "Tất cả",
         },
         {
           value: "2q",
-          label: "Xét nghiệm"
+          label: "Xét nghiệm",
         },
         {
           value: "3q",
-          label: "X-Quang"
+          label: "X-Quang",
         },
         {
           value: "4q",
-          label: "CT Scanner, MRI"
+          label: "CT Scanner, MRI",
         },
         {
           value: "5q",
-          label: "Siêu âm"
+          label: "Siêu âm",
         },
         {
           value: "6q",
-          label: "Nội soi"
-        }
+          label: "Nội soi",
+        },
       ],
-      filters: "1q"
+      filters: "1q",
     };
   },
   head() {
     return {
-      title: "Kết quả cận lâm sàng"
+      title: "Kết quả cận lâm sàng",
     };
-  }
+  },
 };
 </script>
 

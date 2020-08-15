@@ -33,42 +33,8 @@
                   <div class="row">
                     <div class="col-md-7 col-lg-8">
                       <h4 class>Thông tin bệnh nhân</h4>
-
-                      <div class="row sm-gutters mt-4">
-                        <div class="col-6">
-                          Họ tên :
-                          <strong>Nguyễn Văn A</strong>
-                        </div>
-
-                        <div class="col-6">
-                          Tuổi :
-                          <strong>21</strong>
-                        </div>
-                      </div>
-
-                      <div class="row sm-gutters mt-4">
-                        <div class="col-6">
-                          Địa chỉ :
-                          <strong>302 Lê Văn Sỹ</strong>
-                        </div>
-
-                        <div class="col-6">
-                          Điện thoại :
-                          <strong>0909090909</strong>
-                        </div>
-                      </div>
-
-                      <div class="row sm-gutters mt-4">
-                        <div class="col-6">
-                          Email:
-                          <strong>test@mail.com</strong>
-                        </div>
-
-                        <div class="col-6">
-                          Bảo hiểm:
-                          <strong>Không</strong>
-                        </div>
-                      </div>
+                      
+                      <PersonalInfo />
 
                       <h4 class="mt-5 mb-2">Dịch vụ khám</h4>
                       <p class="text-gray">Khám dịch vụ sẽ được chọn bác sĩ</p>
@@ -182,130 +148,7 @@
                     <div class="col-12">
                       <h4 class="mt-4 mb-1">Chọn ngày khám và giờ khám</h4>
 
-                      <div class="mt-4">
-                        <el-tabs type="border-card">
-                          <el-tab-pane>
-                            <div slot="label">
-                              <div class="date__item">
-                                <div class="date">THỨ 2</div>
-                                <div class="day">11/06</div>
-                              </div>
-                            </div>
-
-                            <div class="time-slot">
-                              <ul class="clearfix">
-                                <li>
-                                  <a class="timing selected" href="#">
-                                    <span>8:00</span>
-                                    <span>AM</span>
-                                  </a>
-                                </li>
-
-                                <li v-for="item in [9,10,11,12,13, 14,15,16,17]" :key="item">
-                                  <a class="timing" href="#">
-                                    <span>{{item}}:00</span>
-                                    <span>AM</span>
-                                  </a>
-                                </li>
-                              </ul>
-                            </div>
-                          </el-tab-pane>
-                          <el-tab-pane>
-                            <div slot="label">
-                              <div class="date__item">
-                                <div class="date">THỨ 3</div>
-                                <div class="day">12/06</div>
-                              </div>
-                            </div>
-
-                            <div class="time-slot">
-                              <ul class="clearfix">
-                                <li>
-                                  <a class="timing selected" href="#">
-                                    <span>8:00</span>
-                                    <span>AM</span>
-                                  </a>
-                                </li>
-
-                                <li v-for="item in [9,10,11,12,13]" :key="item">
-                                  <a class="timing" href="#">
-                                    <span>{{item}}:00</span>
-                                    <span>AM</span>
-                                  </a>
-                                </li>
-                              </ul>
-                            </div>
-                          </el-tab-pane>
-                          <el-tab-pane>
-                            <div slot="label">
-                              <div class="date__item">
-                                <div class="date">THỨ 4</div>
-                                <div class="day">13/06</div>
-                              </div>
-                            </div>
-                            <div class="p-5">
-                              <div
-                                class="text-black-50 text-center"
-                              >Chưa có thông tin đặt phòng, cảm phiền bạn quay lại sau</div>
-                            </div>
-                          </el-tab-pane>
-                          <el-tab-pane>
-                            <div slot="label">
-                              <div class="date__item">
-                                <div class="date">THỨ 5</div>
-                                <div class="day">14/06</div>
-                              </div>
-                            </div>
-                            <div class="p-5">
-                              <div
-                                class="text-black-50 text-center"
-                              >Chưa có thông tin đặt phòng, cảm phiền bạn quay lại sau</div>
-                            </div>
-                          </el-tab-pane>
-
-                          <el-tab-pane>
-                            <div slot="label">
-                              <div class="date__item">
-                                <div class="date">THỨ 6</div>
-                                <div class="day">15/06</div>
-                              </div>
-                            </div>
-                            <div class="p-5">
-                              <div
-                                class="text-black-50 text-center"
-                              >Chưa có thông tin đặt phòng, cảm phiền bạn quay lại sau</div>
-                            </div>
-                          </el-tab-pane>
-
-                          <el-tab-pane>
-                            <div slot="label">
-                              <div class="date__item">
-                                <div class="date">THỨ 7</div>
-                                <div class="day">16/06</div>
-                              </div>
-                            </div>
-                            <div class="p-5">
-                              <div
-                                class="text-black-50 text-center"
-                              >Chưa có thông tin đặt phòng, cảm phiền bạn quay lại sau</div>
-                            </div>
-                          </el-tab-pane>
-
-                          <el-tab-pane>
-                            <div slot="label">
-                              <div class="date__item">
-                                <div class="date">CHỦ NHẬT</div>
-                                <div class="day">17/06</div>
-                              </div>
-                            </div>
-                            <div class="p-5">
-                              <div
-                                class="text-black-50 text-center"
-                              >Chưa có thông tin đặt phòng, cảm phiền bạn quay lại sau</div>
-                            </div>
-                          </el-tab-pane>
-                        </el-tabs>
-                      </div>
+                      <TimeSchedule />
 
                       <el-form-item class="mt-4" label>
                         <el-checkbox-group v-model="form.checkrule">
@@ -341,6 +184,8 @@
 // https://api.jsonbin.io/b/5efe2af50bab551d2b6ace37
 import SelectChuyenKhoa from "@/components/blocks/SelectChuyenKhoa";
 import SelectDoctor from "@/components/blocks/SelectDoctor";
+import TimeSchedule from "@/components/blocks/TimeSchedule";
+import PersonalInfo from "@/components/blocks/PersonalInfo";
 
 export default {
   auth: true,
@@ -374,6 +219,21 @@ export default {
 
 
 <style lang="scss" scoped>
+</style>
+
+
+
+<style lang="scss">
+.el-tabs__item {
+  height: auto;
+  padding: 12px 20px 8px;
+  &.is-active {
+    .date {
+      color: #0a8d68;
+    }
+  }
+}
+
 .date__item {
   text-align: center;
   font-weight: normal;
@@ -388,19 +248,9 @@ export default {
     color: #909399;
   }
 }
-</style>
 
-
-
-<style lang="scss">
-.el-tabs__item {
-  height: auto;
-  padding: 12px 20px 8px;
-  &.is-active {
-    .date {
-      color: #0a8d68;
-    }
-  }
+.time-slot .timing {
+  cursor: pointer;
 }
 </style>
 
