@@ -1,14 +1,13 @@
 <template>
-
-
   <el-select
-    v-model="doctorsSelect"
+    v-model="doctorsSelectId"
     filterable
     class="form-soju-input"
     no-match-text="Không có Bác sĩ "
     placeholder="Vui lòng chọn Bác sĩ"
+    @change="$emit('select-doctor', doctorsSelectId)"
   >
-    <el-option v-for="item in doctorsList" :key="item.id" :label="item.name" :value="item.name">
+    <el-option v-for="item in doctorsList" :key="item.id" :label="item.name" :value="item.id">
       <div class="row no-gutters flex-nowrap align-items-center">
         <div class="col-auto mr-2">
           <b-avatar square size="sm" :src="`${item.imageLink}`"></b-avatar>
@@ -28,13 +27,12 @@
 <script>
 export default {
   components: {},
-  props: [],
 
   data() {
     return {
       isOpen: false,
-      doctorsSelect: "",
       doctorsList: [],
+      doctorsSelectId: "",
     };
   },
   methods: {
@@ -43,6 +41,9 @@ export default {
       this.doctorsList = this.doctorsList.concat(data);
       this.loading = false;
     },
+    // selectDoctorAction(e) {
+    //   console.log(e)
+    // }
   },
   mounted: function () {
     this.getDoctorsList();

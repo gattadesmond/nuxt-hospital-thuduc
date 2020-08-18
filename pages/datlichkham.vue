@@ -33,7 +33,7 @@
                   <div class="row">
                     <div class="col-md-7 col-lg-8">
                       <h4 class>Thông tin bệnh nhân</h4>
-                      
+
                       <PersonalInfo />
 
                       <h4 class="mt-5 mb-2">Dịch vụ khám</h4>
@@ -45,27 +45,20 @@
                       <!-- <h5 class="mt-4">Chọn Bác sĩ</h5> -->
 
                       <div class="row sm-gutters">
-                        <div class="col-md-10">
-                          <el-form-item>
-                            <div class="form-soju">
-                              <div class="form-soju-label">Chọn chuyên khoa</div>
+                   
 
-                              <SelectChuyenKhoa />
-                            </div>
-                          </el-form-item>
-                        </div>
-
-                        <div class="col-md-6" v-if="form.loaiKham == 2">
+                        <div class="col-md-6" v-show="form.loaiKham == 2">
                           <el-form-item>
                             <div class="form-soju">
                               <div class="form-soju-label">Chọn Bác sĩ</div>
-
-                              <SelectDoctor />
+                              <SelectDoctor @select-doctor="getSelectDoctor"/>
                             </div>
                           </el-form-item>
                         </div>
 
-                        <div class="col-6" v-if="form.loaiKham == 2">
+                        <div class="col-6" v-show="form.loaiKham == 2">
+                         
+                         
                           <div class="booking-doc-info">
                             <a href="doctor-profile.html" class="booking-doc-img">
                               <img
@@ -85,6 +78,8 @@
                               </div>
                             </div>
                           </div>
+
+
                         </div>
 
                         <div class="col-md-10">
@@ -182,7 +177,6 @@
 <script>
 //API THONG TIN BAC SI
 // https://api.jsonbin.io/b/5efe2af50bab551d2b6ace37
-import SelectChuyenKhoa from "@/components/blocks/SelectChuyenKhoa";
 import SelectDoctor from "@/components/blocks/SelectDoctor";
 import TimeSchedule from "@/components/blocks/TimeSchedule";
 import PersonalInfo from "@/components/blocks/PersonalInfo";
@@ -190,8 +184,9 @@ import PersonalInfo from "@/components/blocks/PersonalInfo";
 export default {
   auth: true,
   components: {
-    SelectChuyenKhoa,
     SelectDoctor,
+    PersonalInfo,
+    TimeSchedule
   },
 
   data() {
@@ -199,6 +194,7 @@ export default {
       form: {
         loaiKham: "1",
         noidung: "",
+        doctorID: "",
         checkrule: false,
       },
     };
@@ -207,6 +203,12 @@ export default {
     onSubmit() {
       console.log(this.form);
     },
+
+    getSelectDoctor(e){
+      console.log(e);
+      this.form.doctorID = e
+    }
+    
   },
 
   head() {
