@@ -45,41 +45,17 @@
                       <!-- <h5 class="mt-4">Chọn Bác sĩ</h5> -->
 
                       <div class="row sm-gutters">
-                   
-
                         <div class="col-md-6" v-show="form.loaiKham == 2">
                           <el-form-item>
                             <div class="form-soju">
                               <div class="form-soju-label">Chọn Bác sĩ</div>
-                              <SelectDoctor @select-doctor="getSelectDoctor"/>
+                              <SelectDoctor @select-doctor="getSelectDoctor" />
                             </div>
                           </el-form-item>
                         </div>
 
                         <div class="col-6" v-show="form.loaiKham == 2">
-                         
-                         
-                          <div class="booking-doc-info">
-                            <a href="doctor-profile.html" class="booking-doc-img">
-                              <img
-                                src="http://benhvienkhuvucthuduc.vn/Content/uploads/ImageDoctors/749aea9c-ec80-409c-89fb-a9e000a341e9_capcuu-phong.jpg"
-                                alt="User Image"
-                              />
-                            </a>
-                            <div class="booking-info">
-                              <h4>
-                                <a href="doctor-profile.html">Bs CKI.Hồ Thanh Phong</a>
-                              </h4>
-
-                              <div class="clinic-details">
-                                <p class="doc-location">
-                                  <i class="fas fa-map-marker-alt"></i> Trưởng Khoa
-                                </p>
-                              </div>
-                            </div>
-                          </div>
-
-
+                          <DoctorInfoMini v-bind:doctorId="form.doctorID" />
                         </div>
 
                         <div class="col-md-10">
@@ -143,7 +119,7 @@
                     <div class="col-12">
                       <h4 class="mt-4 mb-1">Chọn ngày khám và giờ khám</h4>
 
-                      <TimeSchedule />
+                      <TimeSchedule @time-select="getTimeSelect" />
 
                       <el-form-item class="mt-4" label>
                         <el-checkbox-group v-model="form.checkrule">
@@ -156,7 +132,7 @@
                         <el-button
                           type="primary"
                           class="btn btn-primary submit-btn"
-                          @click="onSubmit"
+                          @click.stop.prevent="sendForm()"
                         >
                           Xác nhận thông tin
                           <i class="fas fa-arrow-right"></i>
@@ -186,7 +162,7 @@ export default {
   components: {
     SelectDoctor,
     PersonalInfo,
-    TimeSchedule
+    TimeSchedule,
   },
 
   data() {
@@ -195,6 +171,10 @@ export default {
         loaiKham: "1",
         noidung: "",
         doctorID: "",
+        timeSelect: {
+          timeSelect: "",
+          daySelectFull: ""
+        },
         checkrule: false,
       },
     };
@@ -204,11 +184,128 @@ export default {
       console.log(this.form);
     },
 
-    getSelectDoctor(e){
-      console.log(e);
-      this.form.doctorID = e
-    }
-    
+    getSelectDoctor(e) {
+      // console.log(e);
+      this.form.doctorID = e;
+    },
+
+    getTimeSelect(e) {
+      this.form.timeSelect = e;
+    },
+
+    sendForm(e) {
+
+      if (this.form.noidung == "") {
+        this.$alert("Bạn chưa mô tả triệu chứng", "Thông báo", {
+          confirmButtonText: "Đóng",
+          type: "error",
+          callback: (action) => {
+            // this.$message({
+            //   type: "info",
+            //   message: `action: ${action}`
+            // });
+          },
+        });
+        return ;
+      }
+
+       if (this.form.timeSelect == "" || this.form.timeSelect.timeSelect == "") {
+        this.$alert("Bạn chưa chọn thời gian đặt khám", "Thông báo", {
+          confirmButtonText: "Đóng",
+          type: "error",
+          callback: (action) => {
+            // this.$message({
+            //   type: "info",
+            //   message: `action: ${action}`
+            // });
+          },
+        });
+        return ;
+      }
+
+      if (this.form.checkrule == false) {
+        this.$alert("Bạn cần đồng ý quy định đặt lịch khám", "Thông báo", {
+          confirmButtonText: "Đóng",
+          type: "error",
+          callback: (action) => {
+            // this.$message({
+            //   type: "info",
+            //   message: `action: ${action}`
+            // });
+          },
+        });
+        return ;
+      }
+
+      this.$axios
+        .post("Appointment/Insert", {
+          doctorId: this.form.doctorID | "",
+          content: this.form.noidung,
+          appointmentDate: this.form.timeSelect.daySelectFull,
+          timeBookingId: this.form.timeSelect.timeSelect,
+          serviceId: 1,
+        })
+        .then((response) => {
+          console.log(response);
+          if (response.data.success === true) {
+            const loading = this.$loading({
+              lock: true,
+              text: "Đang xử lý",
+              spinner: "el-icon-loading",
+              background: "rgba(0, 0, 0, 0.7)",
+            });
+            setTimeout(() => {
+              loading.close();
+              this.$router.push({
+                name: "thanhcong",
+                params: {
+                  message: response.data.message,
+                  doctorId: this.form.doctorId,
+                },
+              });
+            }, 2000);
+
+            // this.$alert(response.data.message, "Thông báo", {
+            //   confirmButtonText: "OK",
+            //   type: "success",
+            //   callback: (action) => {
+            //     // this.$message({
+            //     //   type: "info",
+            //     //   message: `action: ${action}`
+            //     // });
+            //   },
+            // });
+          } else {
+            this.$alert(response.data.message, "Thông báo", {
+              confirmButtonText: "Đóng",
+              type: "error",
+              callback: (action) => {
+                // this.$message({
+                //   type: "info",
+                //   message: `action: ${action}`
+                // });
+              },
+            });
+          }
+        })
+        .catch((error) => {
+          this.$alert(
+            "Đặt lịch khám thất bại, vui lòng kiểm tra lại thông tin.",
+            "Thông báo",
+            {
+              confirmButtonText: "Đóng",
+              type: "error",
+              callback: (action) => {
+                // this.$message({
+                //   type: "info",
+                //   message: `action: ${action}`
+                // });
+              },
+            }
+          );
+          // this.errored = true;
+        });
+    },
   },
 
   head() {

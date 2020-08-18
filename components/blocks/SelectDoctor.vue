@@ -4,6 +4,7 @@
     filterable
     class="form-soju-input"
     no-match-text="Không có Bác sĩ "
+    clearable
     placeholder="Vui lòng chọn Bác sĩ"
     @change="$emit('select-doctor', doctorsSelectId)"
   >
