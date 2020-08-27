@@ -2,16 +2,15 @@
 @import "bootstrap/scss/_variables.scss"; // From bootstrap node module
 @import "bootstrap-override/variables-bootstrap";
 @import "bootstrap-override/variables-theme";
-@import "user-variables"; 
+@import "user-variables";
 
-//Import Bootstrap 
-@import 'bootstrap/scss/bootstrap';
-@import 'bootstrap-vue/src/index';
+//Import Bootstrap
+@import "bootstrap/scss/bootstrap";
+@import "bootstrap-vue/src/index";
 
 //Style Bootstrap components
 @import "vendor/index";
-@import "vendor/lunar/lunar"; 
-
+@import "vendor/lunar/lunar";
 
 @import "components/global";
 @import "components/icons";
@@ -22,6 +21,24 @@
 @import "pages/hoibacsi";
 @import "pages/xemketqua";
 
-body, html{
-    font-size: 14px;
+body,
+html {
+  font-size: 14px;
+}
+
+.modal-benhvien {
+    word-break: break-word;
+  .el-dialog__header {
+    background-color: $primary;
+    color: white;
+    padding: 15px 20px;
+  }
+  .el-dialog__title {
+    font-family: "Playfair Display", serif;
+    color: white;
+  }
+  .el-dialog__headerbtn .el-dialog__close{
+      color: white;
+      display: none;
+  }
 }

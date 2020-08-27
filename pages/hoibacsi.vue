@@ -1,5 +1,7 @@
 <template>
   <div class="bg-white">
+    <Rule />
+
     <section class="section section-space s-heading s-heading-dark">
       <div class="container s-heading-content">
         <div class="row align-items-center s-heading-height">
@@ -227,7 +229,9 @@
                       <div class="comment-body">
                         <div class="meta-data">
                           <span class="comment-author">
-                            <a href> <b>BS CKII.Từ Văn Lai</b> </a>
+                            <a href>
+                              <b>BS CKII.Từ Văn Lai</b>
+                            </a>
                           </span>
                           <span class="comment-date">Trả lời 1 ngày trước</span>
                         </div>
@@ -254,10 +258,14 @@
 //API THONG TIN BAC SI
 // https://api.jsonbin.io/b/5efe2af50bab551d2b6ace37
 
+import Rule from "@/components/blocks/Rule";
+
 export default {
   auth: true,
 
-  components: {},
+  components: {
+    Rule,
+  },
 
   data() {
     var checkBoxValidate = (rule, value, callback) => {

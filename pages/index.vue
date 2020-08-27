@@ -39,8 +39,8 @@
                   alt
                 />
               </div>
-              <div class="function__title">Hỏi Bác Sĩ Chuyên khoa</div>
-              <div class="function__desc">Chúng tôi sẽ trả lời bạn trong 24h</div>
+              <div class="function__title">Tư vấn sức khỏe </div>
+              <div class="function__desc">Hãy cho chúng tôi biết bạn đang gặp khó khăn gì về tình trang sức khỏe của bạn </div>
             </div>
           </div>
         </div>

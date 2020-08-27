@@ -21,7 +21,7 @@
                 </div>
                 <el-form :model="login" :rules="rules" ref="login">
                   <div class="form-group">
-                    <label class>Tên tài khoản</label>
+                    <label class>Mã y tế</label>
 
                     <el-form-item label prop="userName">
                       <el-input v-model="login.userName"></el-input>
