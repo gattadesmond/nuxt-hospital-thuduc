@@ -36,6 +36,10 @@
             <div class="card border-0 card__soju">
               <div class="card-body">
                 <div>
+                  <div class="mb-4">
+                    <PersonalInfo />
+                  </div>
+
                   <el-form ref="form" :rules="rules" :model="form" label-width="0px">
                     <!-- <div class="info-widget"> -->
                     <h4 class="card-title">Nội dung cần tư vấn</h4>
@@ -259,12 +263,13 @@
 // https://api.jsonbin.io/b/5efe2af50bab551d2b6ace37
 
 import Rule from "@/components/blocks/Rule";
-
+import PersonalInfo from "@/components/blocks/PersonalInfo";
 export default {
   auth: true,
 
   components: {
     Rule,
+    PersonalInfo,
   },
 
   data() {

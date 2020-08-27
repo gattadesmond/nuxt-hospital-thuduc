@@ -86,13 +86,18 @@ export default {
   async fetch() {},
   data() {
     return {
-      checkOK: false,
+      checkOK: "not_accepted",
       dialogVisible: true,
     };
   },
+  mounted() {
+    if (localStorage.hoibacsi == "true") {
+      this.dialogVisible = false;
+    }
+  },
   methods: {
     handleOK() {
-      if (this.checkOK == false) {
+      if (this.checkOK == "not_accepted") {
         this.$alert(
           "Bạn cần đồng ý để có thể tiếp tục sử dụng dịch vụ",
           "Thông báo",
@@ -111,6 +116,8 @@ export default {
           .then((response) => {
             console.log(response);
             if (response.data.success === true) {
+              localStorage.hoibacsi = true;
+
               const loading = this.$loading({
                 lock: true,
                 text: "Đang xử lý",
