@@ -2,7 +2,7 @@
   <div class="modal-benhvien">
     <el-dialog
       title="Quy trình và nội quy sử dụng"
-      :visible.sync="dialogVisible"
+      :visible.sync="isOpen"
       width="700px"
       :show-close="true"
       :close-on-click-modal="false"
@@ -72,7 +72,7 @@
         </p>
       </div>
       <span slot="footer" class="dialog-footer">
-        <el-button @click="dialogVisible = false">Quay lại</el-button>
+        <el-button @click="comeBack()">Quay lại Trang chủ</el-button>
         <el-button type="primary" @click="handleOK()">Đồng ý</el-button>
       </span>
     </el-dialog>
@@ -82,20 +82,25 @@
 <script>
 export default {
   components: {},
-  // props: ["doctorId"],
+  props: ["isOpen"],
   async fetch() {},
   data() {
     return {
       checkOK: "not_accepted",
-      dialogVisible: true,
+      // dialogVisible: true,
     };
   },
   mounted() {
-    if (localStorage.hoibacsi == "true") {
-      this.dialogVisible = false;
-    }
+    // if (localStorage.hoibacsi == "true") {
+    //   this.dialogVisible = false;
+    // }
   },
   methods: {
+    comeBack() {
+      this.$router.push({
+         path: '/login',
+      });
+    },
     handleOK() {
       if (this.checkOK == "not_accepted") {
         this.$alert(
@@ -107,7 +112,8 @@ export default {
           }
         );
       } else {
-        this.dialogVisible = false;
+        // this.dialogVisible = false;
+        this.$emit("open-modal", false);
 
         this.$axios
           .post("Tracking/Insert", {
@@ -135,9 +141,9 @@ export default {
                 // });
 
                 this.$message({
-                  type: "info",
+                  type: "success",
                   message:
-                    "Xác nhận thành công, mời bạn đặt câu hỏi cho Bác sĩ",
+                    "Xác nhận thành công",
                 });
               }, 2000);
 

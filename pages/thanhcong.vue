@@ -13,7 +13,7 @@
                   <i class="fas fa-check"></i>
                   <h3> {{this.$route.params.message ? this.$route.params.message : "Thành công"}} </h3>
                   <p>
-                    Câu hỏi của bạn đã được gửi cho Bác sĩ
+                    Tư vấn của bạn đã được gửi thành công vào lúc 
                     <strong>{{this.$route.params.doctorId}}</strong>
                     <br />vào
                     <strong>{{ new Date().toLocaleString() }} , chúng tôi sẽ gửi phản hồi lại cho bạn trong vòng 48h, Cám ơn</strong>

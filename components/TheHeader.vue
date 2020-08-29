@@ -46,7 +46,7 @@
             </a>
             <ul class="submenu">
               <li>
-                <nuxt-link to="/hoibacsi">Hỏi Bác sĩ Chuyên khoa</nuxt-link>
+                <nuxt-link to="/hoibacsi">Tư vấn sức khỏe</nuxt-link>
               </li>
               <li>
                 <nuxt-link to="/kqxetnghiem">Xem kết quả xét nghiệm</nuxt-link>

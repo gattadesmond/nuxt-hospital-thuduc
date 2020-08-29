@@ -1,6 +1,6 @@
 <template>
   <div class="bg-white">
-    <Rule />
+    <QuyDinhPopup @open-modal="handleOpenQuyDinh" :isOpen="isQuyDinhPopup" />
 
     <section class="section section-space s-heading s-heading-dark">
       <div class="container s-heading-content">
@@ -36,69 +36,81 @@
             <div class="card border-0 card__soju">
               <div class="card-body">
                 <div>
-                  <div class="mb-4">
+                  <div class="mb-5">
+                    <h4 class="card-title">Thông tin cá nhân</h4>
                     <PersonalInfo />
                   </div>
 
                   <el-form ref="form" :rules="rules" :model="form" label-width="0px">
                     <!-- <div class="info-widget"> -->
-                    <h4 class="card-title">Nội dung cần tư vấn</h4>
+                    <h4 class="card-title">Mô tả triệu chứng</h4>
 
-                    <el-form-item prop="questionContent">
+                    <el-form-item prop="trieuChungBenh">
                       <div class="form-soju">
-                        <div class="form-soju-label">Nội dung</div>
+                        <div class="form-soju-label">Triệu chứng bệnh</div>
                         <el-input
                           type="textarea"
                           :autosize="{ minRows: 3, maxRows: 10 }"
                           class="form-soju-input"
-                          placeholder="Vui lòng ghi rõ câu hỏi của bạn, càng rõ ràng càng tốt."
-                          v-model="form.questionContent"
+                          placeholder="Vui lòng ghi rõ triệu chứng"
+                          v-model="form.trieuChungBenh"
                         ></el-input>
                       </div>
                     </el-form-item>
 
-                    <h5 class="mt-4">Chọn Bác sĩ</h5>
-
-                    <el-form-item>
-                      <div class="form-soju">
-                        <div class="form-soju-label">Danh sách Bác sĩ</div>
-
-                        <el-select
-                          v-model="form.doctorId"
-                          filterable
-                          class="form-soju-input"
-                          no-match-text="Không có Bác sĩ "
-                          placeholder="Vui lòng chọn Bác sĩ"
-                        >
-                          <el-option
-                            v-for="item in doctorsList"
-                            :key="item.id"
-                            :label="item.name"
-                            :value="item.id"
-                          >
-                            <div class="row no-gutters flex-nowrap align-items-center">
-                              <div class="col-auto mr-2">
-                                <b-avatar square size="sm" :src="`${item.imageLink}`"></b-avatar>
-                              </div>
-                              <div class="col mr-2">
-                                <span style>{{ item.name }}</span>
-                              </div>
-
-                              <div class="col-auto">
-                                <span
-                                  style="float: right; color: #8492a6; font-size: 13px"
-                                >{{ item.position }}</span>
-                              </div>
-                            </div>
-                          </el-option>
-                        </el-select>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <el-form-item prop="dienTienBenh">
+                          <div class="form-soju">
+                            <div class="form-soju-label">Diễn tiến bệnh</div>
+                            <el-input
+                              type="textarea"
+                              :autosize="{ minRows: 2, maxRows: 10 }"
+                              class="form-soju-input"
+                              placeholder="Vui lòng ghi rõ triệu chứng"
+                              v-model="form.dienTienBenh"
+                            ></el-input>
+                          </div>
+                        </el-form-item>
                       </div>
-                    </el-form-item>
+
+                      <div class="col-md-6">
+                        <el-form-item prop="tienSuBenh">
+                          <div class="form-soju">
+                            <div class="form-soju-label">Tiền sử bệnh</div>
+                            <el-input
+                              type="textarea"
+                              :autosize="{ minRows: 2, maxRows: 10 }"
+                              class="form-soju-input"
+                              placeholder="Vui lòng ghi rõ triệu chứng"
+                              v-model="form.tienSuBenh"
+                            ></el-input>
+                          </div>
+                        </el-form-item>
+                      </div>
+                    </div>
+
+                    <h4 class="mt-4">Yêu cầu chuyên khoa (nếu cần)</h4>
+
+                    <div class="row no-gutters">
+                      <div class="col-md-6">
+                        <el-form-item>
+                          <div class="form-soju">
+                            <div class="form-soju-label">Chọn Chuyên khoa</div>
+                            <SelectChuyenKhoa @select-chuyenkhoa="getSelectChuyenKhoa" />
+                          </div>
+                        </el-form-item>
+                      </div>
+                    </div>
 
                     <el-form-item prop="checkrule">
                       <el-checkbox-group v-model="form.checkrule">
                         <el-checkbox label="Tôi đồng ý gửi câu hỏi theo quy định" name="type"></el-checkbox>
                       </el-checkbox-group>
+                      <div>
+                        Xem lại các quy định
+                        <a href @click.stop.prevent="handleOpenQuyDinh">tại đây</a>
+                      </div>
                     </el-form-item>
 
                     <el-form-item class="mt-5">
@@ -118,65 +130,34 @@
           <div class="col-md-5 col-lg-4 theiaStickySidebar">
             <!-- Booking Summary -->
 
-            <div class="service__card h-100">
-              <h4 class="text-white pb-2">Quy định</h4>
+            <div class="mb-4">
+              <a href>
+                <img
+                  src="https://cdn2.medihub.vn/image/360/w/ImagesUpload/2019/07/22/9e01e1e8-1db7-4ec5-a461-c166463a5164_kemdanhrang.jpg"
+                  class="img-fluid d-block mx-auto"
+                  alt
+                />
+              </a>
+            </div>
 
-              <div class="service__item">
-                <div class="service__icon">
-                  <i class="el-icon-money"></i>
-                </div>
-                <div class="service__body">
-                  <div class="service__name">Phí dịch vụ</div>
-                  <div class="service__desc">
-                    <strong>50.000</strong> đồng
-                  </div>
-                </div>
-              </div>
+            <div class="mb-4">
+              <a href>
+                <img
+                  src="https://cdn2.medihub.vn/image/360/w/ImagesUpload/2018/09/14/8e7e7626-2368-4842-8655-9acf0338f750_tuongan.jpg"
+                  class="img-fluid d-block mx-auto"
+                  alt
+                />
+              </a>
+            </div>
 
-              <div class="service__item">
-                <div class="service__icon">
-                  <i class="el-icon-alarm-clock"></i>
-                </div>
-                <div class="service__body">
-                  <div class="service__name">Thời gian tiếp nhận</div>
-                  <div class="service__desc">
-                    <div class="mb-2">Các bác sĩ sẽ dành 30 phút để trả lời</div>
-                    <div class="mb-2">7h – 11h, trả lời vào 15h cùng ngày</div>
-                    <div class="mb-2">12h – 7h ngày hôm sau, 10h cùng ngày</div>
-                    <div class="mb-2">
-                      TB, CN, Lễ - 10h ngày thứ 2 (TB,CN), ngày đi làm đầu tiên
-                      sau lễ (Lễ)
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="service__item">
-                <div class="service__icon">
-                  <i class="el-icon-date"></i>
-                </div>
-                <div class="service__body">
-                  <div class="service__name">Sắp xếp lịch hẹn</div>
-                  <div class="service__desc">
-                    Các bác sĩ sẽ kê toa dựa vào kết quả khám lâm sàng. Trường
-                    hợp bạn cần chẩn đoán thêm.
-                  </div>
-                </div>
-              </div>
-
-              <div class="service__item">
-                <div class="service__icon">
-                  <i class="el-icon-phone-outline"></i>
-                </div>
-                <div class="service__body">
-                  <div class="service__name">Hỗ trợ sau khám</div>
-                  <div class="service__desc">
-                    Các bác sĩ cùng đội ngũ CSKH chuyên nghiệp luôn sẵn sàng
-                    giải đáp mọi thắc mắc về sức khỏe ngay trong ứng dụng hoặc
-                    qua đường dây nóng.
-                  </div>
-                </div>
-              </div>
+            <div class="mb-4">
+              <a href>
+                <img
+                  src="http://cdn1.medihub.vn/uploads/images/2017/07/12/medermakid.jpg"
+                  class="img-fluid d-block mx-auto"
+                  alt
+                />
+              </a>
             </div>
           </div>
         </div>
@@ -262,14 +243,16 @@
 //API THONG TIN BAC SI
 // https://api.jsonbin.io/b/5efe2af50bab551d2b6ace37
 
-import Rule from "@/components/blocks/Rule";
+import QuyDinhPopup from "@/components/blocks/QuyDinhPopup";
 import PersonalInfo from "@/components/blocks/PersonalInfo";
+import SelectChuyenKhoa from "@/components/blocks/SelectChuyenKhoa";
 export default {
   auth: true,
 
   components: {
-    Rule,
+    QuyDinhPopup,
     PersonalInfo,
+    SelectChuyenKhoa,
   },
 
   data() {
@@ -281,25 +264,30 @@ export default {
       }
     };
     return {
+      isQuyDinhPopup: true,
       form: {
-        questionContent: "",
+        trieuChungBenh: "",
+        dienTienBenh: "",
+        tienSuBenh: "",
         doctorId: "",
+        chuyenKhoa: "",
         checkrule: false,
       },
       computed: {},
       rules: {
-        questionContent: [
+        trieuChungBenh: [
           {
             required: true,
-            message: "Vui lòng ghi câu hỏi",
+            message: "Vui lòng ghi triệu chứng bệnh",
             trigger: "blur",
           },
           {
             min: 20,
-            message: "Nội dung câu hỏi cần lớn hơn 20 kí tự",
+            message: "Nội dung cần lớn hơn 20 kí tự",
             trigger: "blur",
           },
         ],
+
         checkrule: [
           {
             validator: checkBoxValidate,
@@ -307,18 +295,30 @@ export default {
           },
         ],
       },
-      doctorsList: [],
       questionsList: [],
     };
   },
   methods: {
+    getSelectChuyenKhoa(e) {
+      // console.log(e);
+      this.form.chuyenKhoa = e;
+    },
+
+    handleOpenQuyDinh(status) {
+      console.log("Nay la gi");
+      this.isQuyDinhPopup = status;
+    },
+
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           this.$axios
             .post("Question/Insert", {
-              doctorId: this.form.doctorId | "",
-              questionContent: this.form.questionContent,
+              // doctorId: this.form.doctorId | "",
+              questionContent: this.form.trieuChungBenh,
+              diseaseProgression: this.form.dienTienBenh,
+              diseaseHistory: this.form.tienSuBenh,
+              specialist: this.form.chuyenKhoa | 0,
             })
             .then((response) => {
               console.log(response);
@@ -411,16 +411,6 @@ export default {
     }
 
     this.$axios
-      .get("Doctors/GetAllDoctorForQnA")
-      .then((response) => {
-        this.doctorsList = response.data;
-      })
-      .catch((error) => {
-        console.log(error);
-        // this.errored = true;
-      });
-
-    this.$axios
       .get("Question/GetByQuestionbyUser")
       .then((rds) => {
         // console.log(rds.data.results);
@@ -435,7 +425,7 @@ export default {
 
   head() {
     return {
-      title: "Tư vấn bác sĩ",
+      title: "Tư vấn sức khỏe",
     };
   },
 };
