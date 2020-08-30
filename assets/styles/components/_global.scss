@@ -8,6 +8,14 @@ a{
     transition: all 0.05s ease-in;
 }
 
+.table{
+  word-wrap: break-word;
+}
+
+.el-dialog__body{
+  word-break: break-word;
+}
+
 .sm-gutters {
   margin-right: -8px;
   margin-left: -8px;

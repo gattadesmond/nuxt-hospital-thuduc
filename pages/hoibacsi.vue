@@ -1,6 +1,6 @@
 <template>
   <div class="bg-white">
-    <QuyDinhPopup @open-modal="handleOpenQuyDinh" :isOpen="isQuyDinhPopup" />
+    <QuyDinhPopup @open-modal="handleOpenQuyDinh" :recentOpen="isRecentOpen" :isOpen="isQuyDinhPopup" />
 
     <section class="section section-space s-heading s-heading-dark">
       <div class="container s-heading-content">
@@ -265,6 +265,7 @@ export default {
     };
     return {
       isQuyDinhPopup: true,
+      isRecentOpen: false,
       form: {
         trieuChungBenh: "",
         dienTienBenh: "",
@@ -300,13 +301,14 @@ export default {
   },
   methods: {
     getSelectChuyenKhoa(e) {
-      // console.log(e);
+      console.log(e);
       this.form.chuyenKhoa = e;
     },
 
     handleOpenQuyDinh(status) {
       console.log("Nay la gi");
       this.isQuyDinhPopup = status;
+      this.isRecentOpen = true;
     },
 
     submitForm(formName) {
@@ -314,11 +316,10 @@ export default {
         if (valid) {
           this.$axios
             .post("Question/Insert", {
-              // doctorId: this.form.doctorId | "",
               questionContent: this.form.trieuChungBenh,
               diseaseProgression: this.form.dienTienBenh,
               diseaseHistory: this.form.tienSuBenh,
-              specialist: this.form.chuyenKhoa | 0,
+              specialist: this.form.chuyenKhoa,
             })
             .then((response) => {
               console.log(response);

@@ -25,7 +25,7 @@ export default {
       }
     ],
     link: [
-      { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
+      { rel: "icon", type: "image/x-icon", href: "http://www.benhvienkhuvucthuduc.vn/Content/assets/img/favicon.ico" },
       {
         rel: "stylesheet",
         href:

@@ -39,8 +39,10 @@
                   alt
                 />
               </div>
-              <div class="function__title">Tư vấn sức khỏe </div>
-              <div class="function__desc">Hãy cho chúng tôi biết bạn đang gặp khó khăn gì về tình trang sức khỏe của bạn </div>
+              <div class="function__title">Tư vấn sức khỏe</div>
+              <div
+                class="function__desc"
+              >Hãy cho chúng tôi biết bạn đang gặp khó khăn gì về tình trang sức khỏe của bạn</div>
             </div>
           </div>
         </div>
@@ -155,6 +157,11 @@ export default {
         }
       },
     });
+  },
+  head() {
+    return {
+      title: "Bệnh Viện Đa Khoa Khu Vực Thủ Đức",
+    };
   },
 };
 </script>

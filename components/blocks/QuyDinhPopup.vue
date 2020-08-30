@@ -61,7 +61,7 @@
           <i class="fas fa-caret-right"></i> Không áp dụng: BHYT, trường hợp cấp cứu
         </p>
 
-        <p class="mt-4">
+        <p class="mt-4" v-if="recentOpen==false">
           <b-form-checkbox
             id="checkbox-1"
             v-model="checkOK"
@@ -71,9 +71,13 @@
           >Tôi đồng ý sử dụng và thanh toán phí dịch vụ.</b-form-checkbox>
         </p>
       </div>
-      <span slot="footer" class="dialog-footer">
+      <span slot="footer" class="dialog-footer" v-if="recentOpen==false">
         <el-button @click="comeBack()">Quay lại Trang chủ</el-button>
         <el-button type="primary" @click="handleOK()">Đồng ý</el-button>
+      </span>
+
+      <span slot="footer" class="dialog-footer" v-else>
+        <el-button type="primary" @click="handleClose()">Đóng</el-button>
       </span>
     </el-dialog>
   </div>
@@ -82,7 +86,7 @@
 <script>
 export default {
   components: {},
-  props: ["isOpen"],
+  props: ["isOpen", "recentOpen"],
   async fetch() {},
   data() {
     return {
@@ -98,7 +102,7 @@ export default {
   methods: {
     comeBack() {
       this.$router.push({
-         path: '/login',
+        path: "/login",
       });
     },
     handleOK() {
@@ -122,7 +126,7 @@ export default {
           .then((response) => {
             console.log(response);
             if (response.data.success === true) {
-              localStorage.hoibacsi = true;
+              // localStorage.hoibacsi = true;
 
               const loading = this.$loading({
                 lock: true,
@@ -142,8 +146,7 @@ export default {
 
                 this.$message({
                   type: "success",
-                  message:
-                    "Xác nhận thành công",
+                  message: "Xác nhận thành công",
                 });
               }, 2000);
 
@@ -188,6 +191,9 @@ export default {
             // this.errored = true;
           });
       }
+    },
+    handleClose() {
+      this.$emit("open-modal", false);
     },
   },
 };
