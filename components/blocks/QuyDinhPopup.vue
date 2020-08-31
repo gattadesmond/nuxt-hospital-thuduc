@@ -121,6 +121,18 @@ export default {
 
         this.$axios
           .post("Tracking/Insert", {
+        //         [Description("Đặt lịch hẹn")]
+        // Apppointment = 1,
+        // [Description("Đặt lịch hẹn Vip")]
+        // ApppointmentVip = 2,
+        // [Description("Toa thuốc")]
+        // Precription = 3,
+        // [Description("Kết quả Xét nghiệm")]
+        // Radiography = 4,
+        // [Description("Thanh toán viện phí")]
+        // HospitalFee = 5,
+        // [Description("Đặt câu hỏi")]
+        // Question =6,
             serviceName: "1",
           })
           .then((response) => {

@@ -53,11 +53,11 @@
                   Tải khoản demo
                   <div>
                     username :
-                    <strong>teo</strong>
+                    <strong>123456</strong>
                   </div>
                   <div>
                     password :
-                    <strong>Admin1@34</strong>
+                    <strong>Mh@0269</strong>
                   </div>
                 </div>
               </div>
