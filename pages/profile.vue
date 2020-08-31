@@ -31,7 +31,7 @@
               <div class="widget-profile pro-widget-content">
                 <div class="profile-info-widget">
                   <div class="mb-3">
-                    <b-avatar size="72px" rounded="sm" :src="`${this.$auth.user.avatar}`"></b-avatar>
+                    <b-avatar size="120px" :src="`${this.$auth.user.avatar}`"></b-avatar>
                   </div>
                   <div class="profile-det-info">
                     <div class="h5 font-body">{{this.$auth.user.fullName}}</div>
@@ -78,27 +78,36 @@
                 <div class="form-group">
                   <div class="change-avatar">
                     <div class="profile-img">
-                      <el-upload
-                        class="avatar-uploader"
-                        action
-                        ref="uploadAvatar"
-                        :show-file-list="false"
-                        :file-list="avatarList"
-                        :on-success="handleAvatarSuccess"
-                        :before-upload="beforeAvatarUpload"
-                      >
-                        <img v-if="imageUrl" :src="imageUrl" class="avatar" />
-                        <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-                      </el-upload>
+                      <b-avatar size="72px" rounded="sm" :src="`${this.fileAvatarUrl}`"></b-avatar>
                     </div>
 
                     <div class="upload-img">
-                      <div class="change-photo-btn" @click="submitUpload">
-                        <span>
-                          <i class="fa fa-upload"></i> Tải lên ảnh
-                        </span>
+                      <div class>
+                        <b-form-file
+                          v-model="fileAvatar"
+                          :state="Boolean(fileAvatar)"
+                          @change="onFileChange"
+                          placeholder="Chọn hình để tải lên"
+                          drop-placeholder="Drop file here..."
+                          accept="image/*"
+                          plain
+                        ></b-form-file>
+
+                        <!-- <b-form-file v-model="file2" class="mt-3" plain></b-form-file> -->
                       </div>
-                      <small class="form-text text-muted">Allowed JPG, GIF or PNG. Max size of 2MB</small>
+                      <small class="form-text text-muted">Định dạng JPG, GIF or PNG. Max size of 2MB</small>
+                    </div>
+
+                    <div>
+                      <a
+                        href
+                        class="btn btn-outline-primary btn-sm"
+                        @click.stop.prevent="submitUpload()"
+                      >
+                        <span>
+                          <i class="fa fa-upload"></i> Tải lên hình đã chọn
+                        </span>
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -197,8 +206,8 @@ export default {
 
   data() {
     return {
-      imageUrl: "",
-      avatarList: [],
+      fileAvatar: null,
+      fileAvatarUrl: null,
       form: {
         fullName: "",
         birthDay: "",
@@ -207,7 +216,6 @@ export default {
         phoneNumber: "",
         sex: "",
       },
-      computed: {},
       rules: {
         fullName: [
           {
@@ -220,26 +228,70 @@ export default {
     };
   },
 
-  methods: {
-    submitUpload() {
-      console.log(this.$refs.uploadAvatar);
-     console.log(this.$refs.uploadAvatar.$refs["upload-inner"].fileList[0].raw);
-    
-    },
-    handleAvatarSuccess(res, file) {
-      this.imageUrl = URL.createObjectURL(file.raw);
-    },
-    beforeAvatarUpload(file) {
-      const isJPG = file.type === "image/jpeg";
-      const isLt2M = file.size / 1024 / 1024 < 2;
+  computed: {
+    // fileAvatarURL: function () {
+    //   // `this` points to the vm instance
+    //   return URL.createObjectURL(this.fileAvatar);
+    // },
+  },
 
-      if (!isJPG) {
-        this.$message.error("Avatar picture must be JPG format!");
-      }
-      if (!isLt2M) {
-        this.$message.error("Avatar picture size can not exceed 2MB!");
-      }
-      return isJPG && isLt2M;
+  methods: {
+    onFileChange(e) {
+      const file = e.target.files[0];
+      console.log(file);
+      this.fileAvatarUrl = URL.createObjectURL(file);
+    },
+
+    submitUpload() {
+      // console.log(this.fileAvatarUrl);
+      // console.log(this.fileAvatar);
+      let formData = new FormData();
+      formData.append('file', this.fileAvatar);
+      this.$axios
+        .post("Users/UploadAvatar", formData)
+        .then((response) => {
+          console.log(response);
+          if (response.data.success === true) {
+            const loading = this.$loading({
+              lock: true,
+              text: "Đang xử lý",
+              spinner: "el-icon-loading",
+              background: "rgba(0, 0, 0, 0.7)",
+            });
+            setTimeout(() => {
+              loading.close();
+              // this.$router.push({
+              //   name: "thanhcong",
+              //   params: {
+              //     message: response.data.message,
+              //     doctorId: this.form.doctorId,
+              //   },
+              // });
+            }, 2000);
+
+            // this.$alert(response.data.message, "Thông báo", {
+            //   confirmButtonText: "OK",
+            //   type: "success",
+            //   callback: (action) => {
+            //     // this.$message({
+            //     //   type: "info",
+            //     //   message: `action: ${action}`
+            //     // });
+            //   },
+            // });
+          } else {
+            this.$alert(response.data.message, "Thông báo", {
+              confirmButtonText: "Đóng",
+              type: "success",
+              callback: (action) => {
+                // this.$message({
+                //   type: "info",
+                //   message: `action: ${action}`
+                // });
+              },
+            });
+          }
+        })
     },
   },
 
@@ -285,5 +337,11 @@ export default {
   width: 178px;
   height: 178px;
   display: block;
+}
+</style>
+
+<style lang="scss">
+.custom-file-input ~ .custom-file-label::after {
+  content: "Tải lên ảnh" !important;
 }
 </style>
