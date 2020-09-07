@@ -25,7 +25,7 @@ export default {
       }
     ],
     link: [
-      { rel: "icon", type: "image/x-icon", href: "http://www.benhvienkhuvucthuduc.vn/Content/assets/img/favicon.ico" },
+      { rel: "icon", type: "image/x-icon", href: "http://kbyt.benhvienkhuvucthuduc.vn/Health/assets/img/logo.ico" },
       {
         rel: "stylesheet",
         href:

@@ -1,5 +1,11 @@
 <template>
   <div class="bg-white">
+    <QuyDinhPopup
+      @open-modal="handleOpenQuyDinh"
+      :recentOpen="isRecentOpen"
+      :isOpen="isQuyDinhPopup"
+    />
+
     <section class="section section-space s-heading s-heading-dark">
       <div class="container s-heading-content">
         <div class="row align-items-center s-heading-height">
@@ -252,61 +258,34 @@
           </div>
 
           <div class="col-md-4">
-            <div class="service__card h-100">
-              <h4 class="text-white pb-2">Quy định</h4>
+            <div class="mb-4">
+              <a href>
+                <img
+                  src="https://cdn2.medihub.vn/image/360/w/ImagesUpload/2019/07/22/9e01e1e8-1db7-4ec5-a461-c166463a5164_kemdanhrang.jpg"
+                  class="img-fluid d-block mx-auto"
+                  alt
+                />
+              </a>
+            </div>
 
-              <div class="service__item">
-                <div class="service__icon">
-                  <i class="el-icon-money"></i>
-                </div>
-                <div class="service__body">
-                  <div class="service__name">Phí dịch vụ</div>
-                  <div class="service__desc">
-                    <strong>50.000</strong> đồng
-                  </div>
-                </div>
-              </div>
+            <div class="mb-4">
+              <a href>
+                <img
+                  src="https://cdn2.medihub.vn/image/360/w/ImagesUpload/2018/09/14/8e7e7626-2368-4842-8655-9acf0338f750_tuongan.jpg"
+                  class="img-fluid d-block mx-auto"
+                  alt
+                />
+              </a>
+            </div>
 
-              <div class="service__item">
-                <div class="service__icon">
-                  <i class="el-icon-alarm-clock"></i>
-                </div>
-                <div class="service__body">
-                  <div class="service__name">Thời gian tiếp nhận</div>
-                  <div class="service__desc">
-                    <div class="mb-2">Các bác sĩ sẽ dành 30 phút để trả lời</div>
-                    <div class="mb-2">7h – 11h, trả lời vào 15h cùng ngày</div>
-                    <div class="mb-2">12h – 7h ngày hôm sau, 10h cùng ngày</div>
-                    <div
-                      class="mb-2"
-                    >TB, CN, Lễ - 10h ngày thứ 2 (TB,CN), ngày đi làm đầu tiên sau lễ (Lễ)</div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="service__item">
-                <div class="service__icon">
-                  <i class="el-icon-date"></i>
-                </div>
-                <div class="service__body">
-                  <div class="service__name">Sắp xếp lịch hẹn</div>
-                  <div
-                    class="service__desc"
-                  >Các bác sĩ sẽ kê toa dựa vào kết quả khám lâm sàng. Trường hợp bạn cần chẩn đoán thêm.</div>
-                </div>
-              </div>
-
-              <div class="service__item">
-                <div class="service__icon">
-                  <i class="el-icon-phone-outline"></i>
-                </div>
-                <div class="service__body">
-                  <div class="service__name">Hỗ trợ sau khám</div>
-                  <div
-                    class="service__desc"
-                  >Các bác sĩ cùng đội ngũ CSKH chuyên nghiệp luôn sẵn sàng giải đáp mọi thắc mắc về sức khỏe ngay trong ứng dụng hoặc qua đường dây nóng.</div>
-                </div>
-              </div>
+            <div class="mb-4">
+              <a href>
+                <img
+                  src="http://cdn1.medihub.vn/uploads/images/2017/07/12/medermakid.jpg"
+                  class="img-fluid d-block mx-auto"
+                  alt
+                />
+              </a>
             </div>
           </div>
         </div>
@@ -316,16 +295,26 @@
 </template>
 
 <script>
-
+import QuyDinhPopup from "@/components/blocks/QuyDinhPopup";
 import PersonalInfo from "@/components/blocks/PersonalInfo";
-
 
 export default {
   auth: true,
-  components: {},
-  methods: {},
+  components: {
+    PersonalInfo,
+    QuyDinhPopup,
+  },
+  methods: {
+    handleOpenQuyDinh(status) {
+      console.log("Nay la gi");
+      this.isQuyDinhPopup = status;
+      this.isRecentOpen = true;
+    },
+  },
   data() {
     return {
+      isQuyDinhPopup: true,
+      isRecentOpen: false,
       dateValue: "",
       form: {
         loaiKham: "1",

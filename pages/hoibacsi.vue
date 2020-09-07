@@ -1,6 +1,10 @@
 <template>
   <div class="bg-white">
-    <QuyDinhPopup @open-modal="handleOpenQuyDinh" :recentOpen="isRecentOpen" :isOpen="isQuyDinhPopup" />
+    <QuyDinhPopup
+      @open-modal="handleOpenQuyDinh"
+      :recentOpen="isRecentOpen"
+      :isOpen="isQuyDinhPopup"
+    />
 
     <section class="section section-space s-heading s-heading-dark">
       <div class="container s-heading-content">

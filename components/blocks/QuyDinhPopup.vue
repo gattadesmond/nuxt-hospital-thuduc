@@ -27,28 +27,23 @@
               <th scope="col">
                 <strong>Bác sĩ trả lời</strong>
               </th>
-              <th scope="col">
-                <strong>Thời lượng trao đổi nội dung tư vấn</strong>
-              </th>
+           
             </tr>
           </thead>
           <tbody>
             <tr>
-              <th scope="row">7h – 10h</th>
-              <td>15h cùng ngày</td>
-              <td>30 phút</td>
+              <th scope="row">6h – 10h</th>
+              <td>15h30 cùng ngày</td>
             </tr>
 
             <tr>
-              <th scope="row">11h – 7h ngày hôm sau</th>
-              <td>10h cùng ngày</td>
-              <td>30 phút</td>
+              <th scope="row">11h – 6h ngày hôm sau</th>
+              <td>11h00 cùng ngày</td>
             </tr>
 
             <tr>
-              <th scope="row">Thứ 7, CN, Lễ</th>
-              <td>10h ngày thứ 2 (Thứ 7, CN), ngày đi làm đầu tiên sau lễ (Lễ)</td>
-              <td>30 phút</td>
+              <th scope="row">CN, Lễ</th>
+              <td>11h ngày thứ 2 (CN), ngày đi làm đầu tiên sau lễ (Lễ)</td>
             </tr>
           </tbody>
         </table>
