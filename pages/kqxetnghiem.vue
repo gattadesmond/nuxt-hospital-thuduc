@@ -31,18 +31,7 @@
               <div class="col">
                 <div class="card-title kq-title">Danh sách kết quả</div>
               </div>
-              <div class="col-auto">
-                <div class="kq-filter">
-                  <el-select v-model="filters" placeholder="Select">
-                    <el-option
-                      v-for="item in filtersList"
-                      :key="item.value"
-                      :label="item.label"
-                      :value="item.value"
-                    ></el-option>
-                  </el-select>
-                </div>
-              </div>
+          
             </div>
 
             <div class="required__box mb-4">
@@ -109,218 +98,112 @@
                 </b-modal>
               </div>
             </div>
+            <template v-if="radiograpyList.length">
+              <div class="card card-table">
+                <div class="card-body">
+                  <!-- Invoice Table -->
+                  <div class="table-responsive">
+                    <table class="table table-center mb-0">
+                      <thead>
+                        <tr>
+                          <th>Ngày yêu cầu</th>
+                          <th>Ngày nhận</th>
+                          <th>Trạng thái</th>
+                          <th>Ghi chú</th>
+                          <th></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr v-for="item in radiograpyList" :key="item.id">
+                          <td>{{item.requestDate | formatDate}}</td>
+                          <td>{{item.uploadDate | formatDate}}</td>
+                          <td>
+                            <span
+                              v-if="item.status == 3"
+                              class="ml-1 badge badge-pill bg-success-light"
+                            >Thành công</span>
 
-            <div class="box-listed">
-              <div class="box-title-list">
-                <div>Tháng 11</div>
+                            <span
+                              v-if="item.status == 1"
+                              class="ml-1 badge badge-pill bg-primary-light"
+                            >Đang chờ</span>
+
+                            <span
+                              v-if="item.status == 2"
+                              class="ml-1 badge badge-pill bg-danger-light"
+                            >Thất bại</span>
+                          </td>
+                          <td>{{item.note}}</td>
+                          <td class="text-right">
+                            <div class="table-action">
+                              <!-- <a href="invoice-view.html" class="btn btn-sm bg-info-light">
+                                <i class="far fa-eye"></i> Xem
+                              </a>-->
+                              <el-image
+                                style="width: 93px; height: 32px"
+                                :src="url"
+                                :preview-src-list="srcList"
+                              ></el-image>
+                              <!-- <img src="img/btn-xem.svg" alt /> -->
+
+                              <!-- <a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
+                                <i class="fas fa-print"></i> Print
+                              </a>-->
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
               </div>
-              <ul class="list-unstyled box-item-list">
-                <li>
-                  <div class="ic">
-                    <i class="far fa-file-alt"></i>
-                  </div>
-                  <div class="date">
-                    <span>19/09/2019 10:25</span>
-                  </div>
-
-                  <div class="name text-truncate">
-                    <span class>Xét nghiệm</span>
-                    <span class="ml-1 badge badge-pill bg-success-light">Miễn phí</span>
-                  </div>
-
-                  <div class="func">
-                    <div class="action text-right">
-                      <a href="invoice-view.html" class="btn btn-sm bg-info-light">
-                        <i class="far fa-eye"></i> Xem
-                      </a>
-                      <a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
-                        <i class="fas fa-print"></i> In
-                      </a>
-                    </div>
-                  </div>
-                </li>
-
-                <li>
-                  <div class="ic">
-                    <i class="far fa-file-alt"></i>
-                  </div>
-                  <div class="date">
-                    <span>18/09/2019 08:25</span>
-                  </div>
-
-                  <div class="name text-truncate">
-                    <span class>X-Quang</span>
-                    <span class="ml-1 badge badge-pill bg-success-light">Miễn phí</span>
-                  </div>
-
-                  <div class="func">
-                    <div class="action text-right">
-                      <a href="invoice-view.html" class="btn btn-sm bg-info-light">
-                        <i class="far fa-eye"></i> Xem
-                      </a>
-                      <a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
-                        <i class="fas fa-print"></i> In
-                      </a>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-            </div>
-
-            <div class="box-listed">
-              <div class="box-title-list">
-                <div>Tháng 10</div>
-              </div>
-              <ul class="list-unstyled box-item-list">
-                <li>
-                  <div class="ic">
-                    <i class="far fa-file-alt"></i>
-                  </div>
-                  <div class="date">
-                    <span>19/09/2019 10:25</span>
-                  </div>
-
-                  <div class="name text-truncate">
-                    <span class>CT, Scanner MRI</span>
-                    <span class="ml-1 badge badge-pill bg-primary-light">Tốn phí</span>
-                  </div>
-
-                  <div class="func">
-                    <div class="action text-right">
-                      <a href="invoice-view.html" class="btn btn-sm bg-info-light">
-                        <i class="far fa-eye"></i> Xem
-                      </a>
-                      <a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
-                        <i class="fas fa-print"></i> In
-                      </a>
-                    </div>
-                  </div>
-                </li>
-
-                <li>
-                  <div class="ic">
-                    <i class="far fa-file-alt"></i>
-                  </div>
-                  <div class="date">
-                    <span>18/09/2019 08:25</span>
-                  </div>
-
-                  <div class="name text-truncate">
-                    <span class>Nội soi</span>
-                    <span class="ml-1 badge badge-pill bg-warning-light">Đang chờ</span>
-                  </div>
-
-                  <div class="func">
-                    <div class="action text-right">
-                      <a href="invoice-view.html" class="btn btn-sm bg-info-light">
-                        <i class="far fa-eye"></i> Xem
-                      </a>
-                      <a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
-                        <i class="fas fa-print"></i> In
-                      </a>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="ic">
-                    <i class="far fa-file-alt"></i>
-                  </div>
-                  <div class="date">
-                    <span>18/09/2019 08:25</span>
-                  </div>
-
-                  <div class="name text-truncate">
-                    <span class>Nội soi</span>
-                    <span class="ml-1 badge badge-pill bg-danger-light">Không có sẵn</span>
-                  </div>
-                </li>
-              </ul>
-            </div>
+            </template>
           </div>
 
           <div class="col-md-4">
-            <div class="service__card h-100">
-              <h4 class="text-white pb-2">Quy định</h4>
+            <div class="mb-4">
+              <a href>
+                <img
+                  src="https://cdn2.medihub.vn/image/360/w/ImagesUpload/2019/07/22/9e01e1e8-1db7-4ec5-a461-c166463a5164_kemdanhrang.jpg"
+                  class="img-fluid d-block mx-auto"
+                  alt
+                />
+              </a>
+            </div>
 
-              <div class="service__item">
-                <div class="service__icon">
-                  <i class="el-icon-money"></i>
-                </div>
-                <div class="service__body">
-                  <div class="service__name">Phí dịch vụ</div>
-                  <div class="service__desc">
-                    <strong>50.000</strong> đồng
-                  </div>
-                </div>
-              </div>
+            <div class="mb-4">
+              <a href>
+                <img
+                  src="https://cdn2.medihub.vn/image/360/w/ImagesUpload/2018/09/14/8e7e7626-2368-4842-8655-9acf0338f750_tuongan.jpg"
+                  class="img-fluid d-block mx-auto"
+                  alt
+                />
+              </a>
+            </div>
 
-              <div class="service__item">
-                <div class="service__icon">
-                  <i class="el-icon-alarm-clock"></i>
-                </div>
-                <div class="service__body">
-                  <div class="service__name">Thời gian tiếp nhận</div>
-                  <div class="service__desc">
-                    <div class="mb-2">Các bác sĩ sẽ dành 30 phút để trả lời</div>
-                    <div class="mb-2">7h – 11h, trả lời vào 15h cùng ngày</div>
-                    <div class="mb-2">12h – 7h ngày hôm sau, 10h cùng ngày</div>
-                    <div
-                      class="mb-2"
-                    >TB, CN, Lễ - 10h ngày thứ 2 (TB,CN), ngày đi làm đầu tiên sau lễ (Lễ)</div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="service__item">
-                <div class="service__icon">
-                  <i class="el-icon-date"></i>
-                </div>
-                <div class="service__body">
-                  <div class="service__name">Sắp xếp lịch hẹn</div>
-                  <div
-                    class="service__desc"
-                  >Các bác sĩ sẽ kê toa dựa vào kết quả khám lâm sàng. Trường hợp bạn cần chẩn đoán thêm.</div>
-                </div>
-              </div>
-
-              <div class="service__item">
-                <div class="service__icon">
-                  <i class="el-icon-phone-outline"></i>
-                </div>
-                <div class="service__body">
-                  <div class="service__name">Hỗ trợ sau khám</div>
-                  <div
-                    class="service__desc"
-                  >Các bác sĩ cùng đội ngũ CSKH chuyên nghiệp luôn sẵn sàng giải đáp mọi thắc mắc về sức khỏe ngay trong ứng dụng hoặc qua đường dây nóng.</div>
-                </div>
-              </div>
+            <div class="mb-4">
+              <a href>
+                <img
+                  src="http://cdn1.medihub.vn/uploads/images/2017/07/12/medermakid.jpg"
+                  class="img-fluid d-block mx-auto"
+                  alt
+                />
+              </a>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section section-space" style="background-color: rgba(238, 242, 247, 1)">
+    <section class="section section-space d-none" style="background-color: rgba(238, 242, 247, 1)">
       <div class="container">
         <div class="row no-gutters align-items-center mb-4">
           <div class="col">
             <div class="card-title kq-title">Danh sách kết quả</div>
           </div>
-          <div class="col-auto">
-            <div class="kq-filter">
-              <el-select v-model="filters" placeholder="Select">
-                <el-option
-                  v-for="item in filtersList"
-                  :key="item.value"
-                  :label="item.label"
-                  :value="item.value"
-                ></el-option>
-              </el-select>
-            </div>
-          </div>
         </div>
         <div class="row">
-          <div class="col-4" v-for="i in [1,2]">
+          <div class="col-4">
             <div class="kq__box mb-4">
               <div class="kq__box__body">
                 <div class="kq__overlay">
@@ -455,14 +338,14 @@
 </template>
 
 <script>
-
+//API lay ket qua xet nghiem
+// ​//api​/Radiograpy​/GetByRadiographybyUser
+import moment from "moment";
 import PersonalInfo from "@/components/blocks/PersonalInfo";
-
 
 export default {
   auth: true,
   components: {},
-  methods: {},
   data() {
     return {
       form: {
@@ -499,11 +382,40 @@ export default {
         },
       ],
       filters: "1q",
+      radiograpyList: [],
+      url: "img/btn-xem.svg",
+      srcList: [],
     };
+  },
+  methods: {
+    async getRadiograpyList() {
+      // console.log(this.doctorId);
+      const data = await this.$axios.$get(`Radiograpy/GetByRadiographybyUser`);
+      this.radiograpyList = this.radiograpyList.concat(data.results);
+      // this.loading = false;
+      data.results.map(
+        (item) =>
+          (this.srcList = this.srcList.concat(
+            `http://myhealthdemo.benhvienkhuvucthuduc.vn/${item.urlShortFile}`
+          ))
+      );
+      
+    },
+  },
+  filters: {
+    formatDate: function (value) {
+      if (!value) return "";
+      value = value.toString();
+      return moment(String(value)).format("DD/MM/YY hh:mm");
+    },
+  },
+  watch: {},
+  mounted() {
+    this.getRadiograpyList();
   },
   head() {
     return {
-      title: "Kết quả cận lâm sàng",
+      title: "Kết quả xét nghiệm",
     };
   },
 };
