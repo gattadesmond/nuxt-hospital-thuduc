@@ -95,13 +95,21 @@
         <li class="nav-item dropdown has-arrow logged-item" v-if="this.$auth.loggedIn">
           <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
             <span class="user-img">
-             <b-avatar variant="primary" class="font-weight-bold" v-text="this.$auth.user.fullName.charAt(0).toUpperCase()"></b-avatar>
+              <b-avatar
+                variant="primary"
+                class="font-weight-bold"
+                v-text="this.$auth.user.fullName.charAt(0).toUpperCase()"
+              ></b-avatar>
             </span>
           </a>
           <div class="dropdown-menu dropdown-menu-right">
             <div class="user-header">
               <div class="avatar avatar-sm">
-              <b-avatar variant="primary" class="font-weight-bold" v-text="this.$auth.user.fullName.charAt(0).toUpperCase()"></b-avatar>
+                <b-avatar
+                  variant="primary"
+                  class="font-weight-bold"
+                  v-text="this.$auth.user.fullName.charAt(0).toUpperCase()"
+                ></b-avatar>
               </div>
 
               <div class="user-text">
@@ -113,6 +121,7 @@
             </div>
             <!-- <nuxt-link to="/profile" class="dropdown-item">Thông tin</nuxt-link> -->
             <!-- <a class="dropdown-item" href="doctor-profile-settings.html">Tùy chọn</a> -->
+            <nuxt-link to="/profile" class="dropdown-item">Trang cá nhân</nuxt-link>
             <a class="dropdown-item" href @click.stop.prevent="logout()">Thoát</a>
           </div>
         </li>

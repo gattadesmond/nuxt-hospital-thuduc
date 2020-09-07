@@ -31,7 +31,7 @@
               <div class="widget-profile pro-widget-content">
                 <div class="profile-info-widget">
                   <div class="mb-3">
-                    <b-avatar size="120px" :src="`${this.$auth.user.avatar}`"></b-avatar>
+                    <b-avatar size="120px" :src="`http://myhealthdemo.benhvienkhuvucthuduc.vn/${this.$auth.user.avatar}`"></b-avatar>
                   </div>
                   <div class="profile-det-info">
                     <div class="h5 font-body">{{this.$auth.user.fullName}}</div>
@@ -62,8 +62,8 @@
                     <li>
                       <a href="favourites.html">
                         <i class="fas fa-bookmark"></i>
-                        <span>Message</span>
-                        <small class="unread-msg">23</small>
+                        <span>Thông báo</span>
+                        <small class="unread-msg text-white">3</small>
                       </a>
                     </li>
                   </ul>
@@ -98,7 +98,7 @@
                       <small class="form-text text-muted">Định dạng JPG, GIF or PNG. Max size of 2MB</small>
                     </div>
 
-                    <div>
+                    <div v-if="fileAvatar">
                       <a
                         href
                         class="btn btn-outline-primary btn-sm"
@@ -238,7 +238,7 @@ export default {
   methods: {
     onFileChange(e) {
       const file = e.target.files[0];
-      console.log(file);
+      // console.log(file);
       this.fileAvatarUrl = URL.createObjectURL(file);
     },
 
@@ -284,6 +284,7 @@ export default {
               confirmButtonText: "Đóng",
               type: "success",
               callback: (action) => {
+                window.location.reload(true)
                 // this.$message({
                 //   type: "info",
                 //   message: `action: ${action}`

@@ -26,6 +26,11 @@ a{
     padding-left: 8px;
   }
 }
+
+.b-avatar .b-avatar-img img{
+  object-fit: cover;
+}
+
 .font-body{
   font-family: $font-family-base;
 }
