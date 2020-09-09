@@ -1,5 +1,11 @@
 <template>
   <div class="bg-white">
+    <QuyDinhPopup
+      @open-modal="handleOpenQuyDinh"
+      :recentOpen="isRecentOpen"
+      :isOpen="isQuyDinhPopup"
+    />
+
     <section class="section section-space s-heading s-heading-dark">
       <div class="container s-heading-content">
         <div class="row align-items-center s-heading-height">
@@ -44,8 +50,9 @@
                   id="modal-1"
                   centered
                   cancelTitle="Đóng cửa sổ"
-                  okTitle="Thanh toán"
+                  okTitle="Gửi yêu cầu"
                   title="Yêu cầu kết quả xét nghiệm"
+                  @ok="submitForm"
                 >
                   <el-form ref="form" class="px-3" :model="form" label-width="0px">
                     <div class="row">
@@ -70,8 +77,20 @@
                             <el-date-picker
                               v-model="form.dateSelect"
                               type="date"
-                              placeholder="Pick a day"
+                              placeholder="Ngày khám"
+                              format="dd-MM-yyyy"
                             ></el-date-picker>
+                          </div>
+
+                          <div class="col-12 mt-4">
+                            <div class="mb-2">Ghi chú:</div>
+
+                            <el-input
+                              type="textarea"
+                              :autosize="{ minRows: 2, maxRows: 4}"
+                              placeholder="Ghi chú nếu có"
+                              v-model="form.noiDung"
+                            ></el-input>
                           </div>
 
                           <div class="col-12">
@@ -82,13 +101,23 @@
                                   name="type"
                                 ></el-checkbox>
                               </el-checkbox-group>
+
+                              <div>
+                                Xem lại các quy định
+                                <a
+                                  href
+                                  @click.stop.prevent="handleOpenQuyDinh"
+                                >tại đây</a>
+                              </div>
                             </el-form-item>
                           </div>
                         </div>
 
                         <div class="card mt-4 info__card">
-                          <div class="font-weight-bold mb-3">Thông tin bệnh nhân</div>
-
+                          <div
+                            class="font-weight-bold mb-0"
+                            style="font-size: 16px"
+                          >Thông tin bệnh nhân</div>
                           <PersonalInfo />
                         </div>
                       </div>
@@ -134,14 +163,14 @@
                           </td>
                           <td>{{item.note}}</td>
                           <td class="text-right">
-                            <div class="table-action">
+                            <div class="table-action" v-if="item.status == 3">
                               <!-- <a href="invoice-view.html" class="btn btn-sm bg-info-light">
                                 <i class="far fa-eye"></i> Xem
                               </a>-->
                               <el-image
                                 style="width: 93px; height: 32px"
                                 :src="url"
-                                :preview-src-list="item.srcList"
+                                :preview-src-list="item.fullFiles"
                               ></el-image>
                               <!-- <img src="img/btn-xem.svg" alt /> -->
 
@@ -340,19 +369,24 @@
 //API lay ket qua xet nghiem
 // ​//api​/Radiograpy​/GetByRadiographybyUser
 import moment from "moment";
+import QuyDinhPopup from "@/components/blocks/QuyDinhPopup";
 import PersonalInfo from "@/components/blocks/PersonalInfo";
 
 export default {
   auth: true,
-  components: {},
+  components: {
+    QuyDinhPopup,
+    PersonalInfo,
+  },
   data() {
     return {
+      isQuyDinhPopup: true,
+      isRecentOpen: false,
       form: {
-        loaiKham: "1",
-        noidung: "",
+        noiDung: "",
         loaiHinh: "",
         dateSelect: "",
-        checkrule: "",
+        checkrule: false,
       },
       filtersList: [
         {
@@ -380,25 +414,142 @@ export default {
           label: "Nội soi",
         },
       ],
-      filters: "1q",
       radiograpyList: [],
       url: "img/btn-xem.svg",
-      srcList: [],
     };
   },
   methods: {
+    handleOpenQuyDinh(status) {
+      console.log("Nay la gi");
+      this.isQuyDinhPopup = status;
+      this.isRecentOpen = true;
+    },
+
     async getRadiograpyList() {
       // console.log(this.doctorId);
       const data = await this.$axios.$get(`Radiograpy/GetByRadiographybyUser`);
       this.radiograpyList = this.radiograpyList.concat(data.results);
       // this.loading = false;
       // this.radiograpyList.srcList = [];
-      data.results.map((item, index) => {
-        this.radiograpyList[index].srcList = [];
-        this.radiograpyList[
-          index
-        ].srcList = this.radiograpyList[index].srcList.concat(`http://myhealthdemo.benhvienkhuvucthuduc.vn/${item.urlShortFile}`);
-      });
+      // data.results.map((item, index) => {
+      //   this.radiograpyList[index].srcList = [];
+      //   this.radiograpyList[index].srcList = this.radiograpyList[
+      //     index
+      //   ].srcList.concat(
+      //     `http://myhealthdemo.benhvienkhuvucthuduc.vn/${item.urlShortFile}`
+      //   );
+      // });
+    },
+
+    submitForm(bvModalEvt) {
+      bvModalEvt.preventDefault();
+      if (this.form.loaiHinh == "") {
+        this.$alert("Bạn chưa chọn loại xét nghiệm", "Thông báo", {
+          confirmButtonText: "Đóng",
+          type: "error",
+          callback: (action) => {
+            // this.$message({
+            //   type: "info",
+            //   message: `action: ${action}`
+            // });
+          },
+        });
+        return;
+      }
+
+      if (this.form.checkrule == false) {
+        this.$alert("Bạn chưa đồng ý nội quy", "Thông báo", {
+          confirmButtonText: "Đóng",
+          type: "error",
+          callback: (action) => {
+            // this.$message({
+            //   type: "info",
+            //   message: `action: ${action}`
+            // });
+          },
+        });
+        return;
+      }
+
+      if (this.form.dateSelect == "") {
+        this.$alert("Bạn chưa chọn ngày khám", "Thông báo", {
+          confirmButtonText: "Đóng",
+          type: "error",
+          callback: (action) => {
+            // this.$message({
+            //   type: "info",
+            //   message: `action: ${action}`
+            // });
+          },
+        });
+        return;
+      }
+      this.$axios
+        .post("Radiograpy/Insert", {
+          name: this.form.loaiHinh,
+          requestDate:this.form.dateSelect,
+          note : this.form.noiDung 
+        })
+        .then((response) => {
+          console.log(response);
+          if (response.data.success === true) {
+            const loading = this.$loading({
+              lock: true,
+              text: "Đang xử lý",
+              spinner: "el-icon-loading",
+              background: "rgba(0, 0, 0, 0.7)",
+            });
+            setTimeout(() => {
+              loading.close();
+              this.$router.push({
+                name: "thanhcong",
+                params: {
+                  message: response.data.message,
+                  doctorId: this.form.doctorId,
+                },
+              });
+            }, 2000);
+
+            // this.$alert(response.data.message, "Thông báo", {
+            //   confirmButtonText: "OK",
+            //   type: "success",
+            //   callback: (action) => {
+            //     // this.$message({
+            //     //   type: "info",
+            //     //   message: `action: ${action}`
+            //     // });
+            //   },
+            // });
+          } else {
+            this.$alert(response.data.message, "Thông báo", {
+              confirmButtonText: "Đóng",
+              type: "error",
+              callback: (action) => {
+                // this.$message({
+                //   type: "info",
+                //   message: `action: ${action}`
+                // });
+              },
+            });
+          }
+        })
+        .catch((error) => {
+          this.$alert(
+            "Đặt yêu cầu thất bại, vui lòng kiểm tra lại thông tin.",
+            "Thông báo",
+            {
+              confirmButtonText: "Đóng",
+              type: "error",
+              callback: (action) => {
+                // this.$message({
+                //   type: "info",
+                //   message: `action: ${action}`
+                // });
+              },
+            }
+          );
+          // this.errored = true;
+        });
     },
   },
   filters: {
