@@ -25,7 +25,11 @@ export default {
       }
     ],
     link: [
-      { rel: "icon", type: "image/x-icon", href: "http://kbyt.benhvienkhuvucthuduc.vn/Health/assets/img/logo.ico" },
+      {
+        rel: "icon",
+        type: "image/x-icon",
+        href: "http://kbyt.benhvienkhuvucthuduc.vn/Health/assets/img/logo.ico"
+      },
       {
         rel: "stylesheet",
         href:
@@ -136,6 +140,8 @@ export default {
   axios: {
     baseURL:
       process.env.API_URL || "http://myhealthdemo.benhvienkhuvucthuduc.vn/api/",
+    imageURL:
+      process.env.IMAGE_URL || "http://myhealthdemo.benhvienkhuvucthuduc.vn/",
     debug: process.env.DEBUG || false,
     proxyHeaders: false,
     credentials: false

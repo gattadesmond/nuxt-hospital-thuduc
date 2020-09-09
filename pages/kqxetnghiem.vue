@@ -31,7 +31,6 @@
               <div class="col">
                 <div class="card-title kq-title">Danh sách kết quả</div>
               </div>
-          
             </div>
 
             <div class="required__box mb-4">
@@ -142,7 +141,7 @@
                               <el-image
                                 style="width: 93px; height: 32px"
                                 :src="url"
-                                :preview-src-list="srcList"
+                                :preview-src-list="item.srcList"
                               ></el-image>
                               <!-- <img src="img/btn-xem.svg" alt /> -->
 
@@ -393,13 +392,13 @@ export default {
       const data = await this.$axios.$get(`Radiograpy/GetByRadiographybyUser`);
       this.radiograpyList = this.radiograpyList.concat(data.results);
       // this.loading = false;
-      data.results.map(
-        (item) =>
-          (this.srcList = this.srcList.concat(
-            `http://myhealthdemo.benhvienkhuvucthuduc.vn/${item.urlShortFile}`
-          ))
-      );
-      
+      // this.radiograpyList.srcList = [];
+      data.results.map((item, index) => {
+        this.radiograpyList[index].srcList = [];
+        this.radiograpyList[
+          index
+        ].srcList = this.radiograpyList[index].srcList.concat(`http://myhealthdemo.benhvienkhuvucthuduc.vn/${item.urlShortFile}`);
+      });
     },
   },
   filters: {
