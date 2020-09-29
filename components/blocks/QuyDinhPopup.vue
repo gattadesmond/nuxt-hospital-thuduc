@@ -1,7 +1,7 @@
 <template>
   <div class="modal-benhvien">
     <el-dialog
-      title="Quy trình và nội quy sử dụng"
+      title="Quy định"
       :visible.sync="isOpen"
       width="700px"
       :show-close="true"
@@ -15,58 +15,75 @@
           <strong>50.000đ</strong>
         </p>
         <p style="font-size: 16px">
-          <i class="fas fa-calendar-alt"></i> Thời gian
+          <i class="fas fa-calendar-alt"></i> Thời gian trả lời :
         </p>
 
-        <table class="table table-striped">
-          <thead>
+        <table class="table table-bordered">
+          <thead class="bg-light">
             <tr>
-              <th scope="col">
-                <strong>Thời gian tiếp nhận nội dung</strong>
+              <th scope="col" width="150">
+                <strong>Ngày</strong>
               </th>
               <th scope="col">
-                <strong>Bác sĩ trả lời</strong>
+                <strong>Giờ</strong>
               </th>
-           
+
+              <th scope="col">
+                <strong>Trả lời</strong>
+              </th>
+
+              <th scope="col">
+                <strong>Phí dịch vụ</strong>
+              </th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <th scope="row">6h – 10h</th>
-              <td>15h30 cùng ngày</td>
+              <b-td scope="row" rowspan="2">Thừ 2 - thứ 6</b-td>
+              <td>7h30</td>
+              <td>11h30 cùng ngày</td>
+              <td rowspan="2"><strong>50.000đ</strong></td>
             </tr>
 
             <tr>
-              <th scope="row">11h – 6h ngày hôm sau</th>
-              <td>11h00 cùng ngày</td>
+              <td>12h</td>
+              <td>16h30 cùng ngày</td>
             </tr>
 
             <tr>
-              <th scope="row">CN, Lễ</th>
-              <td>11h ngày thứ 2 (CN), ngày đi làm đầu tiên sau lễ (Lễ)</td>
+              <td scope="row">Thứ 7, CN Lễ</td>
+              <td>10h</td>
+              <td>15h cùng ngày</td>
+              <td><strong>100.000đ</strong></td>
             </tr>
           </tbody>
         </table>
 
         <p>
-          <i class="fas fa-caret-right"></i> Áp dụng cho chính người bệnh đủ 18 tuổi trở lên và có các triệu chứng hay bệnh: Đau đầu, chóng mặt, đau lung, đau ngực, đau nhức toàn than, RLTH, viêm đường tiểu, bệnh lý tai mũi họng, bệnh lý răng hàm mặt…
+          <i class="fas fa-caret-right"></i>
+          <strong>Đối tượng áp dụng : </strong> chính người bệnh đủ 18 tuổi trở
+          lên và có các triệu chứng hay bệnh: Đau đầu, chóng mặt, đau lung, đau
+          ngực, đau nhức toàn than, RLTH, viêm đường tiểu, bệnh lý tai mũi họng,
+          bệnh lý răng hàm mặt…
         </p>
 
         <p class="text-danger">
-          <i class="fas fa-caret-right"></i> Không áp dụng: BHYT, trường hợp cấp cứu
+          <i class="fas fa-caret-right"></i> Không áp dụng:  Trường hợp cấp cứu hoặc có Bảo hiểm y tế
+          cứu
         </p>
 
-        <p class="mt-4" v-if="recentOpen==false">
+        <p class="mt-4" v-if="recentOpen == false">
           <b-form-checkbox
             id="checkbox-1"
             v-model="checkOK"
             name="checkbox-1"
             value="accepted"
             unchecked-value="not_accepted"
-          >Tôi đồng ý sử dụng và thanh toán phí dịch vụ.</b-form-checkbox>
+            >Đồng ý sử dụng và thanh toán phí dịch vụ.</b-form-checkbox
+          >
         </p>
       </div>
-      <span slot="footer" class="dialog-footer" v-if="recentOpen==false">
+      <span slot="footer" class="dialog-footer" v-if="recentOpen == false">
         <el-button @click="comeBack()">Quay lại Trang chủ</el-button>
         <el-button type="primary" @click="handleOK()">Đồng ý</el-button>
       </span>
@@ -116,18 +133,18 @@ export default {
 
         this.$axios
           .post("Tracking/Insert", {
-        //         [Description("Đặt lịch hẹn")]
-        // Apppointment = 1,
-        // [Description("Đặt lịch hẹn Vip")]
-        // ApppointmentVip = 2,
-        // [Description("Toa thuốc")]
-        // Precription = 3,
-        // [Description("Kết quả Xét nghiệm")]
-        // Radiography = 4,
-        // [Description("Thanh toán viện phí")]
-        // HospitalFee = 5,
-        // [Description("Đặt câu hỏi")]
-        // Question =6,
+            //         [Description("Đặt lịch hẹn")]
+            // Apppointment = 1,
+            // [Description("Đặt lịch hẹn Vip")]
+            // ApppointmentVip = 2,
+            // [Description("Toa thuốc")]
+            // Precription = 3,
+            // [Description("Kết quả Xét nghiệm")]
+            // Radiography = 4,
+            // [Description("Thanh toán viện phí")]
+            // HospitalFee = 5,
+            // [Description("Đặt câu hỏi")]
+            // Question =6,
             serviceName: "1",
           })
           .then((response) => {

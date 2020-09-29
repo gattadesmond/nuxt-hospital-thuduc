@@ -10,7 +10,15 @@
             <h1 class="text-primary">Các dịch vụ của chúng tôi</h1>
             <p
               class="lead text-black-50"
-            >Mang trải nghiệm thăm khám đa khoa hiện đại đến ngay trong ngôi nhà bạn.</p>
+            >Mang trải nghiệm dịch vụ y tế hiện đại đến ngay trong nhà bạn.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <div class="main__banner">
+
           </div>
         </div>
       </div>
@@ -137,6 +145,8 @@
             </div>
           </div>
         </div>
+
+        
       </div>
     </div>
   </section>
