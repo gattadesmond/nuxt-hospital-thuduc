@@ -10,67 +10,197 @@
       center
     >
       <div>
-        <p style="font-size: 16px">
-          <i class="fas fa-coins"></i> Phí dịch vụ:
-          <strong>50.000đ</strong>
-        </p>
-        <p style="font-size: 16px">
-          <i class="fas fa-calendar-alt"></i> Thời gian trả lời :
-        </p>
+        <template v-if="type == 'tuvansuckhoe'">
+          <div class="noidung-quydinh">
+            <p style="font-size: 16px">
+              <i class="fas fa-coins"></i> Phí dịch vụ:
+              <strong>50.000đ</strong>
+            </p>
+            <p style="font-size: 16px">
+              <i class="fas fa-calendar-alt"></i> Thời gian trả lời :
+            </p>
 
-        <table class="table table-bordered">
-          <thead class="bg-light">
-            <tr>
-              <th scope="col" width="150">
-                <strong>Ngày</strong>
-              </th>
-              <th scope="col">
-                <strong>Giờ</strong>
-              </th>
+            <table class="table table-bordered">
+              <thead class="bg-light">
+                <tr>
+                  <th scope="col" width="150">
+                    <strong>Ngày</strong>
+                  </th>
+                  <th scope="col">
+                    <strong>Giờ</strong>
+                  </th>
 
-              <th scope="col">
-                <strong>Trả lời</strong>
-              </th>
+                  <th scope="col">
+                    <strong>Trả lời</strong>
+                  </th>
 
-              <th scope="col">
-                <strong>Phí dịch vụ</strong>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <b-td scope="row" rowspan="2">Thừ 2 - thứ 6</b-td>
-              <td>7h30</td>
-              <td>11h30 cùng ngày</td>
-              <td rowspan="2"><strong>50.000đ</strong></td>
-            </tr>
+                  <th scope="col">
+                    <strong>Phí dịch vụ</strong>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td scope="row" rowspan="2">Thừ 2 - thứ 6</td>
+                  <td>7h30</td>
+                  <td>11h30 cùng ngày</td>
+                  <td rowspan="2"><strong>50.000đ</strong></td>
+                </tr>
 
-            <tr>
-              <td>12h</td>
-              <td>16h30 cùng ngày</td>
-            </tr>
+                <tr>
+                  <td>12h</td>
+                  <td>16h30 cùng ngày</td>
+                </tr>
 
-            <tr>
-              <td scope="row">Thứ 7, CN Lễ</td>
-              <td>10h</td>
-              <td>15h cùng ngày</td>
-              <td><strong>100.000đ</strong></td>
-            </tr>
-          </tbody>
-        </table>
+                <tr>
+                  <td scope="row">Thứ 7, CN Lễ</td>
+                  <td>10h</td>
+                  <td>15h cùng ngày</td>
+                  <td><strong>100.000đ</strong></td>
+                </tr>
+              </tbody>
+            </table>
 
-        <p>
-          <i class="fas fa-caret-right"></i>
-          <strong>Đối tượng áp dụng : </strong> chính người bệnh đủ 18 tuổi trở
-          lên và có các triệu chứng hay bệnh: Đau đầu, chóng mặt, đau lung, đau
-          ngực, đau nhức toàn than, RLTH, viêm đường tiểu, bệnh lý tai mũi họng,
-          bệnh lý răng hàm mặt…
-        </p>
+            <p>
+              <i class="fas fa-caret-right"></i>
+              <strong>Đối tượng áp dụng : </strong> chính người bệnh đủ 18 tuổi
+              trở lên và có các triệu chứng hay bệnh: Đau đầu, chóng mặt, đau
+              lung, đau ngực, đau nhức toàn than, RLTH, viêm đường tiểu, bệnh lý
+              tai mũi họng, bệnh lý răng hàm mặt…
+            </p>
 
-        <p class="text-danger">
-          <i class="fas fa-caret-right"></i> Không áp dụng:  Trường hợp cấp cứu hoặc có Bảo hiểm y tế
-          cứu
-        </p>
+            <p class="text-danger">
+              <i class="fas fa-caret-right"></i> Không áp dụng: Trường hợp cấp
+              cứu hoặc có Bảo hiểm y tế cứu
+            </p>
+          </div>
+        </template>
+
+        <template v-if="type == 'ketquacanlamsang'">
+          <div class="noidung-quydinh">
+            <p style="font-size: 16px">
+              <i class="fas fa-caret-right"></i> Áp dụng cho các cận lâm sàng đã
+              làm tại bệnh viện trong thời gian 01 năm gần nhất.
+            </p>
+
+            <p style="font-size: 16px">
+              Chi phí các loại cận lâm sàng được áp dụng :
+            </p>
+
+            <table class="table table-bordered">
+              <tr>
+                <th rowspan="2" width="150">
+                  <strong>Tên cận lâm sàng</strong>
+                </th>
+                <th scope="col" colspan="2">
+                  <strong>Hình thức áp dụng</strong>
+                </th>
+
+                <th scope="col" colspan="2">
+                  <strong>Phí dịch vụ</strong>
+                </th>
+              </tr>
+              <tr>
+                <td scope="row">Trả kết quả qua mail</td>
+                <td>Trả kết quả qua đường bưu điện</td>
+                <td>Trả kết quả qua mail</td>
+                <td>Trả kết quả qua bưu điện</td>
+              </tr>
+
+              <tr>
+                <td scope="row">
+                  <b>Xét ngiệm/siêu âm/nội soi/điện cơ/điện não</b>
+                </td>
+                <td>File PDF kết quả</td>
+                <td>Bản sao kết quả</td>
+                <td>50.000đ</td>
+                <td>100.000đ</td>
+              </tr>
+
+              <tr>
+                <td scope="row">
+                  <b>Xquang</b>
+                </td>
+                <td>File PDF kết quả + hình ảnh</td>
+                <td>Phim + kết quả</td>
+                <td>70.000đ</td>
+                <td>150.000đ</td>
+              </tr>
+
+              <tr>
+                <td scope="row">
+                  <b>CT Scanner</b>
+                </td>
+                <td>File PDF kết quả + hình ảnh</td>
+                <td>Phim + kết quả</td>
+                <td>100.000đ</td>
+                <td>200.000đ</td>
+              </tr>
+
+              <tr>
+                <td scope="row">
+                  <b>MRI</b>
+                </td>
+                <td>File PDF kết quả + hình ảnh</td>
+                <td>Phim (bộ) + kết quả</td>
+                <td>100.000đ</td>
+                <td>300.000đ</td>
+              </tr>
+
+              <tr>
+                <td scope="row"><b> DSA</b></td>
+                <td>File PDF kết quả</td>
+                <td>In đĩa</td>
+                <td></td>
+                <td>300.000đ</td>
+              </tr>
+            </table>
+
+            <p style="font-size: 16px">Thời gian trả kết quả:</p>
+
+            <table class="table table-bordered">
+              <tr>
+                <th scope="col" colspan="2" width="200">
+                  <strong>Thời gian tiếp nhận</strong>
+                </th>
+                <th scope="col" colspan="2">
+                  <strong>Thời gian trả kết quả</strong>
+                </th>
+              </tr>
+
+              <tr>
+                <td scope="row">Ngày</td>
+                <td>Giờ</td>
+                <td width="190">Trả kết quả qua mail</td>
+                <td>Trả kết qua bưu điện</td>
+              </tr>
+
+              <tr>
+                <td scope="row" rowspan="2">Thứ 2 - thứ 6</td>
+                <td>7h30</td>
+                <td>11h30 cùng ngày</td>
+                <td rowspan="2">
+                  <div>- Trong vòng 05 ngàylàm việc (trong thành phố)</div>
+                  <div>- Trong vòng 07 ngày làm việc (ngoài tình)</div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>12h</td>
+                <td>16h30 cùng ngày</td>
+              </tr>
+            </table>
+
+            <p>
+              <i class="fas fa-caret-right"></i>
+              <strong>Lưu ý : </strong> Trong trường hợp bạn đăng ký trả kết quả qua bưu điện nhưng cần sớm hơn thời gian trả theo quy định, bạn muốn nhận kết quả tại Bệnh viện,  Bạn liên hệ số ĐT CSKH <strong>+(84)37245959</strong> để được nhân viên hỗ trợ.
+            </p>
+
+            <p class="text-danger">
+              <i class="fas fa-caret-right"></i> Không áp dụng Bảo hiểm y tế
+            </p>
+          </div>
+        </template>
 
         <p class="mt-4" v-if="recentOpen == false">
           <b-form-checkbox
@@ -98,7 +228,7 @@
 <script>
 export default {
   components: {},
-  props: ["isOpen", "recentOpen"],
+  props: ["isOpen", "recentOpen", "type"],
   async fetch() {},
   data() {
     return {

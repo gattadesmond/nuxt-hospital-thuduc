@@ -4,6 +4,7 @@
       @open-modal="handleOpenQuyDinh"
       :recentOpen="isRecentOpen"
       :isOpen="isQuyDinhPopup"
+      :type="typeRule"
     />
 
     <section class="section section-space s-heading s-heading-dark">
@@ -270,6 +271,7 @@ export default {
     return {
       isQuyDinhPopup: true,
       isRecentOpen: false,
+      typeRule: "tuvansuckhoe",
       form: {
         trieuChungBenh: "",
         dienTienBenh: "",

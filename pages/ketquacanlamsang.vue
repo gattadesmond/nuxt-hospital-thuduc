@@ -4,6 +4,7 @@
       @open-modal="handleOpenQuyDinh"
       :recentOpen="isRecentOpen"
       :isOpen="isQuyDinhPopup"
+      :type="typeRule"
     />
 
     <section class="section section-space s-heading s-heading-dark">
@@ -15,12 +16,12 @@
                 <li class="breadcrumb-item">
                   <nuxt-link to="/">Trang chủ</nuxt-link>
                 </li>
-                <li class="breadcrumb-item active" aria-current="page">Kết quả xét nghiệm</li>
+                <li class="breadcrumb-item active" aria-current="page">Kết quả cận lâm sàng</li>
               </ol>
             </nav>
             <div class="banner-header text-left">
-              <h1 class="text-white">Xem kết quả xét nghiệm</h1>
-              <p class="lead text-white mb-0">Xem và tải về kết quả cận lâm sàng</p>
+              <h1 class="text-white">Kết quả cận lâm sàng</h1>
+              <p class="lead text-white mb-0">Hãy cho chúng tôi biết bạn đang cần tra cứu thông tin gì liên quan đến sức khỏe hiện tại của bạn</p>
             </div>
           </div>
         </div>
@@ -382,6 +383,7 @@ export default {
     return {
       isQuyDinhPopup: true,
       isRecentOpen: false,
+      typeRule: "ketquacanlamsang",
       form: {
         noiDung: "",
         loaiHinh: "",

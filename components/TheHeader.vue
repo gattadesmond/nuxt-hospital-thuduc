@@ -46,10 +46,10 @@
             </a>
             <ul class="submenu">
               <li>
-                <nuxt-link to="/hoibacsi">Tư vấn sức khỏe</nuxt-link>
+                <nuxt-link to="/tuvansuckhoe">Tư vấn sức khỏe</nuxt-link>
               </li>
               <li>
-                <nuxt-link to="/kqxetnghiem">Xem kết quả xét nghiệm</nuxt-link>
+                <nuxt-link to="/ketquacanlamsang">Kết quả cận lâm sàng</nuxt-link>
               </li>
               <li>
                 <nuxt-link to="/xemtoathuoc">Xem toa thuốc</nuxt-link>
