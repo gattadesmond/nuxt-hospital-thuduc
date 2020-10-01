@@ -4,7 +4,7 @@
     style="background-image: url(img/background-doctor.jpg)"
   >
     <div class="container">
-      <div class="row">
+      <!-- <div class="row">
         <div class="col-12 col-lg-8 mb-4">
           <div class="banner-header text-left">
             <h1 class="text-primary">Các dịch vụ của chúng tôi</h1>
@@ -13,11 +13,18 @@
             </p>
           </div>
         </div>
-      </div>
+      </div> -->
 
       <div class="row">
         <div class="col-12">
-          <div class="main__banner"></div>
+          <div class="main__banner mb-5">
+            <img
+              src="img/func/Banner_MyHead_1600x563.jpg"
+              class="img-fluid d-block mx-auto"
+              loading="lazy"
+              alt
+            />
+          </div>
         </div>
       </div>
 
@@ -37,8 +44,9 @@
                   alt
                 />-->
                     <img
-                      src="img/func/BacSiTuVan.jpg"
+                      src="img/func/BacSiTuVanOnline.jpg"
                       class="embed-responsive-img img-cover"
+                      loading="lazy"
                       alt
                     />
                   </div>
@@ -76,6 +84,7 @@
                       src="img/func/XemCanLamSang.jpg"
                       class="embed-responsive-img img-cover"
                       alt
+                      loading="lazy"
                     />
                   </div>
                 </div>
@@ -109,6 +118,7 @@
                       src="img/func/XemToaThuoc.jpg"
                       class="embed-responsive-img img-cover"
                       alt
+                      loading="lazy"
                     />
                   </div>
                 </div>
@@ -141,6 +151,7 @@
                       src="img/func/DatLichKham.jpg"
                       class="embed-responsive-img img-cover"
                       alt
+                      loading="lazy"
                     />
                   </div>
                 </div>
@@ -173,6 +184,7 @@
                       src="img/func/ThanhToanOnline.jpg"
                       class="embed-responsive-img img-cover"
                       alt
+                      loading="lazy"
                     />
                   </div>
                 </div>
@@ -195,35 +207,41 @@
             </div>
           </div>
         </div>
+
         <div class="col-12 col-lg-3">
-          <div class="mb-4">
-            <a href>
-              <img
-                src="https://cdn2.medihub.vn/image/360/w/ImagesUpload/2019/07/22/9e01e1e8-1db7-4ec5-a461-c166463a5164_kemdanhrang.jpg"
-                class="img-fluid d-block mx-auto"
-                alt
-              />
-            </a>
-          </div>
+          <div>
+            <div class="mb-4">
+              <a href>
+                <img
+                  src="https://cdn2.medihub.vn/image/360/w/ImagesUpload/2019/07/22/9e01e1e8-1db7-4ec5-a461-c166463a5164_kemdanhrang.jpg"
+                  class="img-fluid d-block mx-auto"
+                  alt
+                  loading="lazy"
+                />
+              </a>
+            </div>
 
-          <div class="mb-4">
-            <a href>
-              <img
-                src="https://cdn2.medihub.vn/image/360/w/ImagesUpload/2018/09/14/8e7e7626-2368-4842-8655-9acf0338f750_tuongan.jpg"
-                class="img-fluid d-block mx-auto"
-                alt
-              />
-            </a>
-          </div>
+            <div class="mb-4">
+              <a href>
+                <img
+                  src="https://cdn2.medihub.vn/image/360/w/ImagesUpload/2018/09/14/8e7e7626-2368-4842-8655-9acf0338f750_tuongan.jpg"
+                  class="img-fluid d-block mx-auto"
+                  alt
+                  loading="lazy"
+                />
+              </a>
+            </div>
 
-          <div class="mb-4">
-            <a href>
-              <img
-                src="http://cdn1.medihub.vn/uploads/images/2017/07/12/medermakid.jpg"
-                class="img-fluid d-block mx-auto"
-                alt
-              />
-            </a>
+            <div class="mb-4">
+              <a href>
+                <img
+                  src="http://cdn1.medihub.vn/uploads/images/2017/07/12/medermakid.jpg"
+                  class="img-fluid d-block mx-auto"
+                  alt
+                  loading="lazy"
+                />
+              </a>
+            </div>
           </div>
         </div>
       </div>
