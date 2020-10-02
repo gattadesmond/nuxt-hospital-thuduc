@@ -16,25 +16,33 @@
                 <li class="breadcrumb-item">
                   <nuxt-link to="/">Trang chủ</nuxt-link>
                 </li>
-                <li class="breadcrumb-item active" aria-current="page">Hỏi Bác sĩ</li>
+                <li class="breadcrumb-item active" aria-current="page">
+                  Tư vấn sức khỏe
+                </li>
               </ol>
             </nav>
 
             <div class="banner-header text-left">
               <h1 class="text-white">Tư vấn sức khỏe</h1>
               <p class="lead text-white mb-0">
-                Bác sĩ sẽ dành 30 phút để cẩn thận kiểm tra sức khỏe, tư vấn kỹ
-                lưỡng cho bạn.
+                Hãy cho chúng tôi biết bạn đang gặp khó khăn gì về tình trang
+                sức khỏe của bạn
               </p>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="s-heading-bg w-100" style="background-image: url(img/bv/bg-heading.jpg)"></div>
+      <div
+        class="s-heading-bg w-100"
+        style="background-image: url(img/bv/bg-heading.jpg)"
+      ></div>
     </section>
 
-    <section class="section section-space" style="background-color: rgba(238, 242, 247, 1)">
+    <section
+      class="section section-space"
+      style="background-color: rgba(238, 242, 247, 1)"
+    >
       <div class="container">
         <div class="row">
           <div class="col-md-7 col-lg-8">
@@ -46,7 +54,12 @@
                     <PersonalInfo />
                   </div>
 
-                  <el-form ref="form" :rules="rules" :model="form" label-width="0px">
+                  <el-form
+                    ref="form"
+                    :rules="rules"
+                    :model="form"
+                    label-width="0px"
+                  >
                     <!-- <div class="info-widget"> -->
                     <h4 class="card-title">Mô tả triệu chứng</h4>
 
@@ -102,7 +115,9 @@
                         <el-form-item>
                           <div class="form-soju">
                             <div class="form-soju-label">Chọn Chuyên khoa</div>
-                            <SelectChuyenKhoa @select-chuyenkhoa="getSelectChuyenKhoa" />
+                            <SelectChuyenKhoa
+                              @select-chuyenkhoa="getSelectChuyenKhoa"
+                            />
                           </div>
                         </el-form-item>
                       </div>
@@ -110,11 +125,16 @@
 
                     <el-form-item prop="checkrule">
                       <el-checkbox-group v-model="form.checkrule">
-                        <el-checkbox label="Tôi đồng ý gửi câu hỏi theo quy định" name="type"></el-checkbox>
+                        <el-checkbox
+                          label="Tôi đồng ý gửi câu hỏi theo quy định"
+                          name="type"
+                        ></el-checkbox>
                       </el-checkbox-group>
                       <div>
                         Xem lại các quy định
-                        <a href @click.stop.prevent="handleOpenQuyDinh">tại đây</a>
+                        <a href @click.stop.prevent="handleOpenQuyDinh"
+                          >tại đây</a
+                        >
                       </div>
                     </el-form-item>
 
@@ -124,7 +144,8 @@
                         type="primary"
                         class="btn btn-primary submit-btn"
                         @click.stop.prevent="submitForm('form')"
-                      >Gửi câu hỏi</el-button>
+                        >Gửi câu hỏi</el-button
+                      >
                     </el-form-item>
                   </el-form>
                 </div>
@@ -134,36 +155,7 @@
 
           <div class="col-md-5 col-lg-4 theiaStickySidebar">
             <!-- Booking Summary -->
-
-            <div class="mb-4">
-              <a href>
-                <img
-                  src="https://cdn2.medihub.vn/image/360/w/ImagesUpload/2019/07/22/9e01e1e8-1db7-4ec5-a461-c166463a5164_kemdanhrang.jpg"
-                  class="img-fluid d-block mx-auto"
-                  alt
-                />
-              </a>
-            </div>
-
-            <div class="mb-4">
-              <a href>
-                <img
-                  src="https://cdn2.medihub.vn/image/360/w/ImagesUpload/2018/09/14/8e7e7626-2368-4842-8655-9acf0338f750_tuongan.jpg"
-                  class="img-fluid d-block mx-auto"
-                  alt
-                />
-              </a>
-            </div>
-
-            <div class="mb-4">
-              <a href>
-                <img
-                  src="http://cdn1.medihub.vn/uploads/images/2017/07/12/medermakid.jpg"
-                  class="img-fluid d-block mx-auto"
-                  alt
-                />
-              </a>
-            </div>
+            <Quangcao />
           </div>
         </div>
 
@@ -185,24 +177,27 @@
                   <div class="comment-body">
                     <div class="meta-data">
                       <span class="comment-author">
-                        {{
-                        question.userAskFullName
-                        }}
+                        {{ question.userAskFullName }}
                       </span>
-                      <span class="comment-date">Vào ngày {{ question.prettyCreatedDate }}</span>
+                      <span class="comment-date"
+                        >Vào ngày {{ question.prettyCreatedDate }}</span
+                      >
                     </div>
 
                     <p
                       class="recommended"
                       v-bind:class="[
-                        question.statusId == 3 ? '' : 'text-warning'
+                        question.statusId == 3 ? '' : 'text-warning',
                       ]"
                     >
                       <i class="far fa-clock"></i>
                       {{ question.status }}
                     </p>
 
-                    <div class="comment-content" v-html="question.questionContent"></div>
+                    <div
+                      class="comment-content"
+                      v-html="question.questionContent"
+                    ></div>
                   </div>
                 </div>
 
@@ -225,7 +220,10 @@
                           </span>
                           <span class="comment-date">Trả lời 1 ngày trước</span>
                         </div>
-                        <div class="comment-content" v-html="question.replyContent"></div>
+                        <div
+                          class="comment-content"
+                          v-html="question.replyContent"
+                        ></div>
                       </div>
                     </div>
                   </li>
@@ -251,6 +249,7 @@
 import QuyDinhPopup from "@/components/blocks/QuyDinhPopup";
 import PersonalInfo from "@/components/blocks/PersonalInfo";
 import SelectChuyenKhoa from "@/components/blocks/SelectChuyenKhoa";
+import Quangcao from "@/components/blocks/Quangcao";
 export default {
   auth: true,
 
@@ -258,6 +257,7 @@ export default {
     QuyDinhPopup,
     PersonalInfo,
     SelectChuyenKhoa,
+    Quangcao,
   },
 
   data() {

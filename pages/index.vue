@@ -109,7 +109,10 @@
 
             <div class="col-12 col-md-4 mb-5">
               <div class="function__item h-100">
-                <nuxt-link to="/xemtoathuoc" class="link-absolute"></nuxt-link>
+                <nuxt-link
+                  to="/tracuulichsukhambenh"
+                  class="link-absolute"
+                ></nuxt-link>
                 <div class="function__image">
                   <div
                     class="embed-responsive embed-responsive-21by9 overflow-hidden"
@@ -132,9 +135,10 @@
                       alt
                     />
                   </div>
-                  <div class="function__title">Xem toa thuốc</div>
+                  <div class="function__title">Tra cứu lịch sử khám bệnh</div>
                   <div class="function__desc">
-                    Chúng tôi sẽ trả lời bạn trong 24h
+                    Hãy cho chúng tôi biết bạn đang cần tra cứu lịch sử khám
+                    bệnh của bạn trong thời gian nào?
                   </div>
                 </div>
               </div>
@@ -142,7 +146,10 @@
 
             <div class="col-12 col-md-4 mb-5">
               <div class="function__item h-100">
-                <nuxt-link to="/datlichkham" class="link-absolute"></nuxt-link>
+                <nuxt-link
+                  to="/dangkykhambenh"
+                  class="link-absolute"
+                ></nuxt-link>
                 <div class="function__image">
                   <div
                     class="embed-responsive embed-responsive-21by9 overflow-hidden"
@@ -165,9 +172,10 @@
                       alt
                     />
                   </div>
-                  <div class="function__title">Đặt lịch khám bác sĩ</div>
+                  <div class="function__title">Đăng ký khám bệnh</div>
                   <div class="function__desc">
-                    Chúng tôi sẽ trả lời bạn trong 24h
+                    Hãy cho chúng tôi biết bạn đang cần đến khám bệnh ngày nào,
+                    bác sĩ nào sẽ hỗ trợ bạn
                   </div>
                 </div>
               </div>
@@ -209,40 +217,7 @@
         </div>
 
         <div class="col-12 col-lg-3">
-          <div>
-            <div class="mb-4">
-              <a href>
-                <img
-                  src="https://cdn2.medihub.vn/image/360/w/ImagesUpload/2019/07/22/9e01e1e8-1db7-4ec5-a461-c166463a5164_kemdanhrang.jpg"
-                  class="img-fluid d-block mx-auto"
-                  alt
-                  loading="lazy"
-                />
-              </a>
-            </div>
-
-            <div class="mb-4">
-              <a href>
-                <img
-                  src="https://cdn2.medihub.vn/image/360/w/ImagesUpload/2018/09/14/8e7e7626-2368-4842-8655-9acf0338f750_tuongan.jpg"
-                  class="img-fluid d-block mx-auto"
-                  alt
-                  loading="lazy"
-                />
-              </a>
-            </div>
-
-            <div class="mb-4">
-              <a href>
-                <img
-                  src="http://cdn1.medihub.vn/uploads/images/2017/07/12/medermakid.jpg"
-                  class="img-fluid d-block mx-auto"
-                  alt
-                  loading="lazy"
-                />
-              </a>
-            </div>
-          </div>
+          <Quangcao/>
         </div>
       </div>
     </div>
@@ -251,9 +226,12 @@
 
 <script>
 import { SVGInjector } from "@tanem/svg-injector";
-
+import Quangcao from "@/components/blocks/Quangcao";
 export default {
   auth: true,
+  components: {
+    Quangcao,
+  },
   mounted() {
     SVGInjector(document.querySelectorAll("[data-inject-svg]"), {
       afterEach(err, svg) {

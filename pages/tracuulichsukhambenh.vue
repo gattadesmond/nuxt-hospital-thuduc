@@ -4,6 +4,7 @@
       @open-modal="handleOpenQuyDinh"
       :recentOpen="isRecentOpen"
       :isOpen="isQuyDinhPopup"
+      :type="typeRule"
     />
 
     <section class="section section-space s-heading s-heading-dark">
@@ -15,12 +16,12 @@
                 <li class="breadcrumb-item">
                   <nuxt-link to="/">Trang chủ</nuxt-link>
                 </li>
-                <li class="breadcrumb-item active" aria-current="page">Xem toa thuốc</li>
+                <li class="breadcrumb-item active" aria-current="page">Tra cứu lịch sử khám bệnh</li>
               </ol>
             </nav>
             <div class="banner-header text-left">
-              <h1 class="text-white">Xem toa thuốc</h1>
-              <p class="lead text-white">Xem và tải về toa thuốc</p>
+              <h1 class="text-white">Tra cứu lịch sử khám bệnh</h1>
+              <p class="lead text-white">Hãy cho chúng tôi biết bạn đang cần tra cứu lịch sử khám bệnh của bạn trong thời gian nào?</p>
             </div>
           </div>
         </div>
@@ -258,35 +259,7 @@
           </div>
 
           <div class="col-md-4">
-            <div class="mb-4">
-              <a href>
-                <img
-                  src="https://cdn2.medihub.vn/image/360/w/ImagesUpload/2019/07/22/9e01e1e8-1db7-4ec5-a461-c166463a5164_kemdanhrang.jpg"
-                  class="img-fluid d-block mx-auto"
-                  alt
-                />
-              </a>
-            </div>
-
-            <div class="mb-4">
-              <a href>
-                <img
-                  src="https://cdn2.medihub.vn/image/360/w/ImagesUpload/2018/09/14/8e7e7626-2368-4842-8655-9acf0338f750_tuongan.jpg"
-                  class="img-fluid d-block mx-auto"
-                  alt
-                />
-              </a>
-            </div>
-
-            <div class="mb-4">
-              <a href>
-                <img
-                  src="http://cdn1.medihub.vn/uploads/images/2017/07/12/medermakid.jpg"
-                  class="img-fluid d-block mx-auto"
-                  alt
-                />
-              </a>
-            </div>
+            <Quangcao/>
           </div>
         </div>
       </div>
@@ -297,12 +270,14 @@
 <script>
 import QuyDinhPopup from "@/components/blocks/QuyDinhPopup";
 import PersonalInfo from "@/components/blocks/PersonalInfo";
+import Quangcao from "@/components/blocks/Quangcao";
 
 export default {
   auth: true,
   components: {
     PersonalInfo,
     QuyDinhPopup,
+    Quangcao,
   },
   methods: {
     handleOpenQuyDinh(status) {
@@ -316,6 +291,7 @@ export default {
       isQuyDinhPopup: true,
       isRecentOpen: false,
       dateValue: "",
+      typeRule: "tracuulichsukhambenh",
       form: {
         loaiKham: "1",
         noidung: "",

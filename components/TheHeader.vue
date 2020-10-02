@@ -52,10 +52,10 @@
                 <nuxt-link to="/ketquacanlamsang">Kết quả cận lâm sàng</nuxt-link>
               </li>
               <li>
-                <nuxt-link to="/xemtoathuoc">Xem toa thuốc</nuxt-link>
+                <nuxt-link to="/tracuulichsukhambenh">Tra cứu lịch sử khám bệnh</nuxt-link>
               </li>
               <li>
-                <nuxt-link to="/datlichkham">Đặt lịch khám Bác sĩ</nuxt-link>
+                <nuxt-link to="/dangkykhambenh">Đặt lịch khám Bác sĩ</nuxt-link>
               </li>
               <li>
                 <nuxt-link to="/dongvienphi">Đóng tiền viện phí</nuxt-link>

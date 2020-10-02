@@ -1,5 +1,11 @@
 <template>
   <div class="bg-white">
+    <QuyDinhPopup
+      @open-modal="handleOpenQuyDinh"
+      :recentOpen="isRecentOpen"
+      :isOpen="isQuyDinhPopup"
+      :type="typeRule"
+    />
     <section class="section section-space s-heading s-heading-dark">
       <div class="container s-heading-content">
         <div class="row align-items-center s-heading-height">
@@ -9,21 +15,31 @@
                 <li class="breadcrumb-item">
                   <nuxt-link to="/">Trang chủ</nuxt-link>
                 </li>
-                <li class="breadcrumb-item active" aria-current="page">Đặt lịch khám</li>
+                <li class="breadcrumb-item active" aria-current="page">
+                  Đăng ký khám bệnh
+                </li>
               </ol>
             </nav>
             <div class="banner-header text-left">
-              <h1 class="text-white">Đặt lịch khám</h1>
-              <p class="lead text-white">Đồng ý sử dụng và thanh toán phí dịch vụ.</p>
+              <h1 class="text-white"> Đăng ký khám bệnh</h1>
+              <p class="lead text-white">
+              Hãy cho chúng tôi biết bạn đang cần đến khám bệnh ngày nào, bác sĩ nào sẽ hỗ trợ bạn 
+              </p>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="s-heading-bg w-100" style="background-image: url(img/bv/bg-heading.jpg)"></div>
+      <div
+        class="s-heading-bg w-100"
+        style="background-image: url(img/bv/bg-heading.jpg)"
+      ></div>
     </section>
 
-    <section class="section section-space" style="background-color: rgba(238, 242, 247, 1)">
+    <section
+      class="section section-space"
+      style="background-color: rgba(238, 242, 247, 1)"
+    >
       <div class="container">
         <div class="row">
           <div class="col-md-12">
@@ -39,8 +55,12 @@
                       <h4 class="mt-5 mb-2">Dịch vụ khám</h4>
                       <p class="text-gray">Khám dịch vụ sẽ được chọn bác sĩ</p>
 
-                      <el-radio v-model="form.loaiKham" label="1">Khám thường</el-radio>
-                      <el-radio v-model="form.loaiKham" label="2">Khám dịch vụ</el-radio>
+                      <el-radio v-model="form.loaiKham" label="1"
+                        >Khám thường</el-radio
+                      >
+                      <el-radio v-model="form.loaiKham" label="2"
+                        >Khám dịch vụ</el-radio
+                      >
 
                       <!-- <h5 class="mt-4">Chọn Bác sĩ</h5> -->
 
@@ -61,10 +81,12 @@
                         <div class="col-md-10">
                           <el-form-item>
                             <div class="form-soju">
-                              <div class="form-soju-label">Mô tả triệu chứng</div>
+                              <div class="form-soju-label">
+                                Mô tả triệu chứng
+                              </div>
                               <el-input
                                 type="textarea"
-                                :autosize="{ minRows: 3, maxRows: 10}"
+                                :autosize="{ minRows: 3, maxRows: 10 }"
                                 class="form-soju-input"
                                 placeholder="Vui lòng ghi rõ vấn đề của bạn để chúng tôi có thể sắp xếp đúng chuyên khoa nếu cần."
                                 v-model="form.noidung"
@@ -87,7 +109,9 @@
                           </div>
                           <div class="service__body">
                             <div class="service__name">Đối tượng</div>
-                            <div class="service__desc">Có hoặc không có BHYT</div>
+                            <div class="service__desc">
+                              Có hoặc không có BHYT
+                            </div>
                           </div>
                         </div>
 
@@ -123,7 +147,10 @@
 
                       <el-form-item class="mt-4" label>
                         <el-checkbox-group v-model="form.checkrule">
-                          <el-checkbox label="Tôi đồng ý đặt lịch khám theo quy định" name="type"></el-checkbox>
+                          <el-checkbox
+                            label="Tôi đồng ý đặt lịch khám theo quy định"
+                            name="type"
+                          ></el-checkbox>
                         </el-checkbox-group>
                       </el-form-item>
 
@@ -156,6 +183,7 @@
 import SelectDoctor from "@/components/blocks/SelectDoctor";
 import TimeSchedule from "@/components/blocks/TimeSchedule";
 import PersonalInfo from "@/components/blocks/PersonalInfo";
+import QuyDinhPopup from "@/components/blocks/QuyDinhPopup";
 
 export default {
   auth: true,
@@ -163,17 +191,23 @@ export default {
     SelectDoctor,
     PersonalInfo,
     TimeSchedule,
+    QuyDinhPopup,
   },
 
   data() {
     return {
+      isQuyDinhPopup: true,
+      isRecentOpen: false,
+      dateValue: "",
+      typeRule: "dangkykhambenh",
       form: {
         loaiKham: "1",
         noidung: "",
         doctorID: "",
+
         timeSelect: {
           timeSelect: "",
-          daySelectFull: ""
+          daySelectFull: "",
         },
         checkrule: false,
       },
@@ -194,7 +228,6 @@ export default {
     },
 
     sendForm(e) {
-
       if (this.form.noidung == "") {
         this.$alert("Bạn chưa mô tả triệu chứng", "Thông báo", {
           confirmButtonText: "Đóng",
@@ -206,10 +239,10 @@ export default {
             // });
           },
         });
-        return ;
+        return;
       }
 
-       if (this.form.timeSelect == "" || this.form.timeSelect.timeSelect == "") {
+      if (this.form.timeSelect == "" || this.form.timeSelect.timeSelect == "") {
         this.$alert("Bạn chưa chọn thời gian đặt khám", "Thông báo", {
           confirmButtonText: "Đóng",
           type: "error",
@@ -220,7 +253,7 @@ export default {
             // });
           },
         });
-        return ;
+        return;
       }
 
       if (this.form.checkrule == false) {
@@ -234,7 +267,7 @@ export default {
             // });
           },
         });
-        return ;
+        return;
       }
 
       this.$axios

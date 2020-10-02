@@ -193,12 +193,125 @@
 
             <p>
               <i class="fas fa-caret-right"></i>
-              <strong>Lưu ý : </strong> Trong trường hợp bạn đăng ký trả kết quả qua bưu điện nhưng cần sớm hơn thời gian trả theo quy định, bạn muốn nhận kết quả tại Bệnh viện,  Bạn liên hệ số ĐT CSKH <strong>+(84)37245959</strong> để được nhân viên hỗ trợ.
+              <strong>Lưu ý : </strong> Trong trường hợp bạn đăng ký trả kết quả
+              qua bưu điện nhưng cần sớm hơn thời gian trả theo quy định, bạn
+              muốn nhận kết quả tại Bệnh viện, Bạn liên hệ số ĐT CSKH
+              <strong>+(84)37245959</strong> để được nhân viên hỗ trợ.
             </p>
 
             <p class="text-danger">
               <i class="fas fa-caret-right"></i> Không áp dụng Bảo hiểm y tế
             </p>
+          </div>
+        </template>
+
+        <template v-if="type == 'tracuulichsukhambenh'">
+          <div class="noidung-quydinh">
+            <p style="font-size: 16px">
+              <i class="fas fa-caret-right"></i> Áp dụng cho các đối tượng đã
+              khám và điều trị tại bệnh viện trong thời gian 01 năm gần nhất.
+            </p>
+
+            <p style="font-size: 16px">
+              <i class="fas fa-caret-right"></i> Một lần tra cứu tối đa 03 tháng
+            </p>
+
+            <p style="font-size: 16px">Chi phí và thời gian trả kết quả:</p>
+
+            <table class="table table-bordered">
+              <tr>
+                <th colspan="2" width="150">
+                  <strong>Tiếp nhận</strong>
+                </th>
+                <th scope="col" rowspan="2">
+                  <strong>Trả lời </strong>
+                </th>
+
+                <th scope="col" rowspan="2">
+                  <strong>Phí dịch vụ</strong>
+                </th>
+              </tr>
+              <tr>
+                <td scope="row">Ngày</td>
+                <td>Giờ</td>
+              </tr>
+
+              <tr>
+                <td scope="row" rowspan="2">Thừ 2 - thứ 6</td>
+                <td>7h30</td>
+                <td>11h30 cùng ngày</td>
+                <td rowspan="2"><b>50.000đ</b></td>
+              </tr>
+
+              <tr>
+                <td scope="row">12h</td>
+                <td>16h30 cùng ngày</td>
+              </tr>
+
+              <tr>
+                <td scope="row">Thứ 7, CN Lễ</td>
+                <td>10h</td>
+                <td>15h cùng ngày</td>
+                <td><b>100.000đ</b></td>
+              </tr>
+            </table>
+
+            <p class="text-danger">
+              <i class="fas fa-caret-right"></i> Không áp dụng Bảo hiểm y tế
+            </p>
+          </div>
+        </template>
+
+        <template v-if="type == 'dangkykhambenh'">
+          <div class="noidung-quydinh">
+            <p style="font-size: 16px">
+              <i class="fas fa-caret-right"></i>Đăng ký trước 14h của ngày hôm
+              trước ( CN - thứ 6)
+            </p>
+
+            <p style="font-size: 16px">
+              <i class="fas fa-caret-right"></i> Áp dụng cho các đối tượng đăng
+              ký khám theo yêu cầu
+            </p>
+
+            <p style="font-size: 16px">
+              <i class="fas fa-caret-right"></i>Một lần đăng ký chỉ áp dụng cho
+              01 chuyên khoa (có thể đang ký khám 02 chuyên khoa/ngày)
+            </p>
+
+            <p style="font-size: 16px">Chi phí cho các dịch vụ:</p>
+
+            <table class="table table-bordered">
+              <tr>
+                <th  width="100">
+                  <strong>STT</strong>
+                </th>
+                <th  >
+                  <strong>Tên dịch vụ </strong>
+                </th>
+                <th >
+                  <strong>Thời gian áp dụng</strong>
+                </th>
+                   <th >
+                  <strong>Chi phí</strong>
+                </th>
+              </tr>
+              <tr>
+                <td >1</td>
+                <td>Đăng ký khám theo yêu cầu</td>
+                <td>Thứ 2 – Thứ 7</td>
+                <td>150.000đ/ chuyên khoa</td>
+              </tr>
+
+                 <tr>
+                <td >2</td>
+                <td>Đăng ký khám chọn Bác sĩ</td>
+                <td>Thứ 2 – Thứ 6</td>
+                <td>300.000đ</td>
+              </tr>
+
+            </table>
+
           </div>
         </template>
 

@@ -190,35 +190,7 @@
           </div>
 
           <div class="col-md-4">
-            <div class="mb-4">
-              <a href>
-                <img
-                  src="https://cdn2.medihub.vn/image/360/w/ImagesUpload/2019/07/22/9e01e1e8-1db7-4ec5-a461-c166463a5164_kemdanhrang.jpg"
-                  class="img-fluid d-block mx-auto"
-                  alt
-                />
-              </a>
-            </div>
-
-            <div class="mb-4">
-              <a href>
-                <img
-                  src="https://cdn2.medihub.vn/image/360/w/ImagesUpload/2018/09/14/8e7e7626-2368-4842-8655-9acf0338f750_tuongan.jpg"
-                  class="img-fluid d-block mx-auto"
-                  alt
-                />
-              </a>
-            </div>
-
-            <div class="mb-4">
-              <a href>
-                <img
-                  src="http://cdn1.medihub.vn/uploads/images/2017/07/12/medermakid.jpg"
-                  class="img-fluid d-block mx-auto"
-                  alt
-                />
-              </a>
-            </div>
+            <Quangcao/>
           </div>
         </div>
       </div>
@@ -372,12 +344,14 @@
 import moment from "moment";
 import QuyDinhPopup from "@/components/blocks/QuyDinhPopup";
 import PersonalInfo from "@/components/blocks/PersonalInfo";
+import Quangcao from "@/components/blocks/Quangcao";
 
 export default {
   auth: true,
   components: {
     QuyDinhPopup,
     PersonalInfo,
+    Quangcao,
   },
   data() {
     return {
