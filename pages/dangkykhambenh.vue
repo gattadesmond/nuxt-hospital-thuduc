@@ -214,6 +214,11 @@ export default {
     };
   },
   methods: {
+    handleOpenQuyDinh(status) {
+      console.log("Nay la gi");
+      this.isQuyDinhPopup = status;
+      this.isRecentOpen = true;
+    },
     onSubmit() {
       console.log(this.form);
     },
