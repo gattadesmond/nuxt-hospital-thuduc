@@ -2,6 +2,7 @@
   <div class="bg-white">
     <QuyDinhPopup
       @open-modal="handleOpenQuyDinh"
+      @open-next="handleOpenNext"
       :recentOpen="isRecentOpen"
       :isOpen="isQuyDinhPopup"
       :type="typeRule"
@@ -54,139 +55,138 @@
                 Bạn có thể gửi câu hỏi cho Bác sĩ bệnh viện tại đây
               </div>
               <div class="text-center mt-3">
-                <b-button v-b-modal.modal-1 variant="primary" size=""
+                <b-button
+                  variant="primary"
+                  size=""
+                  @click.stop.prevent="handleOpenQuyDinh(true)"
                   >Gửi câu hỏi</b-button
                 >
               </div>
             </div>
 
             <b-modal
+              v-model="isOpenNext"
               id="modal-1"
               centered
+              no-close-on-esc
+              no-close-on-backdrop
               cancelTitle="Đóng cửa sổ"
               okTitle="Gửi câu hỏi"
               title="Gửi câu hỏi"
-              @ok="submitForm"
+              @ok="submitForm('form')"
               size="lg"
             >
               <el-form ref="form" class="px-3" :model="form" label-width="0px">
                 <div class="row">
                   <div class="col-12">
+                    <div class="mb-5">
+                      <h4 class="card-title">Thông tin cá nhân</h4>
+                      <PersonalInfo />
+                    </div>
 
-                      Nya la trong modal
-                    
-            
+                    <el-form
+                      ref="form"
+                      :rules="rules"
+                      :model="form"
+                      label-width="0px"
+                    >
+                      <!-- <div class="info-widget"> -->
+                      <h4 class="card-title">Mô tả triệu chứng</h4>
+
+                      <el-form-item prop="trieuChungBenh">
+                        <div class="form-soju">
+                          <div class="form-soju-label">Triệu chứng bệnh</div>
+                          <el-input
+                            type="textarea"
+                            :autosize="{ minRows: 3, maxRows: 10 }"
+                            class="form-soju-input"
+                            placeholder="Vui lòng ghi rõ triệu chứng"
+                            v-model="form.trieuChungBenh"
+                          ></el-input>
+                        </div>
+                      </el-form-item>
+
+                      <div class="row">
+                        <div class="col-md-6">
+                          <el-form-item prop="dienTienBenh">
+                            <div class="form-soju">
+                              <div class="form-soju-label">Diễn tiến bệnh</div>
+                              <el-input
+                                type="textarea"
+                                :autosize="{ minRows: 2, maxRows: 10 }"
+                                class="form-soju-input"
+                                placeholder="Vui lòng ghi rõ triệu chứng"
+                                v-model="form.dienTienBenh"
+                              ></el-input>
+                            </div>
+                          </el-form-item>
+                        </div>
+
+                        <div class="col-md-6">
+                          <el-form-item prop="tienSuBenh">
+                            <div class="form-soju">
+                              <div class="form-soju-label">Tiền sử bệnh</div>
+                              <el-input
+                                type="textarea"
+                                :autosize="{ minRows: 2, maxRows: 10 }"
+                                class="form-soju-input"
+                                placeholder="Vui lòng ghi rõ triệu chứng"
+                                v-model="form.tienSuBenh"
+                              ></el-input>
+                            </div>
+                          </el-form-item>
+                        </div>
+                      </div>
+
+                      <h4 class="mt-4">Yêu cầu chuyên khoa (nếu cần)</h4>
+
+                      <div class="row no-gutters">
+                        <div class="col-md-6">
+                          <el-form-item>
+                            <div class="form-soju">
+                              <div class="form-soju-label">
+                                Chọn Chuyên khoa
+                              </div>
+                              <SelectChuyenKhoa
+                                @select-chuyenkhoa="getSelectChuyenKhoa"
+                              />
+                            </div>
+                          </el-form-item>
+                        </div>
+                      </div>
+
+                      <el-form-item prop="checkrule">
+                        <el-checkbox-group v-model="form.checkrule">
+                          <el-checkbox
+                            label="Tôi đồng ý gửi câu hỏi theo quy định"
+                            name="type"
+                          ></el-checkbox>
+                        </el-checkbox-group>
+                        <div>
+                          Xem lại các quy định
+                          <a href @click.stop.prevent="handleOpenQuyDinh"
+                            >tại đây</a
+                          >
+                        </div>
+                      </el-form-item>
+
+                      <el-form-item class="mt-5">
+                        <el-button
+                          type="primary"
+                          class="btn btn-primary submit-btn"
+                          @click.stop.prevent="submitForm('form')"
+                          >Gửi câu hỏi</el-button
+                        >
+                      </el-form-item>
+                    </el-form>
                   </div>
                 </div>
               </el-form>
             </b-modal>
 
 
-            <div class="card border-0 card__soju">
-              <div class="card-body">
-                <div>
-                  <div class="mb-5">
-                    <h4 class="card-title">Thông tin cá nhân</h4>
-                    <PersonalInfo />
-                  </div>
+            <!-- Nay la danh sach cau hoi -->
 
-                  <el-form
-                    ref="form"
-                    :rules="rules"
-                    :model="form"
-                    label-width="0px"
-                  >
-                    <!-- <div class="info-widget"> -->
-                    <h4 class="card-title">Mô tả triệu chứng</h4>
-
-                    <el-form-item prop="trieuChungBenh">
-                      <div class="form-soju">
-                        <div class="form-soju-label">Triệu chứng bệnh</div>
-                        <el-input
-                          type="textarea"
-                          :autosize="{ minRows: 3, maxRows: 10 }"
-                          class="form-soju-input"
-                          placeholder="Vui lòng ghi rõ triệu chứng"
-                          v-model="form.trieuChungBenh"
-                        ></el-input>
-                      </div>
-                    </el-form-item>
-
-                    <div class="row">
-                      <div class="col-md-6">
-                        <el-form-item prop="dienTienBenh">
-                          <div class="form-soju">
-                            <div class="form-soju-label">Diễn tiến bệnh</div>
-                            <el-input
-                              type="textarea"
-                              :autosize="{ minRows: 2, maxRows: 10 }"
-                              class="form-soju-input"
-                              placeholder="Vui lòng ghi rõ triệu chứng"
-                              v-model="form.dienTienBenh"
-                            ></el-input>
-                          </div>
-                        </el-form-item>
-                      </div>
-
-                      <div class="col-md-6">
-                        <el-form-item prop="tienSuBenh">
-                          <div class="form-soju">
-                            <div class="form-soju-label">Tiền sử bệnh</div>
-                            <el-input
-                              type="textarea"
-                              :autosize="{ minRows: 2, maxRows: 10 }"
-                              class="form-soju-input"
-                              placeholder="Vui lòng ghi rõ triệu chứng"
-                              v-model="form.tienSuBenh"
-                            ></el-input>
-                          </div>
-                        </el-form-item>
-                      </div>
-                    </div>
-
-                    <h4 class="mt-4">Yêu cầu chuyên khoa (nếu cần)</h4>
-
-                    <div class="row no-gutters">
-                      <div class="col-md-6">
-                        <el-form-item>
-                          <div class="form-soju">
-                            <div class="form-soju-label">Chọn Chuyên khoa</div>
-                            <SelectChuyenKhoa
-                              @select-chuyenkhoa="getSelectChuyenKhoa"
-                            />
-                          </div>
-                        </el-form-item>
-                      </div>
-                    </div>
-
-                    <el-form-item prop="checkrule">
-                      <el-checkbox-group v-model="form.checkrule">
-                        <el-checkbox
-                          label="Tôi đồng ý gửi câu hỏi theo quy định"
-                          name="type"
-                        ></el-checkbox>
-                      </el-checkbox-group>
-                      <div>
-                        Xem lại các quy định
-                        <a href @click.stop.prevent="handleOpenQuyDinh"
-                          >tại đây</a
-                        >
-                      </div>
-                    </el-form-item>
-
-                    <el-form-item class="mt-5">
-                      <!-- <el-button>Hủy</el-button> -->
-                      <el-button
-                        type="primary"
-                        class="btn btn-primary submit-btn"
-                        @click.stop.prevent="submitForm('form')"
-                        >Gửi câu hỏi</el-button
-                      >
-                    </el-form-item>
-                  </el-form>
-                </div>
-              </div>
-            </div>
           </div>
 
           <div class="col-md-4 theiaStickySidebar">
@@ -288,7 +288,6 @@ import SelectChuyenKhoa from "@/components/blocks/SelectChuyenKhoa";
 import Quangcao from "@/components/blocks/Quangcao";
 export default {
   auth: true,
-
   components: {
     QuyDinhPopup,
     PersonalInfo,
@@ -305,9 +304,10 @@ export default {
       }
     };
     return {
-      isQuyDinhPopup: true,
+      isQuyDinhPopup: false,
       isRecentOpen: false,
       typeRule: "tuvansuckhoe",
+      isOpenNext: false,
       form: {
         trieuChungBenh: "",
         dienTienBenh: "",
@@ -348,9 +348,13 @@ export default {
     },
 
     handleOpenQuyDinh(status) {
+      console.log(status);
       console.log("Nay la gi");
       this.isQuyDinhPopup = status;
-      this.isRecentOpen = true;
+    },
+
+    handleOpenNext(status) {
+      this.isOpenNext = true;
     },
 
     // handleOpenQuyDinh(status) {
@@ -358,9 +362,6 @@ export default {
     //   this.isQuyDinhPopup = status;
     //   this.isRecentOpen = true;
     // },
-
-
-    
 
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {

@@ -325,7 +325,7 @@
         </p>
       </div>
       <span slot="footer" class="dialog-footer" v-if="recentOpen == false">
-        <el-button @click="comeBack()">Quay lại Trang chủ</el-button>
+        <el-button @click="handleClose()">Đóng</el-button>
         <el-button type="primary" @click="handleOK()">Đồng ý</el-button>
       </span>
 
@@ -412,6 +412,8 @@ export default {
                 // });
 
                 this.$emit("open-modal", false);
+                
+                this.$emit("open-next", true);
 
 
                 this.$message({
