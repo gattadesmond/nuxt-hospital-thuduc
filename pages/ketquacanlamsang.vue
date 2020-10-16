@@ -87,7 +87,11 @@
                         <div class="row sm-gutters mt-3">
                           <div class="col-6">
                             <div class="mb-2">Chọn lại xét nghiệm:</div>
-                            <el-select
+
+                            <SelectXetNghiem
+                              @select-xetnghiem="getSelectXetNghiem"
+                            />
+                            <!-- <el-select
                               v-model="form.loaiHinh"
                               placeholder="Loại xét nghiệm"
                             >
@@ -97,7 +101,7 @@
                                 :label="item.label"
                                 :value="item.value"
                               ></el-option>
-                            </el-select>
+                            </el-select> -->
                           </div>
 
                           <div class="col-6">
@@ -123,6 +127,17 @@
 
                           <div class="col-12">
                             <el-form-item class="mt-3 mb-0" label>
+                              <el-checkbox-group v-model="isPostOffice">
+                                <el-checkbox
+                                  label=" Nhận kết quả qua bưu điện"
+                                  name="type"
+                                ></el-checkbox>
+                              </el-checkbox-group>
+                            </el-form-item>
+                          </div>
+
+                          <div class="col-12">
+                            <el-form-item class="mt-1 mb-0" label>
                               <el-checkbox-group v-model="form.checkrule">
                                 <el-checkbox
                                   label="Tôi đồng ý gửi yêu cầu theo quy định"
@@ -401,9 +416,10 @@
 // ​//api​/Radiograpy​/GetByRadiographybyUser
 import moment from "moment";
 import QuyDinhPopup from "@/components/blocks/QuyDinhPopup";
+import SelectXetNghiem from "@/components/blocks/SelectXetNghiem";
 import PersonalInfo from "@/components/blocks/PersonalInfo";
 import Quangcao from "@/components/blocks/Quangcao";
-
+// isReceivePostOffice
 export default {
   auth: true,
   components: {
@@ -417,6 +433,7 @@ export default {
       isRecentOpen: false,
       typeRule: "ketquacanlamsang",
       isOpenNext: false,
+      isPostOffice: false,
       form: {
         noiDung: "",
         loaiHinh: "",
@@ -465,6 +482,10 @@ export default {
 
     handleOpenNext(status) {
       this.isOpenNext = true;
+    },
+    getSelectXetNghiem(e) {
+      console.log(e);
+      this.form.loaiHinh = e;
     },
 
     async getRadiograpyList() {
@@ -528,7 +549,9 @@ export default {
       }
       this.$axios
         .post("Radiograpy/Insert", {
+          isReceivePostOffice: this.isPostOffice,
           name: this.form.loaiHinh,
+          serviceId: this.form.loaiHinh,
           requestDate: this.form.dateSelect,
           note: this.form.noiDung,
         })
