@@ -105,7 +105,17 @@ a{
 }
 
 .main__banner{
-  
+  // box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.09);
+
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 60px 40px;
+  .lead{
+    font-size: 18px;
+    margin-bottom: 0;
+  }
 }
 .table td, .table th{
   vertical-align: middle;

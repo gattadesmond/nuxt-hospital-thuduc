@@ -229,7 +229,6 @@
 
 import PersonalInfo from "@/components/blocks/PersonalInfo";
 
-
 export default {
   auth: true,
   components: {},
