@@ -105,11 +105,12 @@ a{
 }
 
 .container-index{
-  max-width: 12up00px;
+  max-width: 1200px;
 }
 
 .main__banner{
   // box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.09);
+  border: 1px solid rgba($primary, 0.1);
 
   position: relative;
   background-size: cover;

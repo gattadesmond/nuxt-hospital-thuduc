@@ -1,7 +1,7 @@
 <template>
   <section
-    class="section section-space pt-0 section-bg section-home"
-    style="background-image: url(img/background-doctor.jpg)"
+    class="section section-space pt-4 section-bg section-home"
+    style="background-image: url(img/func/h2_slider2.jpg)"
   >
     <div class="container container-index">
       <div class="row">
