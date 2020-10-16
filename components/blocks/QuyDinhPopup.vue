@@ -283,35 +283,33 @@
 
             <table class="table table-bordered">
               <tr>
-                <th  width="100">
+                <th width="100">
                   <strong>STT</strong>
                 </th>
-                <th  >
+                <th>
                   <strong>Tên dịch vụ </strong>
                 </th>
-                <th >
+                <th>
                   <strong>Thời gian áp dụng</strong>
                 </th>
-                   <th >
+                <th>
                   <strong>Chi phí</strong>
                 </th>
               </tr>
               <tr>
-                <td >1</td>
+                <td>1</td>
                 <td>Đăng ký khám theo yêu cầu</td>
                 <td>Thứ 2 – Thứ 7</td>
                 <td>150.000đ/ chuyên khoa</td>
               </tr>
 
-                 <tr>
-                <td >2</td>
+              <tr>
+                <td>2</td>
                 <td>Đăng ký khám chọn Bác sĩ</td>
                 <td>Thứ 2 – Thứ 6</td>
                 <td>300.000đ</td>
               </tr>
-
             </table>
-
           </div>
         </template>
 
@@ -372,7 +370,7 @@ export default {
         );
       } else {
         // this.dialogVisible = false;
-        this.$emit("open-modal", false);
+      
 
         this.$axios
           .post("Tracking/Insert", {
@@ -392,15 +390,17 @@ export default {
           })
           .then((response) => {
             console.log(response);
+
+            const loading = this.$loading({
+              lock: true,
+              text: "Đang xử lý",
+              spinner: "el-icon-loading",
+              background: "rgba(0, 0, 0, 0.7)",
+            });
+
             if (response.data.success === true) {
               // localStorage.hoibacsi = true;
 
-              const loading = this.$loading({
-                lock: true,
-                text: "Đang xử lý",
-                spinner: "el-icon-loading",
-                background: "rgba(0, 0, 0, 0.7)",
-              });
               setTimeout(() => {
                 loading.close();
                 // this.$router.push({
@@ -411,11 +411,15 @@ export default {
                 //   },
                 // });
 
+                this.$emit("open-modal", false);
+
+
                 this.$message({
                   type: "success",
                   message: "Xác nhận thành công",
                 });
               }, 2000);
+
 
               // this.$alert(response.data.message, "Thông báo", {
               //   confirmButtonText: "OK",

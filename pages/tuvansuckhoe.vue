@@ -67,26 +67,21 @@
               okTitle="Gửi câu hỏi"
               title="Gửi câu hỏi"
               @ok="submitForm"
+              size="lg"
             >
               <el-form ref="form" class="px-3" :model="form" label-width="0px">
                 <div class="row">
                   <div class="col-12">
-                    
-                   
 
-                    <div class="card mt-4 info__card">
-                      <div
-                        class="font-weight-bold mb-0"
-                        style="font-size: 16px"
-                      >
-                        Thông tin cá nhân
-                      </div>
-                      <PersonalInfo />
-                    </div>
+                      Nya la trong modal
+                    
+            
                   </div>
                 </div>
               </el-form>
             </b-modal>
+
+
             <div class="card border-0 card__soju">
               <div class="card-body">
                 <div>
@@ -310,7 +305,7 @@ export default {
       }
     };
     return {
-      isQuyDinhPopup: false,
+      isQuyDinhPopup: true,
       isRecentOpen: false,
       typeRule: "tuvansuckhoe",
       form: {
@@ -357,6 +352,15 @@ export default {
       this.isQuyDinhPopup = status;
       this.isRecentOpen = true;
     },
+
+    // handleOpenQuyDinh(status) {
+    //   console.log("Nay la gi");
+    //   this.isQuyDinhPopup = status;
+    //   this.isRecentOpen = true;
+    // },
+
+
+    
 
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
