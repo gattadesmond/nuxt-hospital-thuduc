@@ -2,6 +2,7 @@
   <div class="bg-white">
     <QuyDinhPopup
       @open-modal="handleOpenQuyDinh"
+      @open-next="handleOpenNext"
       :recentOpen="isRecentOpen"
       :isOpen="isQuyDinhPopup"
       :type="typeRule"
@@ -16,18 +17,26 @@
                 <li class="breadcrumb-item">
                   <nuxt-link to="/">Trang chủ</nuxt-link>
                 </li>
-                <li class="breadcrumb-item active" aria-current="page">Kết quả cận lâm sàng</li>
+                <li class="breadcrumb-item active" aria-current="page">
+                  Kết quả cận lâm sàng
+                </li>
               </ol>
             </nav>
             <div class="banner-header text-left">
               <h1 class="text-white">Kết quả cận lâm sàng</h1>
-              <p class="lead text-white mb-0">Hãy cho chúng tôi biết bạn đang cần tra cứu thông tin gì liên quan đến sức khỏe hiện tại của bạn</p>
+              <p class="lead text-white mb-0">
+                Hãy cho chúng tôi biết bạn đang cần tra cứu thông tin gì liên
+                quan đến sức khỏe hiện tại của bạn
+              </p>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="s-heading-bg w-100" style="background-image: url(img/bv/bg-heading.jpg)"></div>
+      <div
+        class="s-heading-bg w-100"
+        style="background-image: url(img/bv/bg-heading.jpg)"
+      ></div>
     </section>
 
     <section class="section section-space bg-white">
@@ -41,21 +50,36 @@
             </div>
 
             <div class="required__box mb-4">
-              <div
-                class
-              >Chưa có kết quả xét nghiệm, bạn có thể yêu cầu Bệnh viện gửi kết quả xét nghiệm tại đây</div>
+              <div class>
+                Chưa có kết quả cận lâm sàng, bạn có thể yêu cầu Bệnh viện gửi
+                kết quả cận lâm sàng tại đây
+              </div>
               <div class="text-center mt-3">
-                <b-button v-b-modal.modal-1 variant="primary" size="sm">Yêu cầu kết quả xét nghiệm</b-button>
+                <b-button
+                  variant="primary"
+                  size=""
+                  @click.stop.prevent="handleOpenQuyDinh(true)"
+                  >Yêu cầu kết quả
+                </b-button>
 
                 <b-modal
+                  v-model="isOpenNext"
                   id="modal-1"
                   centered
+                  no-close-on-esc
+                  no-close-on-backdrop
                   cancelTitle="Đóng cửa sổ"
                   okTitle="Gửi yêu cầu"
                   title="Yêu cầu kết quả xét nghiệm"
                   @ok="submitForm"
+                  size="lg"
                 >
-                  <el-form ref="form" class="px-3" :model="form" label-width="0px">
+                  <el-form
+                    ref="form"
+                    class="px-3"
+                    :model="form"
+                    label-width="0px"
+                  >
                     <div class="row">
                       <div class="col-12">
                         <!-- <h5 class="font-weight-bold mb-3">Chọn ngày khám</h5> -->
@@ -63,7 +87,10 @@
                         <div class="row sm-gutters mt-3">
                           <div class="col-6">
                             <div class="mb-2">Chọn lại xét nghiệm:</div>
-                            <el-select v-model="form.loaiHinh" placeholder="Select">
+                            <el-select
+                              v-model="form.loaiHinh"
+                              placeholder="Loại xét nghiệm"
+                            >
                               <el-option
                                 v-for="item in filtersList"
                                 :key="item.value"
@@ -88,7 +115,7 @@
 
                             <el-input
                               type="textarea"
-                              :autosize="{ minRows: 2, maxRows: 4}"
+                              :autosize="{ minRows: 2, maxRows: 4 }"
                               placeholder="Ghi chú nếu có"
                               v-model="form.noiDung"
                             ></el-input>
@@ -107,8 +134,11 @@
                                 Xem lại các quy định
                                 <a
                                   href
-                                  @click.stop.prevent="handleOpenQuyDinh"
-                                >tại đây</a>
+                                  @click.stop.prevent="
+                                    handleOpenQuyDinh('again')
+                                  "
+                                  >tại đây</a
+                                >
                               </div>
                             </el-form-item>
                           </div>
@@ -118,7 +148,9 @@
                           <div
                             class="font-weight-bold mb-0"
                             style="font-size: 16px"
-                          >Thông tin bệnh nhân</div>
+                          >
+                            Thông tin bệnh nhân
+                          </div>
                           <PersonalInfo />
                         </div>
                       </div>
@@ -144,25 +176,28 @@
                       </thead>
                       <tbody>
                         <tr v-for="item in radiograpyList" :key="item.id">
-                          <td>{{item.requestDate | formatDate}}</td>
-                          <td>{{item.uploadDate | formatDate}}</td>
+                          <td>{{ item.requestDate | formatDate }}</td>
+                          <td>{{ item.uploadDate | formatDate }}</td>
                           <td>
                             <span
                               v-if="item.status == 3"
                               class="ml-1 badge badge-pill bg-success-light"
-                            >Thành công</span>
+                              >Thành công</span
+                            >
 
                             <span
                               v-if="item.status == 1"
                               class="ml-1 badge badge-pill bg-primary-light"
-                            >Đang chờ</span>
+                              >Đang chờ</span
+                            >
 
                             <span
                               v-if="item.status == 2"
                               class="ml-1 badge badge-pill bg-danger-light"
-                            >Thất bại</span>
+                              >Thất bại</span
+                            >
                           </td>
-                          <td>{{item.note}}</td>
+                          <td>{{ item.note }}</td>
                           <td class="text-right">
                             <div class="table-action" v-if="item.status == 3">
                               <!-- <a href="invoice-view.html" class="btn btn-sm bg-info-light">
@@ -190,13 +225,16 @@
           </div>
 
           <div class="col-md-4">
-            <Quangcao/>
+            <Quangcao />
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section section-space d-none" style="background-color: rgba(238, 242, 247, 1)">
+    <section
+      class="section section-space d-none"
+      style="background-color: rgba(238, 242, 247, 1)"
+    >
       <div class="container">
         <div class="row no-gutters align-items-center mb-4">
           <div class="col">
@@ -211,7 +249,10 @@
                   <a href class="btn btn-success">Tải về</a>
                 </div>
                 <div class="kq__box__img">
-                  <img src="http://html.iwthemes.com/mas/img/authorizations/doc.jpg" alt />
+                  <img
+                    src="http://html.iwthemes.com/mas/img/authorizations/doc.jpg"
+                    alt
+                  />
                 </div>
               </div>
 
@@ -227,7 +268,9 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col">Trạng thái</div>
                     <div class="col-auto">
-                      <span class="alert p-1 px-2 m-0 alert-success d-inline-block">
+                      <span
+                        class="alert p-1 px-2 m-0 alert-success d-inline-block"
+                      >
                         <i class="fas fa-file-download"></i> Miễn phí
                       </span>
                     </div>
@@ -244,7 +287,10 @@
                   <a href class="btn btn-success">Tải về</a>
                 </div>
                 <div class="kq__box__img">
-                  <img src="http://html.iwthemes.com/mas/img/authorizations/doc.jpg" alt />
+                  <img
+                    src="http://html.iwthemes.com/mas/img/authorizations/doc.jpg"
+                    alt
+                  />
                 </div>
               </div>
 
@@ -260,7 +306,9 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col">Trạng thái</div>
                     <div class="col-auto">
-                      <span class="alert p-1 px-2 m-0 alert-warning d-inline-block">
+                      <span
+                        class="alert p-1 px-2 m-0 alert-warning d-inline-block"
+                      >
                         <i class="fas fa-file-invoice-dollar"></i>
                         Tốn phí
                       </span>
@@ -275,7 +323,10 @@
             <div class="kq__box mb-4">
               <div class="kq__box__body">
                 <div class="kq__box__img">
-                  <img src="http://html.iwthemes.com/mas/img/authorizations/doc.jpg" alt />
+                  <img
+                    src="http://html.iwthemes.com/mas/img/authorizations/doc.jpg"
+                    alt
+                  />
                 </div>
               </div>
 
@@ -291,7 +342,9 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col">Trạng thái</div>
                     <div class="col-auto">
-                      <span class="alert p-1 px-2 m-0 alert-primary-2 d-inline-block">
+                      <span
+                        class="alert p-1 px-2 m-0 alert-primary-2 d-inline-block"
+                      >
                         <i class="fas fa-spinner"></i>
                         Đang chờ
                       </span>
@@ -306,7 +359,10 @@
             <div class="kq__box mb-4">
               <div class="kq__box__body">
                 <div class="kq__box__img">
-                  <img src="http://html.iwthemes.com/mas/img/authorizations/doc.jpg" alt />
+                  <img
+                    src="http://html.iwthemes.com/mas/img/authorizations/doc.jpg"
+                    alt
+                  />
                 </div>
               </div>
 
@@ -322,7 +378,9 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col">Trạng thái</div>
                     <div class="col-auto">
-                      <span class="alert p-1 px-2 m-0 alert-primary-3 d-inline-block">
+                      <span
+                        class="alert p-1 px-2 m-0 alert-primary-3 d-inline-block"
+                      >
                         <i class="fas fa-spinner"></i>
                         Không có sẵn
                       </span>
@@ -358,6 +416,7 @@ export default {
       isQuyDinhPopup: false,
       isRecentOpen: false,
       typeRule: "ketquacanlamsang",
+      isOpenNext: false,
       form: {
         noiDung: "",
         loaiHinh: "",
@@ -396,9 +455,16 @@ export default {
   },
   methods: {
     handleOpenQuyDinh(status) {
-      console.log("Nay la gi");
+      // console.log(status);
+      // console.log("Nay la gi");
       this.isQuyDinhPopup = status;
-      this.isRecentOpen = true;
+      if (status == "again") {
+        this.isRecentOpen = true;
+      }
+    },
+
+    handleOpenNext(status) {
+      this.isOpenNext = true;
     },
 
     async getRadiograpyList() {
@@ -463,8 +529,8 @@ export default {
       this.$axios
         .post("Radiograpy/Insert", {
           name: this.form.loaiHinh,
-          requestDate:this.form.dateSelect,
-          note : this.form.noiDung 
+          requestDate: this.form.dateSelect,
+          note: this.form.noiDung,
         })
         .then((response) => {
           console.log(response);
