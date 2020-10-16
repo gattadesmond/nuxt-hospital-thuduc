@@ -3,7 +3,23 @@
     class="section section-space pt-0 section-bg section-home"
     style="background-image: url(img/background-doctor.jpg)"
   >
-    <div class="container">
+    <div class="container container-index">
+      <div class="row">
+        <div class="col-12">
+          <div
+            class="main__banner mb-5"
+            style="background-image: url(img/func/banner-hospital.jpg)"
+          >
+            <h1 class="text-primary">Thông tin sức khỏe của bạn</h1>
+
+            <p class="lead">
+              Mang trải nghiệm dịch vụ y tế hiện đại đến ngay trong nhà bạn
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container container-index">
       <!-- <div class="row">
         <div class="col-12 col-lg-8 mb-4">
           <div class="banner-header text-left">
@@ -15,25 +31,8 @@
         </div>
       </div> -->
 
-      <div class="row">
-        <div class="col-12">
-          <div class="main__banner mb-5" style="background: url(img/func/banner-hospital.jpg)">
-
-            <h1 class="text-primary">
-             Thông tin sức khỏe của bạn
-            </h1>
-
-            <p class="lead">
-              Mang trải nghiệm dịch vụ y tế hiện đại đến ngay trong nhà bạn
-            </p>
-
-
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-12 col-lg-10">
+      <div class="row justify-content-center">
+        <div class="col-12 col-lg-9">
           <div class="row justify-content-center">
             <div class="col-12 col-md-4 mb-5">
               <div class="function__item h-100">
@@ -219,8 +218,7 @@
             </div>
           </div>
         </div>
-
-        <div class="col-12 col-lg-2">
+        <div class="col-12 col-lg-3">
           <Quangcao />
         </div>
       </div>
