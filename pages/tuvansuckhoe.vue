@@ -40,16 +40,10 @@
       ></div>
     </section>
 
-    <section class="section section-space">
+    <section class="section section-space bg-light">
       <div class="container">
         <div class="row">
           <div class="col-md-8">
-            <div class="row no-gutters align-items-center mb-4">
-              <div class="col">
-                <div class="card-title kq-title">Danh sách câu hỏi</div>
-              </div>
-            </div>
-
             <div class="required__box mb-4">
               <div style="">
                 Bạn có thể gửi câu hỏi cho Bác sĩ bệnh viện tại đây
@@ -73,10 +67,10 @@
               cancelTitle="Đóng cửa sổ"
               okTitle="Gửi câu hỏi"
               title="Gửi câu hỏi"
-              @ok="submitForm('form')"
+              @ok="submitForm"
               size="lg"
             >
-              <el-form ref="form" class="px-3" :model="form" label-width="0px">
+              <el-form class="px-3" label-width="0px">
                 <div class="row">
                   <div class="col-12">
                     <div class="mb-5">
@@ -84,12 +78,7 @@
                       <PersonalInfo />
                     </div>
 
-                    <el-form
-                      ref="form"
-                      :rules="rules"
-                      :model="form"
-                      label-width="0px"
-                    >
+                    <el-form label-width="0px">
                       <!-- <div class="info-widget"> -->
                       <h4 class="card-title">Mô tả triệu chứng</h4>
 
@@ -98,7 +87,6 @@
                           <div class="form-soju-label">Triệu chứng bệnh</div>
                           <el-input
                             type="textarea"
-                            :autosize="{ minRows: 3, maxRows: 10 }"
                             class="form-soju-input"
                             placeholder="Vui lòng ghi rõ triệu chứng"
                             v-model="form.trieuChungBenh"
@@ -113,7 +101,6 @@
                               <div class="form-soju-label">Diễn tiến bệnh</div>
                               <el-input
                                 type="textarea"
-                                :autosize="{ minRows: 2, maxRows: 10 }"
                                 class="form-soju-input"
                                 placeholder="Vui lòng ghi rõ triệu chứng"
                                 v-model="form.dienTienBenh"
@@ -128,7 +115,6 @@
                               <div class="form-soju-label">Tiền sử bệnh</div>
                               <el-input
                                 type="textarea"
-                                :autosize="{ minRows: 2, maxRows: 10 }"
                                 class="form-soju-input"
                                 placeholder="Vui lòng ghi rõ triệu chứng"
                                 v-model="form.tienSuBenh"
@@ -164,113 +150,113 @@
                         </el-checkbox-group>
                         <div>
                           Xem lại các quy định
-                          <a href @click.stop.prevent="handleOpenQuyDinh"
+                          <a
+                            href
+                            @click.stop.prevent="handleOpenQuyDinh('again')"
                             >tại đây</a
                           >
                         </div>
                       </el-form-item>
-
+                      <!-- 
                       <el-form-item class="mt-5">
                         <el-button
                           type="primary"
                           class="btn btn-primary submit-btn"
-                          @click.stop.prevent="submitForm('form')"
+                          @click.stop.prevent="submitForm"
                           >Gửi câu hỏi</el-button
                         >
-                      </el-form-item>
+                      </el-form-item> -->
                     </el-form>
                   </div>
                 </div>
               </el-form>
             </b-modal>
 
-
             <!-- Nay la danh sach cau hoi -->
 
+            <div class="card-title kq-title">Danh sách câu hỏi</div>
+
+     
+
+            <div class="doc-review review-listing">
+              <!-- Review Listing -->
+              <ul class="comments-list">
+                <li v-for="question in questionsList" :key="question.id">
+                  <div class="comment">
+                    <img
+                      class="avatar rounded-circle"
+                      alt="User Image"
+                      src="img/patients/patient6.jpg"
+                    />
+                    <div class="comment-body">
+                      <div class="meta-data">
+                        <span class="comment-author">
+                          {{ question.userAskFullName }}
+                        </span>
+                        <span class="comment-date"
+                          >Vào ngày {{ question.prettyCreatedDate }}</span
+                        >
+                      </div>
+
+                      <p
+                        class="recommended"
+                        v-bind:class="[
+                          question.statusId == 3 ? '' : 'text-warning',
+                        ]"
+                      >
+                        <i class="far fa-clock"></i>
+                        {{ question.status }}
+                      </p>
+
+                      <div
+                        class="comment-content"
+                        v-html="question.questionContent"
+                      ></div>
+                    </div>
+                  </div>
+
+                  <!-- Comment Reply -->
+                  <ul class="comments-reply" v-if="question.statusId == 3">
+                    <!-- Comment Reply List -->
+                    <li>
+                      <div class="comment">
+                        <img
+                          class="avatar rounded-circle"
+                          alt="User Image"
+                          src="http://benhvienkhuvucthuduc.vn/Content/uploads/ImageDoctors/6fb28875-81e8-4f0b-8340-a9d00120a18b_truong-khoa.jpg"
+                        />
+                        <div class="comment-body">
+                          <div class="meta-data">
+                            <span class="comment-author">
+                              <a href>
+                                <b>BS CKII.Từ Văn Lai</b>
+                              </a>
+                            </span>
+                            <span class="comment-date"
+                              >Trả lời 1 ngày trước</span
+                            >
+                          </div>
+                          <div
+                            class="comment-content"
+                            v-html="question.replyContent"
+                          ></div>
+                        </div>
+                      </div>
+                    </li>
+                    <!-- /Comment Reply List -->
+                  </ul>
+                  <!-- /Comment Reply -->
+                </li>
+
+                <!-- /Comment List -->
+              </ul>
+              <!-- /Comment List -->
+            </div>
           </div>
 
           <div class="col-md-4 theiaStickySidebar">
             <!-- Booking Summary -->
             <Quangcao />
-          </div>
-        </div>
-
-        <div class="mt-5">
-          <h4 class="mb-4">Danh sách câu hỏi trước</h4>
-
-          <div class></div>
-
-          <div class="doc-review review-listing">
-            <!-- Review Listing -->
-            <ul class="comments-list">
-              <li v-for="question in questionsList" :key="question.id">
-                <div class="comment">
-                  <img
-                    class="avatar rounded-circle"
-                    alt="User Image"
-                    src="img/patients/patient6.jpg"
-                  />
-                  <div class="comment-body">
-                    <div class="meta-data">
-                      <span class="comment-author">
-                        {{ question.userAskFullName }}
-                      </span>
-                      <span class="comment-date"
-                        >Vào ngày {{ question.prettyCreatedDate }}</span
-                      >
-                    </div>
-
-                    <p
-                      class="recommended"
-                      v-bind:class="[
-                        question.statusId == 3 ? '' : 'text-warning',
-                      ]"
-                    >
-                      <i class="far fa-clock"></i>
-                      {{ question.status }}
-                    </p>
-
-                    <div
-                      class="comment-content"
-                      v-html="question.questionContent"
-                    ></div>
-                  </div>
-                </div>
-
-                <!-- Comment Reply -->
-                <ul class="comments-reply" v-if="question.statusId == 3">
-                  <!-- Comment Reply List -->
-                  <li>
-                    <div class="comment">
-                      <img
-                        class="avatar rounded-circle"
-                        alt="User Image"
-                        src="http://benhvienkhuvucthuduc.vn/Content/uploads/ImageDoctors/6fb28875-81e8-4f0b-8340-a9d00120a18b_truong-khoa.jpg"
-                      />
-                      <div class="comment-body">
-                        <div class="meta-data">
-                          <span class="comment-author">
-                            <a href>
-                              <b>BS CKII.Từ Văn Lai</b>
-                            </a>
-                          </span>
-                          <span class="comment-date">Trả lời 1 ngày trước</span>
-                        </div>
-                        <div
-                          class="comment-content"
-                          v-html="question.replyContent"
-                        ></div>
-                      </div>
-                    </div>
-                  </li>
-                  <!-- /Comment Reply List -->
-                </ul>
-                <!-- /Comment Reply -->
-              </li>
-
-              <!-- /Comment List -->
-            </ul>
-            <!-- /Comment List -->
           </div>
         </div>
       </div>
@@ -317,27 +303,7 @@ export default {
         checkrule: false,
       },
       computed: {},
-      rules: {
-        trieuChungBenh: [
-          {
-            required: true,
-            message: "Vui lòng ghi triệu chứng bệnh",
-            trigger: "blur",
-          },
-          {
-            min: 20,
-            message: "Nội dung cần lớn hơn 20 kí tự",
-            trigger: "blur",
-          },
-        ],
 
-        checkrule: [
-          {
-            validator: checkBoxValidate,
-            trigger: "change",
-          },
-        ],
-      },
       questionsList: [],
     };
   },
@@ -348,9 +314,12 @@ export default {
     },
 
     handleOpenQuyDinh(status) {
-      console.log(status);
-      console.log("Nay la gi");
+      // console.log(status);
+      // console.log("Nay la gi");
       this.isQuyDinhPopup = status;
+      if (status == "again") {
+        this.isRecentOpen = true;
+      }
     },
 
     handleOpenNext(status) {
@@ -363,90 +332,118 @@ export default {
     //   this.isRecentOpen = true;
     // },
 
-    submitForm(formName) {
-      this.$refs[formName].validate((valid) => {
-        if (valid) {
-          this.$axios
-            .post("Question/Insert", {
-              questionContent: this.form.trieuChungBenh,
-              diseaseProgression: this.form.dienTienBenh,
-              diseaseHistory: this.form.tienSuBenh,
-              specialist: this.form.chuyenKhoa,
-            })
-            .then((response) => {
-              console.log(response);
-              if (response.data.success === true) {
-                const loading = this.$loading({
-                  lock: true,
-                  text: "Đang xử lý",
-                  spinner: "el-icon-loading",
-                  background: "rgba(0, 0, 0, 0.7)",
-                });
-                setTimeout(() => {
-                  loading.close();
-                  this.$router.push({
-                    name: "thanhcong",
-                    params: {
-                      message: response.data.message,
-                      doctorId: this.form.doctorId,
-                    },
-                  });
-                }, 2000);
+    submitForm(bvModalEvt) {
+      bvModalEvt.preventDefault();
 
-                // this.$alert(response.data.message, "Thông báo", {
-                //   confirmButtonText: "OK",
-                //   type: "success",
-                //   callback: (action) => {
-                //     // this.$message({
-                //     //   type: "info",
-                //     //   message: `action: ${action}`
-                //     // });
-                //   },
-                // });
-              } else {
-                this.$alert(response.data.message, "Thông báo", {
-                  confirmButtonText: "Đóng",
-                  type: "error",
-                  callback: (action) => {
-                    // this.$message({
-                    //   type: "info",
-                    //   message: `action: ${action}`
-                    // });
-                  },
-                });
-              }
-            })
-            .catch((error) => {
-              this.$alert(
-                "Đặt câu hỏi thất bại, vui lòng kiểm tra lại thông tin.",
-                "Thông báo",
-                {
-                  confirmButtonText: "Đóng",
-                  type: "error",
-                  callback: (action) => {
-                    // this.$message({
-                    //   type: "info",
-                    //   message: `action: ${action}`
-                    // });
-                  },
-                }
-              );
-              // this.errored = true;
+      if (this.form.trieuChungBenh == "") {
+        this.$alert("Vui lòng ghi triệu chứng bệnh", "Thông báo", {
+          confirmButtonText: "Đóng",
+          type: "error",
+          callback: (action) => {
+            // this.$message({
+            //   type: "info",
+            //   message: `action: ${action}`
+            // });
+          },
+        });
+        return;
+      }
+
+      if (this.form.dienTienBenh == "") {
+        this.$alert("Vui lòng ghi diễn tiến bệnh", "Thông báo", {
+          confirmButtonText: "Đóng",
+          type: "error",
+          callback: (action) => {
+            // this.$message({
+            //   type: "info",
+            //   message: `action: ${action}`
+            // });
+          },
+        });
+        return;
+      }
+
+      if (this.form.checkrule == false) {
+        this.$alert("Bạn chưa đồng ý nội quy", "Thông báo", {
+          confirmButtonText: "Đóng",
+          type: "error",
+          callback: (action) => {
+            // this.$message({
+            //   type: "info",
+            //   message: `action: ${action}`
+            // });
+          },
+        });
+        return;
+      }
+
+      this.$axios
+        .post("Question/Insert", {
+          questionContent: this.form.trieuChungBenh,
+          diseaseProgression: this.form.dienTienBenh,
+          diseaseHistory: this.form.tienSuBenh,
+          specialist: this.form.chuyenKhoa,
+        })
+        .then((response) => {
+          console.log(response);
+          if (response.data.success === true) {
+            const loading = this.$loading({
+              lock: true,
+              text: "Đang xử lý",
+              spinner: "el-icon-loading",
+              background: "rgba(0, 0, 0, 0.7)",
             });
-        } else {
-          //  this.$alert("Có lỗi xảy ra, vui lòng thử lại", "Thông báo", {
-          //         confirmButtonText: "Đóng",
-          //         type: "error",
-          //         callback: (action) => {
-          //           // this.$message({
-          //           //   type: "info",
-          //           //   message: `action: ${action}`
-          //           // });
-          //         },
-          //       });
-          return false;
-        }
-      });
+            setTimeout(() => {
+              loading.close();
+              this.$router.push({
+                name: "thanhcong",
+                params: {
+                  message: response.data.message,
+                  doctorId: this.form.doctorId,
+                },
+              });
+            }, 2000);
+
+            // this.$alert(response.data.message, "Thông báo", {
+            //   confirmButtonText: "OK",
+            //   type: "success",
+            //   callback: (action) => {
+            //     // this.$message({
+            //     //   type: "info",
+            //     //   message: `action: ${action}`
+            //     // });
+            //   },
+            // });
+          } else {
+            this.$alert(response.data.message, "Thông báo", {
+              confirmButtonText: "Đóng",
+              type: "error",
+              callback: (action) => {
+                // this.$message({
+                //   type: "info",
+                //   message: `action: ${action}`
+                // });
+              },
+            });
+          }
+        })
+        .catch((error) => {
+          this.$alert(
+            "Đặt câu hỏi thất bại, vui lòng kiểm tra lại thông tin.",
+            "Thông báo",
+            {
+              confirmButtonText: "Đóng",
+              type: "error",
+              callback: (action) => {
+                // this.$message({
+                //   type: "info",
+                //   message: `action: ${action}`
+                // });
+              },
+            }
+          );
+          // this.errored = true;
+        });
     },
   },
   // watch: {

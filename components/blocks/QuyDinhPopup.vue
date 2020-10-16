@@ -416,10 +416,10 @@ export default {
                 this.$emit("open-next", true);
 
 
-                this.$message({
-                  type: "success",
-                  message: "Xác nhận thành công",
-                });
+                // this.$message({
+                //   type: "success",
+                //   message: "Xác nhận thành công",
+                // });
               }, 2000);
 
 
