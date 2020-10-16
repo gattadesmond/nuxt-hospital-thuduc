@@ -288,7 +288,7 @@ export default {
   },
   data() {
     return {
-      isQuyDinhPopup: true,
+      isQuyDinhPopup: false,
       isRecentOpen: false,
       dateValue: "",
       typeRule: "tracuulichsukhambenh",

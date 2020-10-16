@@ -355,7 +355,7 @@ export default {
   },
   data() {
     return {
-      isQuyDinhPopup: true,
+      isQuyDinhPopup: false,
       isRecentOpen: false,
       typeRule: "ketquacanlamsang",
       form: {

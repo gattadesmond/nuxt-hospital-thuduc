@@ -39,13 +39,54 @@
       ></div>
     </section>
 
-    <section
-      class="section section-space"
-      style="background-color: rgba(238, 242, 247, 1)"
-    >
+    <section class="section section-space">
       <div class="container">
         <div class="row">
-          <div class="col-md-7 col-lg-8">
+          <div class="col-md-8">
+            <div class="row no-gutters align-items-center mb-4">
+              <div class="col">
+                <div class="card-title kq-title">Danh sách câu hỏi</div>
+              </div>
+            </div>
+
+            <div class="required__box mb-4">
+              <div style="">
+                Bạn có thể gửi câu hỏi cho Bác sĩ bệnh viện tại đây
+              </div>
+              <div class="text-center mt-3">
+                <b-button v-b-modal.modal-1 variant="primary" size=""
+                  >Gửi câu hỏi</b-button
+                >
+              </div>
+            </div>
+
+            <b-modal
+              id="modal-1"
+              centered
+              cancelTitle="Đóng cửa sổ"
+              okTitle="Gửi câu hỏi"
+              title="Gửi câu hỏi"
+              @ok="submitForm"
+            >
+              <el-form ref="form" class="px-3" :model="form" label-width="0px">
+                <div class="row">
+                  <div class="col-12">
+                    
+                   
+
+                    <div class="card mt-4 info__card">
+                      <div
+                        class="font-weight-bold mb-0"
+                        style="font-size: 16px"
+                      >
+                        Thông tin cá nhân
+                      </div>
+                      <PersonalInfo />
+                    </div>
+                  </div>
+                </div>
+              </el-form>
+            </b-modal>
             <div class="card border-0 card__soju">
               <div class="card-body">
                 <div>
@@ -153,7 +194,7 @@
             </div>
           </div>
 
-          <div class="col-md-5 col-lg-4 theiaStickySidebar">
+          <div class="col-md-4 theiaStickySidebar">
             <!-- Booking Summary -->
             <Quangcao />
           </div>
@@ -269,7 +310,7 @@ export default {
       }
     };
     return {
-      isQuyDinhPopup: true,
+      isQuyDinhPopup: false,
       isRecentOpen: false,
       typeRule: "tuvansuckhoe",
       form: {
