@@ -5,16 +5,15 @@
       <div class="container">
         <div class="row">
           <div
-            class="page-footer-logo col-lg-4 col-md-12 col-12 align-self-center"
+            class="page-footer-logo col-lg-3 col-md-12 col-12 align-self-center"
           >
-            <a href="/home/trangchu/" class="page-footer-logo-img">
+            <nuxt-link to="/" class="page-footer-logo-img">
               <img
                 class="img-fluid"
                 src="http://www.benhvienkhuvucthuduc.vn/Content/assets/img/logo-white.png"
-                width="300"
+                width="200"
                 alt=""
-              />
-            </a>
+            /></nuxt-link>
           </div>
 
           <!-- Thông tin liên hệ -->

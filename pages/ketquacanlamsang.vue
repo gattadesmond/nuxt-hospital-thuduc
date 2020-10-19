@@ -105,12 +105,22 @@
                           </div>
 
                           <div class="col-6">
-                            <div class="mb-2">Chọn ngày xét nghiệm</div>
-                            <el-date-picker
+                            <div class="mb-2">Chọn khoảng thời gian xét nghiệm</div>
+                            <!-- <el-date-picker
                               v-model="form.dateSelect"
                               type="date"
                               placeholder="Ngày khám"
                               format="dd-MM-yyyy"
+                            ></el-date-picker> -->
+
+                            <el-date-picker
+                              v-model="form.dateSelect"
+                              type="daterange"
+                              align="right"
+                              start-placeholder="Ngày bắt đầu"
+                              end-placeholder="Ngày kết thúc"
+                              format="dd/MM/yyyy"
+                              value-format="dd/MM/yyyy"
                             ></el-date-picker>
                           </div>
 
@@ -439,6 +449,7 @@ export default {
         loaiHinh: "",
         dateSelect: "",
         checkrule: false,
+        address: ""
       },
       filtersList: [
         {
@@ -550,9 +561,9 @@ export default {
       this.$axios
         .post("Radiograpy/Insert", {
           isReceivePostOffice: this.isPostOffice,
-          name: this.form.loaiHinh,
           serviceId: this.form.loaiHinh,
-          requestDate: this.form.dateSelect,
+          addressDelivery: this.form.address,
+          requestTime: this.form.dateSelect.join(" - "),
           note: this.form.noiDung,
         })
         .then((response) => {
@@ -566,13 +577,19 @@ export default {
             });
             setTimeout(() => {
               loading.close();
-              this.$router.push({
-                name: "thanhcong",
-                params: {
-                  message: response.data.message,
-                  doctorId: this.form.doctorId,
-                },
-              });
+              console.log(response);
+              window.location.href = response.data.data.callbackUrl 
+
+              // this.$router.push({ name: response.data.data.callbackUrl })
+              // this.$router.go({
+              //   // name: "thanhcong",
+              //   path: response.data.data.callbackUrl,
+              //   params: {
+              //     totolMoney: response.data.data.totolMoney,
+              //     transactionId: response.data.data.transactionId,
+              //     type: response.data.data.type
+              //   },
+              // });
             }, 2000);
 
             // this.$alert(response.data.message, "Thông báo", {
