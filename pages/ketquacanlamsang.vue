@@ -184,6 +184,7 @@
                 </b-modal>
               </div>
             </div>
+
             <template v-if="radiograpyList.length">
               <div class="card card-table">
                 <div class="card-body">
@@ -193,16 +194,16 @@
                       <thead>
                         <tr>
                           <th>Ngày yêu cầu</th>
-                          <th>Ngày nhận</th>
+                          <!-- <th>Ngày nhận</th> -->
                           <th>Trạng thái</th>
                           <th>Ghi chú</th>
-                          <th></th>
+                          <th>Chức năng</th>
                         </tr>
                       </thead>
                       <tbody>
                         <tr v-for="item in radiograpyList" :key="item.id">
                           <td>{{ item.requestDate | formatDate }}</td>
-                          <td>{{ item.uploadDate | formatDate }}</td>
+                          <!-- <td>{{ item.uploadDate | formatDate }}</td> -->
                           <td>
                             <span
                               v-if="item.status == 3"
@@ -223,6 +224,7 @@
                             >
                           </td>
                           <td>{{ item.note }}</td>
+
                           <td class="text-right">
                             <div class="table-action" v-if="item.status == 3">
                               <!-- <a href="invoice-view.html" class="btn btn-sm bg-info-light">
@@ -233,11 +235,14 @@
                                 :src="url"
                                 :preview-src-list="item.fullFiles"
                               ></el-image>
+
+
+
                               <!-- <img src="img/btn-xem.svg" alt /> -->
 
-                              <!-- <a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
-                                <i class="fas fa-print"></i> Print
-                              </a>-->
+                              <a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
+                                <i class="fas fa-download"></i> Tải về
+                              </a>
                             </div>
                           </td>
                         </tr>

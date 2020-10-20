@@ -370,7 +370,21 @@ export default {
         );
       } else {
         // this.dialogVisible = false;
-      
+        var serviceNameId = "0";
+
+        if (this.type == "tuvansuckhoe") {
+          serviceNameId = "6";
+        } else if (this.type == "ketquacanlamsang") {
+          serviceNameId = "4";
+        } else if (this.type == "tracuulichsukhambenh") {
+          serviceNameId = "3";
+        } else if (this.type == "dangkykhambenh") {
+          serviceNameId = "1";
+        } else if (this.type == "dongvienphi") {
+          serviceNameId = "5";
+        } else {
+          serviceNameId = "0";
+        }
 
         this.$axios
           .post("Tracking/Insert", {
@@ -386,7 +400,8 @@ export default {
             // HospitalFee = 5,
             // [Description("Đặt câu hỏi")]
             // Question =6,
-            serviceName: "1",
+
+            serviceName: serviceNameId,
           })
           .then((response) => {
             console.log(response);
@@ -412,16 +427,14 @@ export default {
                 // });
 
                 this.$emit("open-modal", false);
-                
-                this.$emit("open-next", true);
 
+                this.$emit("open-next", true);
 
                 // this.$message({
                 //   type: "success",
                 //   message: "Xác nhận thành công",
                 // });
               }, 2000);
-
 
               // this.$alert(response.data.message, "Thông báo", {
               //   confirmButtonText: "OK",
