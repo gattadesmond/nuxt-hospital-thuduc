@@ -143,9 +143,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.section-home {
-  min-height: calc(100vh - 60px);
-}
+
 .login-right {
   background-color: #fff;
   border: 1px solid #f0f0f0;

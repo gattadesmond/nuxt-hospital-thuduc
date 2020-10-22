@@ -639,13 +639,13 @@ export default {
         });
     },
   },
-  filters: {
-    formatDate: function (value) {
-      if (!value) return "";
-      value = value.toString();
-      return moment(String(value)).format("DD/MM/YY hh:mm");
-    },
-  },
+  // filters: {
+  //   formatDate: function (value) {
+  //     if (!value) return "";
+  //     value = value.toString();
+  //     return moment(String(value)).format("DD/MM/YY hh:mm");
+  //   },
+  // },
   watch: {},
   mounted() {
     this.getRadiograpyList();

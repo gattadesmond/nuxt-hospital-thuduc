@@ -70,6 +70,7 @@ export default {
    ** https://nuxtjs.org/guide/plugins
    */
   plugins: [
+    "~/plugins/filters.js",
     "~/plugins/vue-placeholders.js",
     "~/plugins/vue-observe-visibility.client.js",
     "~/plugins/vue-element-ui.js"

@@ -113,7 +113,5 @@ export default {
 
 
 <style lang="scss" scoped>
-.section-home {
-  min-height: calc(100vh - 60px);
-}
+
 </style>
