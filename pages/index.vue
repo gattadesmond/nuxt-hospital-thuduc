@@ -10,7 +10,10 @@
             class="main__banner mb-5"
             style="background-image: url(img/func/banner-hospital.jpg)"
           >
-            <h1 class="text-primary">Thông tin sức khỏe của bạn</h1>
+            <h1 class="text-primary">
+              Thông tin sức khỏe của bạn
+              {{ this.$store.state.currentArticle[0].title }}
+            </h1>
 
             <p class="lead">
               Mang trải nghiệm dịch vụ y tế hiện đại đến ngay trong nhà bạn
@@ -34,49 +37,14 @@
       <div class="row justify-content-center">
         <div class="col-12 col-lg-9">
           <div class="row justify-content-center">
-            <div class="col-12 col-md-4 mb-5">
-              <div class="function__item h-100">
-                <nuxt-link to="/tuvansuckhoe" class="link-absolute"></nuxt-link>
-                <div class="function__image">
-                  <div
-                    class="embed-responsive embed-responsive-21by9 overflow-hidden"
-                  >
-                    <!-- <img
-                  src="http://benhvienkhuvucthuduc.vn/Content/assets/img/healthcare/NoiKhoa.jpg"
-                  class="embed-responsive-img img-cover"
-                  alt
-                />-->
-                    <img
-                      src="img/func/BacSiTuVanOnline.jpg"
-                      class="embed-responsive-img img-cover"
-                      loading="lazy"
-                      alt
-                    />
-                  </div>
-                </div>
-
-                <div class="function__body">
-                  <div class="function__icon">
-                    <img
-                      src="/img/svg/009-doctor.svg"
-                      class="svg-icon fill-current"
-                      data-inject-svg
-                      alt
-                    />
-                  </div>
-                  <div class="function__title">Tư vấn sức khỏe</div>
-                  <div class="function__desc">
-                    Hãy cho chúng tôi biết bạn đang gặp khó khăn gì về tình
-                    trang sức khỏe của bạn
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-12 col-md-4 mb-5">
+            <div
+              class="col-12 col-md-4 mb-5"
+              v-for="item in menus"
+              :key="item.id"
+            >
               <div class="function__item h-100">
                 <nuxt-link
-                  to="/ketquacanlamsang"
+                  v-bind:to="item.url"
                   class="link-absolute"
                 ></nuxt-link>
                 <div class="function__image">
@@ -84,10 +52,10 @@
                     class="embed-responsive embed-responsive-21by9 overflow-hidden"
                   >
                     <img
-                      src="img/func/XemCanLamSang.jpg"
+                      v-bind:src="item.avatar"
                       class="embed-responsive-img img-cover"
-                      alt
                       loading="lazy"
+                      alt
                     />
                   </div>
                 </div>
@@ -95,127 +63,20 @@
                 <div class="function__body">
                   <div class="function__icon">
                     <img
-                      src="/img/svg/027-laboratory.svg"
+                      v-bind:src="item.icon"
                       class="svg-icon fill-current"
                       data-inject-svg
                       alt
                     />
                   </div>
-                  <div class="function__title">Kết quả cận lâm sàng</div>
+                  <div class="function__title">{{item.name}}</div>
                   <div class="function__desc">
-                    Hãy cho chúng tôi biết bạn đang cần tra cứu thông tin gì
-                    liên quan đến sức khỏe hiện tại của bạn
+                   {{item.sapo}}
                   </div>
                 </div>
               </div>
             </div>
 
-            <div class="col-12 col-md-4 mb-5">
-              <div class="function__item h-100">
-                <nuxt-link
-                  to="/tracuulichsukhambenh"
-                  class="link-absolute"
-                ></nuxt-link>
-                <div class="function__image">
-                  <div
-                    class="embed-responsive embed-responsive-21by9 overflow-hidden"
-                  >
-                    <img
-                      src="img/func/XemToaThuoc.jpg"
-                      class="embed-responsive-img img-cover"
-                      alt
-                      loading="lazy"
-                    />
-                  </div>
-                </div>
-
-                <div class="function__body">
-                  <div class="function__icon">
-                    <img
-                      src="/img/svg/017-clipboard.svg"
-                      class="svg-icon fill-current"
-                      data-inject-svg
-                      alt
-                    />
-                  </div>
-                  <div class="function__title">Tra cứu lịch sử khám bệnh</div>
-                  <div class="function__desc">
-                    Hãy cho chúng tôi biết bạn đang cần tra cứu lịch sử khám
-                    bệnh của bạn trong thời gian nào?
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-12 col-md-4 mb-5">
-              <div class="function__item h-100">
-                <nuxt-link
-                  to="/dangkykhambenh"
-                  class="link-absolute"
-                ></nuxt-link>
-                <div class="function__image">
-                  <div
-                    class="embed-responsive embed-responsive-21by9 overflow-hidden"
-                  >
-                    <img
-                      src="img/func/DatLichKham.jpg"
-                      class="embed-responsive-img img-cover"
-                      alt
-                      loading="lazy"
-                    />
-                  </div>
-                </div>
-
-                <div class="function__body">
-                  <div class="function__icon">
-                    <img
-                      src="/img/svg/037-quarantine.svg"
-                      class="svg-icon fill-current"
-                      data-inject-svg
-                      alt
-                    />
-                  </div>
-                  <div class="function__title">Đăng ký khám bệnh</div>
-                  <div class="function__desc">
-                    Hãy cho chúng tôi biết bạn đang cần đến khám bệnh ngày nào,
-                    bác sĩ nào sẽ hỗ trợ bạn
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-12 col-md-4 mb-5">
-              <div class="function__item h-100">
-                <nuxt-link to="/dongvienphi" class="link-absolute"></nuxt-link>
-                <div class="function__image">
-                  <div
-                    class="embed-responsive embed-responsive-21by9 overflow-hidden"
-                  >
-                    <img
-                      src="img/func/ThanhToanOnline.jpg"
-                      class="embed-responsive-img img-cover"
-                      alt
-                      loading="lazy"
-                    />
-                  </div>
-                </div>
-
-                <div class="function__body">
-                  <div class="function__icon">
-                    <img
-                      src="/img/svg/039-bill.svg"
-                      class="svg-icon fill-current"
-                      data-inject-svg
-                      alt
-                    />
-                  </div>
-                  <div class="function__title">Đóng tiền viện phí</div>
-                  <div class="function__desc">
-                    Chúng tôi sẽ trả lời bạn trong 24h
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
         <div class="col-12 col-lg-3">
@@ -244,6 +105,11 @@ export default {
         }
       },
     });
+  },
+  computed: {
+    menus() {
+      return this.$store.state.menu.list;
+    },
   },
   head() {
     return {
