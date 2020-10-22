@@ -45,21 +45,10 @@
               <i class="fas fa-chevron-down"></i>
             </a>
             <ul class="submenu">
-              <li>
-                <nuxt-link to="/tuvansuckhoe">Tư vấn sức khỏe</nuxt-link>
+              <li v-for="item in menus" :key="item.id">
+                <nuxt-link  v-bind:to="item.url"> {{item.name}}</nuxt-link>
               </li>
-              <li>
-                <nuxt-link to="/ketquacanlamsang">Kết quả cận lâm sàng</nuxt-link>
-              </li>
-              <li>
-                <nuxt-link to="/tracuulichsukhambenh">Tra cứu lịch sử khám bệnh</nuxt-link>
-              </li>
-              <li>
-                <nuxt-link to="/dangkykhambenh">Đặt lịch khám Bác sĩ</nuxt-link>
-              </li>
-              <li>
-                <nuxt-link to="/dongvienphi">Đóng tiền viện phí</nuxt-link>
-              </li>
+             
             </ul>
           </li>
 
@@ -92,7 +81,10 @@
 
         <!-- User Menu -->
 
-        <li class="nav-item dropdown has-arrow logged-item" v-if="this.$auth.loggedIn">
+        <li
+          class="nav-item dropdown has-arrow logged-item"
+          v-if="this.$auth.loggedIn"
+        >
           <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
             <span class="user-img">
               <b-avatar
@@ -114,15 +106,19 @@
 
               <div class="user-text">
                 <div>
-                  <strong>{{this.$auth.user.fullName}}</strong>
+                  <strong>{{ this.$auth.user.fullName }}</strong>
                 </div>
-                <p class="text-muted mb-0">{{this.$auth.user.email}}</p>
+                <p class="text-muted mb-0">{{ this.$auth.user.email }}</p>
               </div>
             </div>
             <!-- <nuxt-link to="/profile" class="dropdown-item">Thông tin</nuxt-link> -->
             <!-- <a class="dropdown-item" href="doctor-profile-settings.html">Tùy chọn</a> -->
-            <nuxt-link to="/profile" class="dropdown-item">Trang cá nhân</nuxt-link>
-            <a class="dropdown-item" href @click.stop.prevent="logout()">Thoát</a>
+            <nuxt-link to="/profile" class="dropdown-item"
+              >Trang cá nhân</nuxt-link
+            >
+            <a class="dropdown-item" href @click.stop.prevent="logout()"
+              >Thoát</a
+            >
           </div>
         </li>
 
@@ -137,6 +133,11 @@ export default {
   components: {},
   data() {
     return {};
+  },
+  computed: {
+    menus() {
+      return this.$store.state.menu.list;
+    },
   },
   methods: {
     logout() {
