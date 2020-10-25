@@ -10,7 +10,8 @@
       center
     >
       <div>
-        <template v-if="type == 'tuvansuckhoe'">
+        <!-- Tu van suc khoe -->
+        <template v-if="getServiceId == 6">
           <div class="noidung-quydinh">
             <p style="font-size: 16px">
               <i class="fas fa-coins"></i> Phí dịch vụ:
@@ -75,8 +76,8 @@
             </p>
           </div>
         </template>
-
-        <template v-if="type == 'ketquacanlamsang'">
+        <!-- ket qua can lam sang -->
+        <template v-if="getServiceId == 4">
           <div class="noidung-quydinh">
             <p style="font-size: 16px">
               <i class="fas fa-caret-right"></i> Áp dụng cho các cận lâm sàng đã
@@ -204,8 +205,8 @@
             </p>
           </div>
         </template>
-
-        <template v-if="type == 'tracuulichsukhambenh'">
+        <!-- Tra cứu lịch sử khám bệnh -->
+        <template v-if="getServiceId == 3">
           <div class="noidung-quydinh">
             <p style="font-size: 16px">
               <i class="fas fa-caret-right"></i> Áp dụng cho các đối tượng đã
@@ -261,8 +262,8 @@
             </p>
           </div>
         </template>
-
-        <template v-if="type == 'dangkykhambenh'">
+        <!-- Đăng ký khám bệnh -->
+        <template v-if="getServiceId == 1">
           <div class="noidung-quydinh">
             <p style="font-size: 16px">
               <i class="fas fa-caret-right"></i>Đăng ký trước 14h của ngày hôm
@@ -344,6 +345,7 @@ export default {
   data() {
     return {
       checkOK: "not_accepted",
+      getServiceId: 0,
       // dialogVisible: true,
     };
   },
@@ -357,6 +359,9 @@ export default {
     //   this.dialogVisible = false;
     // }
     // console.log(this.menus.filter((sId) => sId.url.includes(this.$route.fullPath))[0].id | 0)
+    this.getServiceId =
+      this.menus.filter((sId) => sId.url.includes(this.$route.fullPath))[0].id |
+      0;
   },
   methods: {
     comeBack() {
@@ -376,7 +381,9 @@ export default {
         );
       } else {
         // this.dialogVisible = false;
-        var serviceNameId = this.menus.filter((sId) => sId.url.includes(this.$route.fullPath))[0].id | 0;
+        var serviceNameId =
+          this.menus.filter((sId) => sId.url.includes(this.$route.fullPath))[0]
+            .id | 0;
 
         console.log(serviceNameId);
 

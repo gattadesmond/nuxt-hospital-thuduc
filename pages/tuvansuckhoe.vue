@@ -5,7 +5,6 @@
       @open-next="handleOpenNext"
       :recentOpen="isRecentOpen"
       :isOpen="isQuyDinhPopup"
-      :type="typeRule"
     />
 
     <section class="section section-space s-heading s-heading-dark">
@@ -301,7 +300,6 @@ export default {
     return {
       isQuyDinhPopup: false,
       isRecentOpen: false,
-      typeRule: "tuvansuckhoe",
       isOpenNext: false,
       form: {
         trieuChungBenh: "",

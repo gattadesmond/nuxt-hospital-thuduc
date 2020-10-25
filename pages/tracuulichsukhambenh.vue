@@ -4,7 +4,6 @@
       @open-modal="handleOpenQuyDinh"
       :recentOpen="isRecentOpen"
       :isOpen="isQuyDinhPopup"
-      :type="typeRule"
     />
 
     <section class="section section-space s-heading s-heading-dark">
@@ -291,7 +290,6 @@ export default {
       isQuyDinhPopup: false,
       isRecentOpen: false,
       dateValue: "",
-      typeRule: "tracuulichsukhambenh",
       form: {
         loaiKham: "1",
         noidung: "",
