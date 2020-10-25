@@ -285,3 +285,9 @@ a {
   display: flex;
   align-items: center;
 }
+
+.card-table .table td, .card-table .table th {
+  // border-top: 1px solid #e2e5e8;
+  // padding: 1rem 0.75rem;
+  white-space: inherit !important;
+}

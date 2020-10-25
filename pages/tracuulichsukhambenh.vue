@@ -2,6 +2,7 @@
   <div class="bg-white">
     <QuyDinhPopup
       @open-modal="handleOpenQuyDinh"
+      @open-next="handleOpenNext"
       :recentOpen="isRecentOpen"
       :isOpen="isQuyDinhPopup"
     />
@@ -15,58 +16,63 @@
                 <li class="breadcrumb-item">
                   <nuxt-link to="/">Trang chủ</nuxt-link>
                 </li>
-                <li class="breadcrumb-item active" aria-current="page">Tra cứu lịch sử khám bệnh</li>
+                <li class="breadcrumb-item active" aria-current="page">
+                  Tra cứu lịch sử khám bệnh
+                </li>
               </ol>
             </nav>
             <div class="banner-header text-left">
               <h1 class="text-white">Tra cứu lịch sử khám bệnh</h1>
-              <p class="lead text-white">Hãy cho chúng tôi biết bạn đang cần tra cứu lịch sử khám bệnh của bạn trong thời gian nào?</p>
+              <p class="lead text-white">
+                Hãy cho chúng tôi biết bạn đang cần tra cứu lịch sử khám bệnh
+                của bạn trong thời gian nào?
+              </p>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="s-heading-bg w-100" style="background-image: url(img/bv/bg-heading.jpg)"></div>
+      <div
+        class="s-heading-bg w-100"
+        style="background-image: url(img/bv/bg-heading.jpg)"
+      ></div>
     </section>
 
     <section class="section section-space bg-white">
       <div class="container">
         <div class="row">
           <div class="col-md-8">
-            <div class="row no-gutters align-items-center mb-4">
-              <div class="col">
-                <div class="card-title kq-title">Danh sách toa thuốc</div>
-              </div>
-              <div class="col-auto">
-                <div class="kq-filter">
-                  <el-date-picker
-                    v-model="dateValue"
-                    type="daterange"
-                    align="right"
-                    start-placeholder="Ngày bắt đầu"
-                    end-placeholder="Ngày kết thúc"
-                    default-value="2010-10-01"
-                    format="dd-MM-yyyy"
-                  ></el-date-picker>
-                </div>
-              </div>
-            </div>
-
             <div class="required__box mb-4">
-              <div
-                class
-              >Bạn chưa có toa thuốc mong muốn, vuio lòng gửi yêu cầu miễn phí khi nhấn nút bên dưới</div>
+              <div class>
+                Bạn chưa có toa thuốc mong muốn, vui lòng gửi yêu cầu miễn phí
+                khi nhấn nút bên dưới
+              </div>
               <div class="text-center mt-3">
-                <b-button v-b-modal.modal-2 variant="primary" size="sm">Yêu cầu đơn thuốc</b-button>
+                <b-button
+                  variant="primary"
+                  size=""
+                  @click.stop.prevent="handleOpenQuyDinh(true)"
+                  >Yêu cầu đơn thuốc</b-button
+                >
 
                 <b-modal
+                  v-model="isOpenNext"
                   id="modal-2"
                   centered
+                  no-close-on-esc
+                  no-close-on-backdrop
                   cancelTitle="Đóng cửa sổ"
                   okTitle="Yêu cầu"
                   title="Yêu cầu đơn thuốc"
+                  @ok="submitForm"
+                  size="lg"
                 >
-                  <el-form ref="form" class="px-3" :model="form" label-width="0px">
+                  <el-form
+                    ref="form"
+                    class="px-3"
+                    :model="form"
+                    label-width="0px"
+                  >
                     <div class="row">
                       <div class="col-12">
                         <!-- <h5 class="font-weight-bold mb-3">Chọn ngày khám</h5> -->
@@ -89,16 +95,18 @@
                             <el-date-picker
                               v-model="form.dateSelect"
                               type="date"
-                              placeholder="Pick a day"
+                              placeholder="Chọn ngày"
                             ></el-date-picker>
                           </div>
 
                           <div class="col-md-10">
-                            <div class="mb-2 mt-3">Thông tin về đơn thuốc (nếu có)</div>
+                            <div class="mb-2 mt-3">
+                              Thông tin về đơn thuốc (nếu có)
+                            </div>
                             <el-form-item class="mb-0" label>
                               <el-input
                                 type="textarea"
-                                :autosize="{ minRows: 3, maxRows: 10}"
+                                :autosize="{ minRows: 3, maxRows: 10 }"
                                 placeholder
                                 v-model="form.noidung"
                               ></el-input>
@@ -115,12 +123,18 @@
                               </el-checkbox-group>
                             </el-form-item>
                           </div>
-                        </div>
 
-                        <div class="card mt-4 info__card">
-                          <div class="font-weight-bold mb-3">Thông tin bệnh nhân</div>
-
-                          <PersonalInfo />
+                          <div class="col-12">
+                            <div class="card info__card">
+                              <div
+                                class="font-weight-bold mb-0"
+                                style="font-size: 16px"
+                              >
+                                Thông tin bệnh nhân
+                              </div>
+                              <PersonalInfo />
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -129,136 +143,85 @@
               </div>
             </div>
 
-            <div class="box-listed">
-              <div class="box-title-list">
-                <div>Tháng 11</div>
+            <div class="card-title kq-title mt-4">Lịch sử</div>
+
+            <template v-if="dataList.length">
+              <div class="card card-table">
+                <div class="card-body">
+                  <!-- Invoice Table -->
+                  <div class="table-responsive">
+                    <table class="table table-center mb-0">
+                      <thead>
+                        <tr>
+                          <th>Ngày yêu cầu</th>
+                          <!-- <th>Ngày nhận</th> -->
+                          <th>Trạng thái</th>
+                          <th>Ghi chú</th>
+                          <th>Chức năng</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr v-for="item in dataList" :key="item.id">
+                          <td>{{ item.requestDate | formatDate }}</td>
+                          <!-- <td>{{ item.uploadDate | formatDate }}</td> -->
+                          <td>
+                            <span
+                              v-if="item.status == 3"
+                              class="ml-1 badge badge-pill bg-success-light"
+                              >Thành công</span
+                            >
+
+                            <span
+                              v-if="item.status == 1"
+                              class="ml-1 badge badge-pill bg-primary-light"
+                              >Đang chờ</span
+                            >
+
+                            <span
+                              v-if="item.status == 2"
+                              class="ml-1 badge badge-pill bg-danger-light"
+                              >Thất bại</span
+                            >
+                          </td>
+                          <td>
+                            <div style="width: 150px; font-size: 13px">
+                              <i> {{ item.note }}</i>
+                            </div>
+                          </td>
+                          <td class="text-right">
+                            <div class="table-action" v-if="item.status == 3">
+                              <!-- <a href="invoice-view.html" class="btn btn-sm bg-info-light">
+                                <i class="far fa-eye"></i> Xem
+                              </a>-->
+                              <el-image
+                                style="width: 93px; height: 32px"
+                                :src="url"
+                                :preview-src-list="item.fullFiles"
+                              ></el-image>
+
+                              <!-- <img src="img/btn-xem.svg" alt /> -->
+
+                              <a
+                                href="javascript:void(0);"
+                                class="btn btn-sm bg-primary-light"
+                              >
+                                <i class="fas fa-download"></i> Tải về
+                              </a>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
               </div>
-              <ul class="list-unstyled box-item-list">
-                <li>
-                  <div class="ic">
-                    <i class="far fa-file-alt"></i>
-                  </div>
-                  <div class="date">
-                    <span>19/09/2019 10:25</span>
-                  </div>
+            </template>
 
-                  <div class="name text-truncate">
-                    <span class>Xét nghiệm</span>
-                    <span class="ml-1 badge badge-pill bg-success-light">Miễn phí</span>
-                  </div>
-
-                  <div class="func">
-                    <div class="action text-right">
-                      <a href="invoice-view.html" class="btn btn-sm bg-info-light">
-                        <i class="far fa-eye"></i> Xem
-                      </a>
-                      <a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
-                        <i class="fas fa-print"></i> In
-                      </a>
-                    </div>
-                  </div>
-                </li>
-
-                <li>
-                  <div class="ic">
-                    <i class="far fa-file-alt"></i>
-                  </div>
-                  <div class="date">
-                    <span>18/09/2019 08:25</span>
-                  </div>
-
-                  <div class="name text-truncate">
-                    <span class>X-Quang</span>
-                    <span class="ml-1 badge badge-pill bg-success-light">Miễn phí</span>
-                  </div>
-
-                  <div class="func">
-                    <div class="action text-right">
-                      <a href="invoice-view.html" class="btn btn-sm bg-info-light">
-                        <i class="far fa-eye"></i> Xem
-                      </a>
-                      <a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
-                        <i class="fas fa-print"></i> In
-                      </a>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-            </div>
-
-            <div class="box-listed">
-              <div class="box-title-list">
-                <div>Tháng 10</div>
-              </div>
-              <ul class="list-unstyled box-item-list">
-                <li>
-                  <div class="ic">
-                    <i class="far fa-file-alt"></i>
-                  </div>
-                  <div class="date">
-                    <span>19/09/2019 10:25</span>
-                  </div>
-
-                  <div class="name text-truncate">
-                    <span class>CT, Scanner MRI</span>
-                    <span class="ml-1 badge badge-pill bg-primary-light">Tốn phí</span>
-                  </div>
-
-                  <div class="func">
-                    <div class="action text-right">
-                      <a href="invoice-view.html" class="btn btn-sm bg-info-light">
-                        <i class="far fa-eye"></i> Xem
-                      </a>
-                      <a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
-                        <i class="fas fa-print"></i> In
-                      </a>
-                    </div>
-                  </div>
-                </li>
-
-                <li>
-                  <div class="ic">
-                    <i class="far fa-file-alt"></i>
-                  </div>
-                  <div class="date">
-                    <span>18/09/2019 08:25</span>
-                  </div>
-
-                  <div class="name text-truncate">
-                    <span class>Nội soi</span>
-                    <span class="ml-1 badge badge-pill bg-warning-light">Đang chờ</span>
-                  </div>
-
-                  <div class="func">
-                    <div class="action text-right">
-                      <a href="invoice-view.html" class="btn btn-sm bg-info-light">
-                        <i class="far fa-eye"></i> Xem
-                      </a>
-                      <a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
-                        <i class="fas fa-print"></i> In
-                      </a>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="ic">
-                    <i class="far fa-file-alt"></i>
-                  </div>
-                  <div class="date">
-                    <span>18/09/2019 08:25</span>
-                  </div>
-
-                  <div class="name text-truncate">
-                    <span class>Nội soi</span>
-                    <span class="ml-1 badge badge-pill bg-danger-light">Không có sẵn</span>
-                  </div>
-                </li>
-              </ul>
-            </div>
+         
           </div>
 
           <div class="col-md-4">
-            <Quangcao/>
+            <Quangcao />
           </div>
         </div>
       </div>
@@ -278,28 +241,158 @@ export default {
     QuyDinhPopup,
     Quangcao,
   },
-  methods: {
-    handleOpenQuyDinh(status) {
-      console.log("Nay la gi");
-      this.isQuyDinhPopup = status;
-      this.isRecentOpen = true;
-    },
-  },
+
   data() {
     return {
       isQuyDinhPopup: false,
       isRecentOpen: false,
       dateValue: "",
+      isOpenNext: false,
       form: {
-        loaiKham: "1",
+        dateSelect: "",
         noidung: "",
         checkrule: false,
       },
+
+      dataList: [],
+      url: "img/btn-xem.svg",
     };
+  },
+  mounted() {
+    // console.log(this.$route.query.doctorId);
+    // if (this.$route.query.doctorId != undefined) {
+    //   this.form.doctorId = parseInt(this.$route.query.doctorId);
+    // } else {
+    //   this.form.doctorId = "";
+    // }
+
+    this.$axios
+      .get("Prescription/GetByPrescriptionbyUser")
+      .then((rds) => {
+        // console.log(rds.data.results);
+        this.dataList = rds.data.results;
+        console.log(this.dataList);
+      })
+      .catch((error) => {
+        console.log(error);
+        // this.errored = true;
+      });
+  },
+
+  methods: {
+    handleOpenQuyDinh(status) {
+      // console.log(status);
+      // console.log("Nay la gi");
+      this.isQuyDinhPopup = status;
+      if (status == "again") {
+        this.isRecentOpen = true;
+      }
+    },
+    handleOpenNext(status) {
+      this.isOpenNext = true;
+    },
+    submitForm(bvModalEvt) {
+      bvModalEvt.preventDefault();
+
+      if (this.form.dateSelect == "") {
+        this.$alert("Vui lòng chọn ngày", "Thông báo", {
+          confirmButtonText: "Đóng",
+          type: "error",
+          callback: (action) => {
+            // this.$message({
+            //   type: "info",
+            //   message: `action: ${action}`
+            // });
+          },
+        });
+        return;
+      }
+
+      if (this.form.checkrule == false) {
+        this.$alert("Bạn chưa đồng ý nội quy", "Thông báo", {
+          confirmButtonText: "Đóng",
+          type: "error",
+          callback: (action) => {
+            // this.$message({
+            //   type: "info",
+            //   message: `action: ${action}`
+            // });
+          },
+        });
+        return;
+      }
+
+      this.$axios
+        .post("Prescription/Insert", {
+          requestDate: this.form.dateSelect,
+          note: this.form.noidung,
+        })
+        .then((response) => {
+          console.log(response);
+          if (response.data.success === true) {
+            const loading = this.$loading({
+              lock: true,
+              text: "Đang xử lý",
+              spinner: "el-icon-loading",
+              background: "rgba(0, 0, 0, 0.7)",
+            });
+            setTimeout(() => {
+              loading.close();
+              window.location.href = response.data.data.callbackUrl;
+              // this.$router.push({
+              //   name: "thanhcong",
+              //   params: {
+              //     message: response.data.message,
+              //     doctorId: this.form.doctorId,
+              //   },
+              // });
+            }, 2000);
+
+            // this.$alert(response.data.message, "Thông báo", {
+            //   confirmButtonText: "OK",
+            //   type: "success",
+            //   callback: (action) => {
+            //     // this.$message({
+            //     //   type: "info",
+            //     //   message: `action: ${action}`
+            //     // });
+            //   },
+            // });
+          } else {
+            this.$alert(response.data.message, "Thông báo", {
+              confirmButtonText: "Đóng",
+              type: "error",
+              callback: (action) => {
+                // this.$message({
+                //   type: "info",
+                //   message: `action: ${action}`
+                // });
+              },
+            });
+          }
+        })
+        .catch((error) => {
+          this.$alert(
+            "Yêu cầu thất bại, vui lòng kiểm tra lại thông tin.",
+            "Thông báo",
+            {
+              confirmButtonText: "Đóng",
+              type: "error",
+              callback: (action) => {
+                // this.$message({
+                //   type: "info",
+                //   message: `action: ${action}`
+                // });
+              },
+            }
+          );
+          // this.errored = true;
+        });
+    },
   },
   head() {
     return {
-      title: "Xem toa thuốc",
+      title: "Xem lịch sử khám bệnh",
     };
   },
 };
