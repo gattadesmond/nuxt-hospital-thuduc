@@ -73,10 +73,7 @@
               <el-form class="px-3" label-width="0px">
                 <div class="row">
                   <div class="col-12">
-                    <div class="mb-5">
-                      <h4 class="card-title">Thông tin cá nhân</h4>
-                      <PersonalInfo />
-                    </div>
+                  
 
                     <el-form label-width="0px">
                       <!-- <div class="info-widget"> -->
@@ -168,13 +165,25 @@
                       </el-form-item> -->
                     </el-form>
                   </div>
+
+                  <div class="col-12">
+                      <div class="card  info__card">
+                          <div
+                            class="font-weight-bold mb-0"
+                            style="font-size: 16px"
+                          >
+                            Thông tin bệnh nhân
+                          </div>
+                          <PersonalInfo />
+                        </div>
+                  </div>
                 </div>
               </el-form>
             </b-modal>
 
             <!-- Nay la danh sach cau hoi -->
 
-            <div class="card-title kq-title">Danh sách câu hỏi</div>
+            <div class="card-title kq-title mt-4">Lịch sử câu hỏi</div>
 
      
 
@@ -395,13 +404,14 @@ export default {
             });
             setTimeout(() => {
               loading.close();
-              this.$router.push({
-                name: "thanhcong",
-                params: {
-                  message: response.data.message,
-                  doctorId: this.form.doctorId,
-                },
-              });
+               window.location.href = response.data.data.callbackUrl 
+              // this.$router.push({
+              //   name: "thanhcong",
+              //   params: {
+              //     message: response.data.message,
+              //     doctorId: this.form.doctorId,
+              //   },
+              // });
             }, 2000);
 
             // this.$alert(response.data.message, "Thông báo", {

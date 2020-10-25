@@ -347,10 +347,16 @@ export default {
       // dialogVisible: true,
     };
   },
+  computed: {
+    menus() {
+      return this.$store.state.menu.list;
+    },
+  },
   mounted() {
     // if (localStorage.hoibacsi == "true") {
     //   this.dialogVisible = false;
     // }
+    // console.log(this.menus.filter((sId) => sId.url.includes(this.$route.fullPath))[0].id | 0)
   },
   methods: {
     comeBack() {
@@ -370,21 +376,27 @@ export default {
         );
       } else {
         // this.dialogVisible = false;
-        var serviceNameId = "0";
+        var serviceNameId = this.menus.filter((sId) => sId.url.includes(this.$route.fullPath))[0].id | 0;
 
-        if (this.type == "tuvansuckhoe") {
-          serviceNameId = "6";
-        } else if (this.type == "ketquacanlamsang") {
-          serviceNameId = "4";
-        } else if (this.type == "tracuulichsukhambenh") {
-          serviceNameId = "3";
-        } else if (this.type == "dangkykhambenh") {
-          serviceNameId = "1";
-        } else if (this.type == "dongvienphi") {
-          serviceNameId = "5";
-        } else {
-          serviceNameId = "0";
-        }
+        console.log(serviceNameId);
+
+        //  console.log("fewfew", this.$route.fullPath);
+
+        // serviceNameId = menus.filter(sId => sId.url.includes(this.$route.fullPath));
+
+        // if (this.type == "tuvansuckhoe") {
+        //   serviceNameId = "6";
+        // } else if (this.type == "ketquacanlamsang") {
+        //   serviceNameId = "4";
+        // } else if (this.type == "tracuulichsukhambenh") {
+        //   serviceNameId = "3";
+        // } else if (this.type == "dangkykhambenh") {
+        //   serviceNameId = "1";
+        // } else if (this.type == "dongvienphi") {
+        //   serviceNameId = "5";
+        // } else {
+        //   serviceNameId = "0";
+        // }
 
         this.$axios
           .post("Tracking/Insert", {

@@ -582,7 +582,7 @@ export default {
             });
             setTimeout(() => {
               loading.close();
-              console.log(response);
+              // console.log(response);
               window.location.href = response.data.data.callbackUrl 
 
               // this.$router.push({ name: response.data.data.callbackUrl })

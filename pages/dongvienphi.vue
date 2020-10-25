@@ -9,7 +9,9 @@
                 <li class="breadcrumb-item">
                   <nuxt-link to="/">Trang chủ</nuxt-link>
                 </li>
-                <li class="breadcrumb-item active" aria-current="page">Đóng viện phí</li>
+                <li class="breadcrumb-item active" aria-current="page">
+                  Đóng viện phí
+                </li>
               </ol>
             </nav>
             <div class="banner-header text-left">
@@ -20,10 +22,32 @@
         </div>
       </div>
 
-      <div class="s-heading-bg w-100" style="background-image: url(img/bv/bg-heading.jpg)"></div>
+      <div
+        class="s-heading-bg w-100"
+        style="background-image: url(img/bv/bg-heading.jpg)"
+      ></div>
     </section>
 
     <section class="section section-space bg-white">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8">
+            <div class=" text-center " style="    opacity: 0.7;
+    font-size: 30px;
+    padding: 50px 50px;
+    background: rgb(241 236 236);">
+              Sắp triển khai
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <Quangcao />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-space bg-white d-none">
       <div class="container">
         <div class="row">
           <div class="col-md-8">
@@ -49,7 +73,9 @@
             <div class="required__box mb-4">
               <div class>Bạn cần đóng viện phí, vui lòng nhấn nút bên dưới</div>
               <div class="text-center mt-3">
-                <b-button v-b-modal.modal-3 variant="primary" size="sm">Đóng viện phí</b-button>
+                <b-button v-b-modal.modal-3 variant="primary" size="sm"
+                  >Đóng viện phí</b-button
+                >
 
                 <b-modal
                   id="modal-3"
@@ -58,7 +84,12 @@
                   okTitle="Đóng viện phí"
                   title="Đóng viện phí"
                 >
-                  <el-form ref="form" class="px-3" :model="form" label-width="0px">
+                  <el-form
+                    ref="form"
+                    class="px-3"
+                    :model="form"
+                    label-width="0px"
+                  >
                     <div class="row">
                       <div class="col-12">
                         <!-- <h5 class="font-weight-bold mb-3">Chọn ngày khám</h5> -->
@@ -98,7 +129,9 @@
                         </div>
 
                         <div class="card mt-4 info__card">
-                          <div class="font-weight-bold mb-3">Thông tin bệnh nhân</div>
+                          <div class="font-weight-bold mb-3">
+                            Thông tin bệnh nhân
+                          </div>
 
                           <PersonalInfo />
                         </div>
@@ -124,12 +157,17 @@
 
                   <div class="name text-truncate">
                     <span class>Xét nghiệm</span>
-                    <span class="ml-1 badge badge-pill bg-success-light">Đã thanh toán</span>
+                    <span class="ml-1 badge badge-pill bg-success-light"
+                      >Đã thanh toán</span
+                    >
                   </div>
 
                   <div class="func">
                     <div class="action text-right">
-                      <a href="invoice-view.html" class="btn btn-sm bg-info-light">
+                      <a
+                        href="invoice-view.html"
+                        class="btn btn-sm bg-info-light"
+                      >
                         <i class="far fa-eye"></i> Xem viện phí
                       </a>
                     </div>
@@ -146,12 +184,17 @@
 
                   <div class="name text-truncate">
                     <span class>X-Quang</span>
-                    <span class="ml-1 badge badge-pill bg-success-light">Đã thanh toán</span>
+                    <span class="ml-1 badge badge-pill bg-success-light"
+                      >Đã thanh toán</span
+                    >
                   </div>
 
                   <div class="func">
                     <div class="action text-right">
-                      <a href="invoice-view.html" class="btn btn-sm bg-info-light">
+                      <a
+                        href="invoice-view.html"
+                        class="btn btn-sm bg-info-light"
+                      >
                         <i class="far fa-eye"></i> Xem viện phí
                       </a>
                     </div>
@@ -171,9 +214,7 @@
                 </div>
                 <div class="service__body">
                   <div class="service__name">Phí dịch vụ</div>
-                  <div class="service__desc">
-                    <strong>50.000</strong> đồng
-                  </div>
+                  <div class="service__desc"><strong>50.000</strong> đồng</div>
                 </div>
               </div>
 
@@ -184,12 +225,15 @@
                 <div class="service__body">
                   <div class="service__name">Thời gian tiếp nhận</div>
                   <div class="service__desc">
-                    <div class="mb-2">Các bác sĩ sẽ dành 30 phút để trả lời</div>
+                    <div class="mb-2">
+                      Các bác sĩ sẽ dành 30 phút để trả lời
+                    </div>
                     <div class="mb-2">7h – 11h, trả lời vào 15h cùng ngày</div>
                     <div class="mb-2">12h – 7h ngày hôm sau, 10h cùng ngày</div>
-                    <div
-                      class="mb-2"
-                    >TB, CN, Lễ - 10h ngày thứ 2 (TB,CN), ngày đi làm đầu tiên sau lễ (Lễ)</div>
+                    <div class="mb-2">
+                      TB, CN, Lễ - 10h ngày thứ 2 (TB,CN), ngày đi làm đầu tiên
+                      sau lễ (Lễ)
+                    </div>
                   </div>
                 </div>
               </div>
@@ -200,9 +244,10 @@
                 </div>
                 <div class="service__body">
                   <div class="service__name">Sắp xếp lịch hẹn</div>
-                  <div
-                    class="service__desc"
-                  >Các bác sĩ sẽ kê toa dựa vào kết quả khám lâm sàng. Trường hợp bạn cần chẩn đoán thêm.</div>
+                  <div class="service__desc">
+                    Các bác sĩ sẽ kê toa dựa vào kết quả khám lâm sàng. Trường
+                    hợp bạn cần chẩn đoán thêm.
+                  </div>
                 </div>
               </div>
 
@@ -212,9 +257,11 @@
                 </div>
                 <div class="service__body">
                   <div class="service__name">Hỗ trợ sau khám</div>
-                  <div
-                    class="service__desc"
-                  >Các bác sĩ cùng đội ngũ CSKH chuyên nghiệp luôn sẵn sàng giải đáp mọi thắc mắc về sức khỏe ngay trong ứng dụng hoặc qua đường dây nóng.</div>
+                  <div class="service__desc">
+                    Các bác sĩ cùng đội ngũ CSKH chuyên nghiệp luôn sẵn sàng
+                    giải đáp mọi thắc mắc về sức khỏe ngay trong ứng dụng hoặc
+                    qua đường dây nóng.
+                  </div>
                 </div>
               </div>
             </div>
@@ -226,8 +273,8 @@
 </template>
 
 <script>
-
 import PersonalInfo from "@/components/blocks/PersonalInfo";
+import Quangcao from "@/components/blocks/Quangcao";
 
 export default {
   auth: true,
