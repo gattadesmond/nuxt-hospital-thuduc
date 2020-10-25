@@ -91,11 +91,15 @@
                           </div>-->
 
                           <div class="col-6">
-                            <div class="mb-2">Chọn ngày khám</div>
+                            <div class="mb-2">Chọn khoảng thời gian khám</div>
                             <el-date-picker
                               v-model="form.dateSelect"
-                              type="date"
-                              placeholder="Chọn ngày"
+                              type="daterange"
+                              align="right"
+                              start-placeholder="Ngày bắt đầu"
+                              end-placeholder="Ngày kết thúc"
+                              format="dd/MM/yyyy"
+                              value-format="dd/MM/yyyy"
                             ></el-date-picker>
                           </div>
 
@@ -324,7 +328,7 @@ export default {
 
       this.$axios
         .post("Prescription/Insert", {
-          requestDate: this.form.dateSelect,
+           requestTime: this.form.dateSelect.join(" - "),
           note: this.form.noidung,
         })
         .then((response) => {
