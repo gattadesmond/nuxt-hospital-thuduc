@@ -358,9 +358,11 @@ export default {
     // if (localStorage.hoibacsi == "true") {
     //   this.dialogVisible = false;
     // }
-    // console.log(this.menus.filter((sId) => sId.url.includes(this.$route.fullPath))[0].id | 0)
+    // console.log(this.menus.filter((sId) => sId.url.includes(this.$route.fullPath))[0])
+    // console.log(this.$route.fullPath.replace(/\/$/, ""));
+
     this.getServiceId =
-      this.menus.filter((sId) => sId.url.includes(this.$route.fullPath))[0].id |
+      this.menus.filter((sId) => sId.url.includes(this.$route.fullPath.replace(/\/$/, "")))[0].id |
       0;
   },
   methods: {
@@ -382,7 +384,7 @@ export default {
       } else {
         // this.dialogVisible = false;
         var serviceNameId =
-          this.menus.filter((sId) => sId.url.includes(this.$route.fullPath))[0]
+          this.menus.filter((sId) => sId.url.includes(this.$route.fullPath.replace(/\/$/, "")))[0]
             .id | 0;
 
         console.log(serviceNameId);
