@@ -5,13 +5,24 @@
         <b-spinner variant="primary" label="Spinning"></b-spinner>
       </div>
     </template>
+
+    <template v-else-if="timeSchedule.length == 0">
+        <div style="padding: 20px; background-color: #fafafa; color: gray; text-align: center">
+          Bác sĩ không có lịch khám
+        </div>
+    </template>
+    
     <template v-else>
-      <el-tabs type="border-card" v-model="daySelect" @tab-click="handleTabClick">
+      <el-tabs
+        type="border-card"
+        v-model="daySelect"
+        @tab-click="handleTabClick"
+      >
         <el-tab-pane v-for="item in timeSchedule" :key="item.day">
           <div slot="label">
             <div class="date__item">
-              <div class="date">{{item.dayName}}</div>
-              <div class="day">{{item.dayFormat}}</div>
+              <div class="date">{{ item.dayName }}</div>
+              <div class="day">{{ item.dayFormat }}</div>
             </div>
           </div>
 
@@ -27,10 +38,10 @@
               <li v-for="time in item.times" :key="time.value">
                 <span
                   class="timing"
-                  v-bind:class="{selected : time.value == timeSelect}"
+                  v-bind:class="{ selected: time.value == timeSelect }"
                   v-on:click.stop="checkTimeSchedule(time.value)"
                 >
-                  <span>{{time.name}}</span>
+                  <span>{{ time.name }}</span>
                   <!-- <span>AM</span> -->
                 </span>
               </li>
@@ -45,7 +56,7 @@
 <script>
 export default {
   components: {},
-
+  props: ["doctorId", "loaiKham"],
   data() {
     return {
       isLoading: true,
@@ -57,10 +68,28 @@ export default {
   },
   methods: {
     async getTimeSchedule() {
-      const data = await this.$axios.$get(`Appointment/GetTimeWorking`);
+      // if (this.doctorId != "") {
+      //   console.log("doctorId", this.doctorId);
+      //   console.log("loaiKham", this.loaiKham);
+      // }
+      var data = null;
+
+      //  console.log("loaiKham", this.loaiKham);
+
+      if (this.doctorId != "" && this.loaiKham == 2) {
+        data = await this.$axios.$get(
+          `Appointment/GetTimeWorking?doctorId=${this.doctorId}`
+        );
+      } else {
+        data = await this.$axios.$get(`Appointment/GetTimeWorking`);
+      }
+
+      // const data = await this.$axios.$get(`Appointment/GetTimeWorking`);
+
+      this.timeSchedule = [];
       this.timeSchedule = this.timeSchedule.concat(data);
       this.isLoading = false;
-      // console.log(this.timeSchedule);
+      // console.log("fwef", this.timeSchedule);
     },
 
     checkTimeSchedule: function (time) {
@@ -93,6 +122,16 @@ export default {
   },
   mounted: function () {
     this.getTimeSchedule();
+  },
+  watch: {
+    doctorId: function () {
+      this.getTimeSchedule();
+      // console.log(this.doctorInfo);
+    },
+     loaiKham: function () {
+      this.getTimeSchedule();
+      // console.log(this.doctorInfo);
+    },
   },
 };
 </script>

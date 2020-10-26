@@ -42,13 +42,16 @@
         <div class="row">
           <div class="col-md-8">
             <div class="required__box mb-4">
-              <div class>Đăng ký khám bệnh</div>
+              <div class>
+                Hãy cho chúng tôi biết bạn đang cần đến khám bệnh ngày nào, bác
+                sĩ nào sẽ hỗ trợ bạn
+              </div>
               <div class="text-center mt-3">
                 <b-button
                   variant="primary"
                   size=""
                   @click.stop.prevent="handleOpenQuyDinh(true)"
-                  >Đăng ký khám</b-button
+                  >Đăng ký khám bệnh</b-button
                 >
 
                 <b-modal
@@ -58,10 +61,10 @@
                   no-close-on-esc
                   no-close-on-backdrop
                   cancelTitle="Đóng cửa sổ"
-                  okTitle="Yêu cầu"
-                  title="Yêu cầu đơn thuốc"
+                  okTitle="Đăng ký"
+                  title="Đăng ký khám bệnh"
                   @ok="submitForm"
-                  size="lg"
+                  size="xl"
                 >
                   <el-form
                     ref="form"
@@ -70,170 +73,142 @@
                     label-width="0px"
                   >
                     <div class="row">
-                      <div class="col-12">
-                        <!-- <h5 class="font-weight-bold mb-3">Chọn ngày khám</h5> -->
+                      <div class="col-md-7 col-lg-8">
+                        <h4 class>Thông tin bệnh nhân</h4>
 
-                        <div class="row sm-gutters mt-3">
-                          <!-- <div class="col-6">
-                            <div class="mb-2">Chọn lại xét nghiệm:</div>
-                            <el-select v-model="form.loaiHinh" placeholder="Select">
-                              <el-option
-                                v-for="item in filtersList"
-                                :key="item.value"
-                                :label="item.label"
-                                :value="item.value"
-                              ></el-option>
-                            </el-select>
-                          </div>-->
+                        <PersonalInfo />
 
-                          <div class="col-6">
-                            <div class="mb-2">Chọn khoảng thời gian khám</div>
-                            <el-date-picker
-                              v-model="form.dateSelect"
-                              type="daterange"
-                              align="left"
-                              start-placeholder="Ngày bắt đầu"
-                              end-placeholder="Ngày kết thúc"
-                              format="dd/MM/yyyy"
-                              value-format="dd/MM/yyyy"
-                            ></el-date-picker>
+                        <h4 class="mt-5 mb-2">Dịch vụ khám</h4>
+                        <p class="text-gray">
+                          Khám dịch vụ sẽ được chọn bác sĩ
+                        </p>
+
+                        <el-radio v-model="form.loaiKham" label="1"
+                          >Khám thường</el-radio
+                        >
+                        <el-radio v-model="form.loaiKham" label="2"
+                          >Khám dịch vụ</el-radio
+                        >
+
+                        <!-- <h5 class="mt-4">Chọn Bác sĩ</h5> -->
+
+                        <div class="row sm-gutters">
+                          <div class="col-md-6" v-show="form.loaiKham == 2">
+                            <el-form-item>
+                              <div class="form-soju">
+                                <div class="form-soju-label">Chọn Bác sĩ</div>
+                                <SelectDoctor
+                                  @select-doctor="getSelectDoctor"
+                                />
+                              </div>
+                            </el-form-item>
+                          </div>
+
+                          <div class="col-6" v-show="form.loaiKham == 2">
+                            <DoctorInfoMini v-bind:doctorId="form.doctorID" />
                           </div>
 
                           <div class="col-md-10">
-                            <div class="mb-2 mt-3">
-                              Thông tin về đơn thuốc (nếu có)
-                            </div>
-                            <el-form-item class="mb-0" label>
-                              <el-input
-                                type="textarea"
-                                :autosize="{ minRows: 3, maxRows: 10 }"
-                                placeholder
-                                v-model="form.noidung"
-                              ></el-input>
-                            </el-form-item>
-                          </div>
-
-                          <div class="col-12">
-                            <el-form-item class="mt-3 mb-0" label>
-                              <el-checkbox-group v-model="form.checkrule">
-                                <el-checkbox
-                                  label="Tôi đồng ý theo các quy định của Bệnh viện"
-                                  name="type"
-                                ></el-checkbox>
-                              </el-checkbox-group>
-                            </el-form-item>
-                          </div>
-
-                          <div class="col-12">
-                            <div class="card info__card">
-                              <div
-                                class="font-weight-bold mb-0"
-                                style="font-size: 16px"
-                              >
-                                Thông tin bệnh nhân
+                            <el-form-item>
+                              <div class="form-soju">
+                                <div class="form-soju-label">
+                                  Mô tả triệu chứng
+                                </div>
+                                <el-input
+                                  type="textarea"
+                                  :autosize="{ minRows: 3, maxRows: 10 }"
+                                  class="form-soju-input"
+                                  placeholder="Vui lòng ghi rõ vấn đề của bạn để chúng tôi có thể sắp xếp đúng chuyên khoa nếu cần."
+                                  v-model="form.noidung"
+                                ></el-input>
                               </div>
-                              <PersonalInfo />
-                            </div>
+                            </el-form-item>
                           </div>
                         </div>
+                      </div>
+
+                      <div class="col-12">
+                        <h4 class="mt-4 mb-1">Chọn ngày khám và giờ khám</h4>
+
+                        <TimeSchedule
+                          @time-select="getTimeSelect"
+                          v-bind:doctorId="form.doctorID"
+                          v-bind:loaiKham="form.loaiKham"
+                        />
+
+                        <el-form-item class="mt-4" label>
+                          <el-checkbox-group v-model="form.checkrule">
+                            <el-checkbox
+                              label="Tôi đồng ý đặt lịch khám theo quy định"
+                              name="type"
+                            ></el-checkbox>
+                          </el-checkbox-group>
+                        </el-form-item>
                       </div>
                     </div>
                   </el-form>
                 </b-modal>
               </div>
             </div>
+
+            <div class="card-title kq-title mt-4">Lịch sử</div>
+
+            <template v-if="dataList.length">
+              <div class="card card-table">
+                <div class="card-body">
+                  <!-- Invoice Table -->
+                  <div class="table-responsive">
+                    <table class="table table-center mb-0">
+                      <thead>
+                        <tr>
+                          <th>Ngày đặt</th>
+                          <th>Giờ khám</th>
+                          <th>Số thứ tự</th>
+                          <th>Triệu chứng</th>
+                          <!-- <th>Dự kiến</th> -->
+                          <!-- <th>Ngày nhận</th> -->
+                          <th>Thanh toán</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr v-for="item in dataList" :key="item.id">
+                          <td>{{ item.appointmentDate | formatDate }}</td>
+                          <td>{{ item.appointmentHour }}</td>
+                          <td>{{ item.numberOfOrderInday }}</td>
+                          <td>
+                            <div style="width: 150px; font-size: 13px">
+                              <i> {{ item.content }}</i>
+                            </div>
+                          </td>
+                           <!-- <td>{{ item.intendTime | formatDate }}</td> -->
+                          <td>
+                            <span
+                              v-if="item.isPaid == true"
+                              class="ml-1 badge badge-pill bg-success-light"
+                              >Đã thanh toán</span
+                            >
+
+                            <span
+                              v-if="item.isPaid != true"
+                              class="ml-1 badge badge-pill bg-primary-light"
+                              >Đang chờ</span
+                            >
+
+                        
+                          </td>
+                       
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </template>
           </div>
 
-          <div class="col-md-12">
-            <div class="card border-0 card__soju">
-              <div class="card-body">
-                <el-form ref="form" :model="form" label-width="0px">
-                  <div class="row">
-                    <div class="col-md-7 col-lg-8">
-                      <h4 class>Thông tin bệnh nhân</h4>
-
-                      <PersonalInfo />
-
-                      <h4 class="mt-5 mb-2">Dịch vụ khám</h4>
-                      <p class="text-gray">Khám dịch vụ sẽ được chọn bác sĩ</p>
-
-                      <el-radio v-model="form.loaiKham" label="1"
-                        >Khám thường</el-radio
-                      >
-                      <el-radio v-model="form.loaiKham" label="2"
-                        >Khám dịch vụ</el-radio
-                      >
-
-                      <!-- <h5 class="mt-4">Chọn Bác sĩ</h5> -->
-
-                      <div class="row sm-gutters">
-                        <div class="col-md-6" v-show="form.loaiKham == 2">
-                          <el-form-item>
-                            <div class="form-soju">
-                              <div class="form-soju-label">Chọn Bác sĩ</div>
-                              <SelectDoctor @select-doctor="getSelectDoctor" />
-                            </div>
-                          </el-form-item>
-                        </div>
-
-                        <div class="col-6" v-show="form.loaiKham == 2">
-                          <DoctorInfoMini v-bind:doctorId="form.doctorID" />
-                        </div>
-
-                        <div class="col-md-10">
-                          <el-form-item>
-                            <div class="form-soju">
-                              <div class="form-soju-label">
-                                Mô tả triệu chứng
-                              </div>
-                              <el-input
-                                type="textarea"
-                                :autosize="{ minRows: 3, maxRows: 10 }"
-                                class="form-soju-input"
-                                placeholder="Vui lòng ghi rõ vấn đề của bạn để chúng tôi có thể sắp xếp đúng chuyên khoa nếu cần."
-                                v-model="form.noidung"
-                              ></el-input>
-                            </div>
-                          </el-form-item>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="col-md-4 col-lg-4">
-                      <!-- Booking Summary -->
-                      <Quangcao />
-                    </div>
-
-                    <div class="col-12">
-                      <h4 class="mt-4 mb-1">Chọn ngày khám và giờ khám</h4>
-
-                      <TimeSchedule @time-select="getTimeSelect" />
-
-                      <el-form-item class="mt-4" label>
-                        <el-checkbox-group v-model="form.checkrule">
-                          <el-checkbox
-                            label="Tôi đồng ý đặt lịch khám theo quy định"
-                            name="type"
-                          ></el-checkbox>
-                        </el-checkbox-group>
-                      </el-form-item>
-
-                      <el-form-item class="text-right">
-                        <!-- <el-button>Hủy</el-button> -->
-                        <el-button
-                          type="primary"
-                          class="btn btn-primary submit-btn"
-                          @click.stop.prevent="sendForm()"
-                        >
-                          Xác nhận thông tin
-                          <i class="fas fa-arrow-right"></i>
-                        </el-button>
-                      </el-form-item>
-                    </div>
-                  </div>
-                </el-form>
-              </div>
-            </div>
+          <div class="col-md-4 col-lg-4">
+            <!-- Booking Summary -->
+            <Quangcao />
           </div>
         </div>
       </div>
@@ -264,6 +239,8 @@ export default {
       isQuyDinhPopup: false,
       isRecentOpen: false,
       dateValue: "",
+      isOpenNext: false,
+      dataList: [],
       form: {
         loaiKham: "1",
         noidung: "",
@@ -290,10 +267,6 @@ export default {
       this.isOpenNext = true;
     },
 
-    onSubmit() {
-      console.log(this.form);
-    },
-
     getSelectDoctor(e) {
       // console.log(e);
       this.form.doctorID = e;
@@ -303,7 +276,8 @@ export default {
       this.form.timeSelect = e;
     },
 
-    sendForm(e) {
+    submitForm(bvModalEvt) {
+      bvModalEvt.preventDefault();
       if (this.form.noidung == "") {
         this.$alert("Bạn chưa mô tả triệu chứng", "Thông báo", {
           confirmButtonText: "Đóng",
@@ -348,11 +322,10 @@ export default {
 
       this.$axios
         .post("Appointment/Insert", {
-          doctorId: this.form.doctorID | "",
+          doctorId: this.form.doctorID,
           content: this.form.noidung,
           appointmentDate: this.form.timeSelect.daySelectFull,
           timeBookingId: this.form.timeSelect.timeSelect,
-          serviceId: 1,
         })
         .then((response) => {
           console.log(response);
@@ -365,13 +338,7 @@ export default {
             });
             setTimeout(() => {
               loading.close();
-              this.$router.push({
-                name: "thanhcong",
-                params: {
-                  message: response.data.message,
-                  doctorId: this.form.doctorId,
-                },
-              });
+              window.location.href = response.data.data.callbackUrl;
             }, 2000);
 
             // this.$alert(response.data.message, "Thông báo", {
@@ -416,10 +383,23 @@ export default {
         });
     },
   },
+  mounted() {
+    this.$axios
+      .get("Appointment/GetByAppointmentbyUser")
+      .then((rds) => {
+        // console.log(rds.data.results);
+        this.dataList = rds.data.results;
+        console.log(this.dataList);
+      })
+      .catch((error) => {
+        console.log(error);
+        // this.errored = true;
+      });
+  },
 
   head() {
     return {
-      title: "Tư vấn bác sĩ",
+      title: "Đăng ký khám bệnh",
     };
   },
 };
