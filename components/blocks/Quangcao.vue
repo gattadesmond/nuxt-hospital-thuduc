@@ -3,7 +3,7 @@
     <div class="mb-4">
       <a href>
         <img
-          src="img/quangcao/quangcao1.jpg"
+          src="/img/quangcao/quangcao1.jpg"
           class="img-fluid d-block mx-auto"
           alt
           loading="lazy"
@@ -14,7 +14,7 @@
     <div class="mb-4">
       <a href>
         <img
-          src="img/quangcao/quangcao2.jpg"
+          src="/img/quangcao/quangcao2.jpg"
           class="img-fluid d-block mx-auto"
           alt
           loading="lazy"

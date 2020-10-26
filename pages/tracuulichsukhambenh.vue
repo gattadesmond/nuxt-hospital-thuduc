@@ -95,7 +95,7 @@
                             <el-date-picker
                               v-model="form.dateSelect"
                               type="daterange"
-                              align="right"
+                              align="left"
                               start-placeholder="Ngày bắt đầu"
                               end-placeholder="Ngày kết thúc"
                               format="dd/MM/yyyy"

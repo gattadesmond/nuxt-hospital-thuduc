@@ -2,6 +2,7 @@
   <div class="bg-white">
     <QuyDinhPopup
       @open-modal="handleOpenQuyDinh"
+      @open-next="handleOpenNext"
       :recentOpen="isRecentOpen"
       :isOpen="isQuyDinhPopup"
     />
@@ -20,9 +21,10 @@
               </ol>
             </nav>
             <div class="banner-header text-left">
-              <h1 class="text-white"> Đăng ký khám bệnh</h1>
+              <h1 class="text-white">Đăng ký khám bệnh</h1>
               <p class="lead text-white">
-              Hãy cho chúng tôi biết bạn đang cần đến khám bệnh ngày nào, bác sĩ nào sẽ hỗ trợ bạn 
+                Hãy cho chúng tôi biết bạn đang cần đến khám bệnh ngày nào, bác
+                sĩ nào sẽ hỗ trợ bạn
               </p>
             </div>
           </div>
@@ -35,12 +37,113 @@
       ></div>
     </section>
 
-    <section
-      class="section section-space"
-      style="background-color: rgba(238, 242, 247, 1)"
-    >
+    <section class="section section-space">
       <div class="container">
         <div class="row">
+          <div class="col-md-8">
+            <div class="required__box mb-4">
+              <div class>Đăng ký khám bệnh</div>
+              <div class="text-center mt-3">
+                <b-button
+                  variant="primary"
+                  size=""
+                  @click.stop.prevent="handleOpenQuyDinh(true)"
+                  >Đăng ký khám</b-button
+                >
+
+                <b-modal
+                  v-model="isOpenNext"
+                  id="modal-2"
+                  centered
+                  no-close-on-esc
+                  no-close-on-backdrop
+                  cancelTitle="Đóng cửa sổ"
+                  okTitle="Yêu cầu"
+                  title="Yêu cầu đơn thuốc"
+                  @ok="submitForm"
+                  size="lg"
+                >
+                  <el-form
+                    ref="form"
+                    class="px-3"
+                    :model="form"
+                    label-width="0px"
+                  >
+                    <div class="row">
+                      <div class="col-12">
+                        <!-- <h5 class="font-weight-bold mb-3">Chọn ngày khám</h5> -->
+
+                        <div class="row sm-gutters mt-3">
+                          <!-- <div class="col-6">
+                            <div class="mb-2">Chọn lại xét nghiệm:</div>
+                            <el-select v-model="form.loaiHinh" placeholder="Select">
+                              <el-option
+                                v-for="item in filtersList"
+                                :key="item.value"
+                                :label="item.label"
+                                :value="item.value"
+                              ></el-option>
+                            </el-select>
+                          </div>-->
+
+                          <div class="col-6">
+                            <div class="mb-2">Chọn khoảng thời gian khám</div>
+                            <el-date-picker
+                              v-model="form.dateSelect"
+                              type="daterange"
+                              align="left"
+                              start-placeholder="Ngày bắt đầu"
+                              end-placeholder="Ngày kết thúc"
+                              format="dd/MM/yyyy"
+                              value-format="dd/MM/yyyy"
+                            ></el-date-picker>
+                          </div>
+
+                          <div class="col-md-10">
+                            <div class="mb-2 mt-3">
+                              Thông tin về đơn thuốc (nếu có)
+                            </div>
+                            <el-form-item class="mb-0" label>
+                              <el-input
+                                type="textarea"
+                                :autosize="{ minRows: 3, maxRows: 10 }"
+                                placeholder
+                                v-model="form.noidung"
+                              ></el-input>
+                            </el-form-item>
+                          </div>
+
+                          <div class="col-12">
+                            <el-form-item class="mt-3 mb-0" label>
+                              <el-checkbox-group v-model="form.checkrule">
+                                <el-checkbox
+                                  label="Tôi đồng ý theo các quy định của Bệnh viện"
+                                  name="type"
+                                ></el-checkbox>
+                              </el-checkbox-group>
+                            </el-form-item>
+                          </div>
+
+                          <div class="col-12">
+                            <div class="card info__card">
+                              <div
+                                class="font-weight-bold mb-0"
+                                style="font-size: 16px"
+                              >
+                                Thông tin bệnh nhân
+                              </div>
+                              <PersonalInfo />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </el-form>
+                </b-modal>
+              </div>
+            </div>
+          </div>
+
           <div class="col-md-12">
             <div class="card border-0 card__soju">
               <div class="card-body">
@@ -98,45 +201,7 @@
 
                     <div class="col-md-4 col-lg-4">
                       <!-- Booking Summary -->
-
-                      <div class="service__card">
-                        <h4 class="text-white pb-2">Quy định</h4>
-
-                        <div class="service__item">
-                          <div class="service__icon">
-                            <i class="el-icon-money"></i>
-                          </div>
-                          <div class="service__body">
-                            <div class="service__name">Đối tượng</div>
-                            <div class="service__desc">
-                              Có hoặc không có BHYT
-                            </div>
-                          </div>
-                        </div>
-
-                        <div class="service__item">
-                          <div class="service__icon">
-                            <i class="el-icon-alarm-clock"></i>
-                          </div>
-                          <div class="service__body">
-                            <div class="service__name">Thời gian tiếp nhận</div>
-                            <div class="service__desc">Đăng ký trước 24h</div>
-                          </div>
-                        </div>
-
-                        <div class="service__item">
-                          <div class="service__icon">
-                            <i class="el-icon-date"></i>
-                          </div>
-                          <div class="service__body">
-                            <div class="service__name">Phí dịch vụ</div>
-                            <div class="service__desc">
-                              theo phí khám theo yêu cầu
-                              <br />Đồng ý sử dụng và thanh toán phí dịch vụ.
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                      <Quangcao />
                     </div>
 
                     <div class="col-12">
@@ -183,6 +248,7 @@ import SelectDoctor from "@/components/blocks/SelectDoctor";
 import TimeSchedule from "@/components/blocks/TimeSchedule";
 import PersonalInfo from "@/components/blocks/PersonalInfo";
 import QuyDinhPopup from "@/components/blocks/QuyDinhPopup";
+import Quangcao from "@/components/blocks/Quangcao";
 
 export default {
   auth: true,
@@ -213,10 +279,17 @@ export default {
   },
   methods: {
     handleOpenQuyDinh(status) {
-      console.log("Nay la gi");
+      // console.log(status);
+      // console.log("Nay la gi");
       this.isQuyDinhPopup = status;
-      this.isRecentOpen = true;
+      if (status == "again") {
+        this.isRecentOpen = true;
+      }
     },
+    handleOpenNext(status) {
+      this.isOpenNext = true;
+    },
+
     onSubmit() {
       console.log(this.form);
     },
