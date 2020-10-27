@@ -322,7 +322,7 @@ export default {
 
       this.$axios
         .post("Appointment/Insert", {
-          doctorId: this.form.doctorID,
+          doctorId: this.form.doctorID | 0,
           content: this.form.noidung,
           appointmentDate: this.form.timeSelect.daySelectFull,
           timeBookingId: this.form.timeSelect.timeSelect,

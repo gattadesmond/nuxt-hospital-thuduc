@@ -266,7 +266,7 @@
         <template v-if="getServiceId == 1">
           <div class="noidung-quydinh">
             <p style="font-size: 16px">
-              <i class="fas fa-caret-right"></i>Đăng ký trước 14h của ngày hôm
+              <i class="fas fa-caret-right"></i> Đăng ký trước 14h của ngày hôm
               trước ( CN - thứ 6)
             </p>
 
@@ -276,7 +276,7 @@
             </p>
 
             <p style="font-size: 16px">
-              <i class="fas fa-caret-right"></i>Một lần đăng ký chỉ áp dụng cho
+              <i class="fas fa-caret-right"></i> Một lần đăng ký chỉ áp dụng cho
               01 chuyên khoa (có thể đang ký khám 02 chuyên khoa/ngày)
             </p>
 

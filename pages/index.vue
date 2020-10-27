@@ -12,7 +12,6 @@
           >
             <h1 class="text-primary">
               Thông tin sức khỏe của bạn
-              {{ this.$store.state.currentArticle[0].title }}
             </h1>
 
             <p class="lead">

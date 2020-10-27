@@ -9,7 +9,9 @@
                 <li class="breadcrumb-item">
                   <nuxt-link to="/">Trang chủ</nuxt-link>
                 </li>
-                <li class="breadcrumb-item active" aria-current="page">Thông tin cá nhân</li>
+                <li class="breadcrumb-item active" aria-current="page">
+                  Thông tin cá nhân
+                </li>
               </ol>
             </nav>
             <div class="banner-header text-left">
@@ -20,7 +22,10 @@
         </div>
       </div>
 
-      <div class="s-heading-bg w-100" style="background-image: url(img/bv/bg-heading.jpg)"></div>
+      <div
+        class="s-heading-bg w-100"
+        style="background-image: url(img/bv/bg-heading.jpg)"
+      ></div>
     </section>
 
     <section class="section section-space bg-white">
@@ -31,20 +36,25 @@
               <div class="widget-profile pro-widget-content">
                 <div class="profile-info-widget">
                   <div class="mb-3">
-                    <b-avatar size="120px" :src="`http://myhealthdemo.benhvienkhuvucthuduc.vn/${this.$auth.user.avatar}`"></b-avatar>
+                    <b-avatar
+                      size="120px"
+                      :src="`http://myhealthdemo.benhvienkhuvucthuduc.vn/${this.$auth.user.avatar}`"
+                    ></b-avatar>
                   </div>
                   <div class="profile-det-info">
-                    <div class="h5 font-body">{{this.$auth.user.fullName}}</div>
+                    <div class="h5 font-body">
+                      {{ this.$auth.user.fullName }}
+                    </div>
 
                     <div class="patient-details">
                       <div class="mb-1" v-if="this.$auth.user.birthDay">
-                        <i class="fas fa-birthday-cake"></i>
-                        {{this.$auth.user.birthDay}}
+                        <i class="fas fa-calendar"></i>
+                        {{ this.$auth.user.birthDay }}
                       </div>
 
                       <div class="mb-0" v-if="this.$auth.user.fullAddress">
                         <i class="fas fa-map-marker-alt"></i>
-                        {{this.$auth.user.fullAddress}}
+                        {{ this.$auth.user.fullAddress }}
                       </div>
                     </div>
                   </div>
@@ -59,7 +69,7 @@
                         <span>Thông tin</span>
                       </a>
                     </li>
-                    <li>
+                    <li class="d-none">
                       <a href="favourites.html">
                         <i class="fas fa-bookmark"></i>
                         <span>Thông báo</span>
@@ -78,7 +88,11 @@
                 <div class="form-group">
                   <div class="change-avatar">
                     <div class="profile-img">
-                      <b-avatar size="72px" rounded="sm" :src="`${this.fileAvatarUrl}`"></b-avatar>
+                      <b-avatar
+                        size="72px"
+                        rounded="sm"
+                        :src="`${this.fileAvatarUrl}`"
+                      ></b-avatar>
                     </div>
 
                     <div class="upload-img">
@@ -95,7 +109,9 @@
 
                         <!-- <b-form-file v-model="file2" class="mt-3" plain></b-form-file> -->
                       </div>
-                      <small class="form-text text-muted">Định dạng JPG, GIF or PNG. Max size of 2MB</small>
+                      <small class="form-text text-muted"
+                        >Định dạng JPG, GIF or PNG. Max size of 2MB</small
+                      >
                     </div>
 
                     <div v-if="fileAvatar">
@@ -112,7 +128,12 @@
                   </div>
                 </div>
 
-                <el-form ref="form" :rules="rules" :model="form" label-width="0px">
+                <el-form
+                  ref="form"
+                  :rules="rules"
+                  :model="form"
+                  label-width="0px"
+                >
                   <!-- <div class="info-widget"> -->
 
                   <div class="row">
@@ -120,7 +141,11 @@
                       <el-form-item prop="fullName">
                         <div class>
                           <div class>Họ và tên</div>
-                          <el-input class="form-soju-input" placeholder v-model="form.fullName"></el-input>
+                          <el-input
+                            class="form-soju-input"
+                            placeholder
+                            v-model="form.fullName"
+                          ></el-input>
                         </div>
                       </el-form-item>
                     </div>
@@ -146,7 +171,11 @@
                   <el-form-item prop="fullAddress">
                     <div class>
                       <div class>Địa chỉ</div>
-                      <el-input class="form-soju-input" placeholder v-model="form.fullAddress"></el-input>
+                      <el-input
+                        class="form-soju-input"
+                        placeholder="Chưa điền thông tin"
+                        v-model="form.fullAddress"
+                      ></el-input>
                     </div>
                   </el-form-item>
 
@@ -155,7 +184,11 @@
                       <el-form-item prop="phoneNumber">
                         <div class>
                           <div class="f">Số điện thoại</div>
-                          <el-input class="form-soju-input" placeholder v-model="form.phoneNumber"></el-input>
+                          <el-input
+                            class="form-soju-input"
+                            placeholder="Chưa có số điện thoại"
+                            v-model="form.phoneNumber"
+                          ></el-input>
                         </div>
                       </el-form-item>
                     </div>
@@ -164,7 +197,11 @@
                       <el-form-item prop="email">
                         <div class>
                           <div class>Email</div>
-                          <el-input class="form-soju-input" placeholder v-model="form.email"></el-input>
+                          <el-input
+                            class="form-soju-input"
+                            placeholder
+                            v-model="form.email"
+                          ></el-input>
                         </div>
                       </el-form-item>
                     </div>
@@ -175,7 +212,11 @@
                       <el-form-item prop="sex">
                         <div class>
                           <div class>Giới tính</div>
-                          <el-input class="form-soju-input" placeholder v-model="form.sex"></el-input>
+
+                          <el-radio v-model="form.sex" label="nam"
+                            >Nam</el-radio
+                          >
+                          <el-radio v-model="form.sex" label="nữ">Nữ</el-radio>
                         </div>
                       </el-form-item>
                     </div>
@@ -186,8 +227,9 @@
                     <el-button
                       type="primary"
                       class="btn btn-primary submit-btn"
-                      @click.stop.prevent="submitForm('form')"
-                    >Cập nhập thông tin</el-button>
+                      @click="submitForm('form')"
+                      >Cập nhập thông tin</el-button
+                    >
                   </el-form-item>
                 </el-form>
               </div>
@@ -224,6 +266,46 @@ export default {
             trigger: "blur",
           },
         ],
+        birthDay: [
+          {
+            required: true,
+            message: "Vui lòng nhập ngày sinh",
+            trigger: "blur",
+          },
+        ],
+        email: [
+          {
+            required: true,
+            message: "Vui lòng nhập địa chỉ Email",
+            trigger: "blur",
+          },
+          {
+            type: "email",
+            message: "Địa chỉ Email không hợp lệ",
+            trigger: "blur",
+          },
+        ],
+        fullAddress: [
+          {
+            required: true,
+            message: "Vui lòng nhập địa chỉ của bạn",
+            trigger: "blur",
+          },
+        ],
+        phoneNumber: [
+          {
+            required: true,
+            message: "Vui lòng nhập số điện thoại",
+            trigger: "blur",
+          },
+        ],
+        sex: [
+          {
+            required: true,
+            message: "Vui lòng chọn giới tính",
+            trigger: "blur",
+          },
+        ],
       },
     };
   },
@@ -246,53 +328,136 @@ export default {
       // console.log(this.fileAvatarUrl);
       // console.log(this.fileAvatar);
       let formData = new FormData();
-      formData.append('file', this.fileAvatar);
-      this.$axios
-        .post("Users/UploadAvatar", formData)
-        .then((response) => {
-          console.log(response);
-          if (response.data.success === true) {
-            const loading = this.$loading({
-              lock: true,
-              text: "Đang xử lý",
-              spinner: "el-icon-loading",
-              background: "rgba(0, 0, 0, 0.7)",
-            });
-            setTimeout(() => {
-              loading.close();
-              // this.$router.push({
-              //   name: "thanhcong",
-              //   params: {
-              //     message: response.data.message,
-              //     doctorId: this.form.doctorId,
-              //   },
-              // });
-            }, 2000);
 
-            // this.$alert(response.data.message, "Thông báo", {
-            //   confirmButtonText: "OK",
-            //   type: "success",
-            //   callback: (action) => {
-            //     // this.$message({
-            //     //   type: "info",
-            //     //   message: `action: ${action}`
-            //     // });
+      formData.append("file", this.fileAvatar);
+
+      this.$axios.post("Users/UploadAvatar", formData).then((response) => {
+        console.log(response);
+        if (response.data.success === true) {
+          const loading = this.$loading({
+            lock: true,
+            text: "Đang xử lý",
+            spinner: "el-icon-loading",
+            background: "rgba(0, 0, 0, 0.7)",
+          });
+          setTimeout(() => {
+            loading.close();
+            // this.$router.push({
+            //   name: "thanhcong",
+            //   params: {
+            //     message: response.data.message,
+            //     doctorId: this.form.doctorId,
             //   },
             // });
-          } else {
-            this.$alert(response.data.message, "Thông báo", {
-              confirmButtonText: "Đóng",
-              type: "success",
-              callback: (action) => {
-                window.location.reload(true)
-                // this.$message({
-                //   type: "info",
-                //   message: `action: ${action}`
+          }, 2000);
+
+          // this.$alert(response.data.message, "Thông báo", {
+          //   confirmButtonText: "OK",
+          //   type: "success",
+          //   callback: (action) => {
+          //     // this.$message({
+          //     //   type: "info",
+          //     //   message: `action: ${action}`
+          //     // });
+          //   },
+          // });
+        } else {
+          this.$alert(response.data.message, "Thông báo", {
+            confirmButtonText: "Đóng",
+            type: "success",
+            callback: (action) => {
+              window.location.reload(true);
+              // this.$message({
+              //   type: "info",
+              //   message: `action: ${action}`
+              // });
+            },
+          });
+        }
+      });
+    },
+
+    submitForm(formName) {
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          this.$axios
+            .post("Users​/MyProfile", {
+              email: this.form.email,
+              fullName: this.form.fullName,
+              fullAdress: this.form.fullAddress,
+              sex: this.form.sex,
+              phoneNumber: this.form.phoneNumber,
+              birthDay: this.form.birthDay,
+            })
+            .then((response) => {
+              console.log(response);
+              if (response.data.success === true) {
+                const loading = this.$loading({
+                  lock: true,
+                  text: "Đang xử lý",
+                  spinner: "el-icon-loading",
+                  background: "rgba(0, 0, 0, 0.7)",
+                });
+                setTimeout(() => {
+                  loading.close();
+                  window.location.reload(true);
+                  // window.location.href = response.data.data.callbackUrl;
+                }, 2000);
+
+                // this.$alert(response.data.message, "Thông báo", {
+                //   confirmButtonText: "OK",
+                //   type: "success",
+                //   callback: (action) => {
+                //     // this.$message({
+                //     //   type: "info",
+                //     //   message: `action: ${action}`
+                //     // });
+                //   },
                 // });
-              },
+              } else {
+                this.$alert(response.data.message, "Thông báo", {
+                  confirmButtonText: "Đóng",
+                  type: "error",
+                  callback: (action) => {
+                    // this.$message({
+                    //   type: "info",
+                    //   message: `action: ${action}`
+                    // });
+                  },
+                });
+              }
+            })
+            .catch((error) => {
+              this.$alert(
+                "Có lỗi xảy ra, vui lòng thử lại .",
+                "Thông báo",
+                {
+                  confirmButtonText: "Đóng",
+                  type: "error",
+                  callback: (action) => {
+                    // this.$message({
+                    //   type: "info",
+                    //   message: `action: ${action}`
+                    // });
+                  },
+                }
+              );
+              // this.errored = true;
             });
-          }
-        })
+        } else {
+          this.$alert("Cập nhập thông tin thất bại", "Thông báo", {
+            confirmButtonText: "Đóng",
+            type: "error",
+            callback: (action) => {
+              // this.$message({
+              //   type: "info",
+              //   message: `action: ${action}`
+              // });
+            },
+          });
+          return false;
+        }
+      });
     },
   },
 
