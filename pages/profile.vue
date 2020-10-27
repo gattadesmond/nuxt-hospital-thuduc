@@ -375,11 +375,11 @@ export default {
           });
         }
       });
-    },
-
+    }, 
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
+          // alert("fewe");
           this.$axios
             .post("Users​/MyProfile", {
               email: this.form.email,
