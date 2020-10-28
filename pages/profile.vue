@@ -49,7 +49,7 @@
                     <div class="patient-details">
                       <div class="mb-1" v-if="this.$auth.user.birthDay">
                         <i class="fas fa-calendar"></i>
-                        {{ this.$auth.user.birthDay }}
+                        {{ this.$auth.user.birthDay | formatDate3 }}
                       </div>
 
                       <div class="mb-0" v-if="this.$auth.user.fullAddress">
@@ -162,6 +162,7 @@
                             type="date"
                             placeholder="Ngày sinh"
                             format="dd-MM-yyyy"
+                            value-format="yyyy-MM-dd"
                           ></el-date-picker>
                         </div>
                       </el-form-item>
@@ -228,6 +229,7 @@
                       type="primary"
                       class="btn btn-primary submit-btn"
                       @click="submitForm('form')"
+                      :disabled="isFormEnable"
                       >Cập nhập thông tin</el-button
                     >
                   </el-form-item>
@@ -242,6 +244,10 @@
 </template>
 
 <script>
+import { diff } from "deep-diff";
+
+ var defaultForm = {};
+
 export default {
   auth: true,
   components: {},
@@ -311,10 +317,10 @@ export default {
   },
 
   computed: {
-    // fileAvatarURL: function () {
-    //   // `this` points to the vm instance
-    //   return URL.createObjectURL(this.fileAvatar);
-    // },
+    isFormEnable() {
+      if (!diff(this.form, defaultForm)) return true;
+      return false;
+    },
   },
 
   methods: {
@@ -375,13 +381,14 @@ export default {
           });
         }
       });
-    }, 
+    },
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
+          console.log(this.form.birthDay);
           // alert("fewe");
           this.$axios
-            .post("Users​/MyProfile", {
+            .post("Users/MyProfile", {
               email: this.form.email,
               fullName: this.form.fullName,
               fullAdress: this.form.fullAddress,
@@ -400,7 +407,14 @@ export default {
                 });
                 setTimeout(() => {
                   loading.close();
-                  window.location.reload(true);
+                  this.$alert("Thông tin thay đổi thành công", "Thông báo", {
+                    confirmButtonText: "Đóng",
+                    type: "success",
+                    callback: (action) => {
+                      window.location.reload(true);
+                    },
+                  });
+                  // window.location.reload(true);
                   // window.location.href = response.data.data.callbackUrl;
                 }, 2000);
 
@@ -428,20 +442,16 @@ export default {
               }
             })
             .catch((error) => {
-              this.$alert(
-                "Có lỗi xảy ra, vui lòng thử lại .",
-                "Thông báo",
-                {
-                  confirmButtonText: "Đóng",
-                  type: "error",
-                  callback: (action) => {
-                    // this.$message({
-                    //   type: "info",
-                    //   message: `action: ${action}`
-                    // });
-                  },
-                }
-              );
+              this.$alert("Có lỗi xảy ra, vui lòng thử lại .", "Thông báo", {
+                confirmButtonText: "Đóng",
+                type: "error",
+                callback: (action) => {
+                  // this.$message({
+                  //   type: "info",
+                  //   message: `action: ${action}`
+                  // });
+                },
+              });
               // this.errored = true;
             });
         } else {
@@ -469,6 +479,17 @@ export default {
       this.form.fullAddress = this.$auth.user.fullAddress;
       this.form.phoneNumber = this.$auth.user.phoneNumber;
       this.form.sex = this.$auth.user.sex;
+    }
+
+    if (this.$auth.loggedIn) {
+       defaultForm = {
+        fullName: this.$auth.user.fullName,
+        birthDay: this.$auth.user.birthDay,
+        email: this.$auth.user.email,
+        fullAddress: this.$auth.user.fullAddress,
+        phoneNumber: this.$auth.user.phoneNumber,
+        sex: this.$auth.user.sex,
+      };
     }
   },
   head() {

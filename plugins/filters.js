@@ -12,6 +12,11 @@ Vue.filter("formatDate2", function(value) {
     value = value.toString();
     return moment(String(value)).format("hh:mm DD/MM/YYYY");
   });
+  Vue.filter("formatDate3", function(value) {
+    if (!value) return "";
+    value = value.toString();
+    return moment(String(value)).format("DD/MM/YYYY");
+  });
   
 
   Vue.filter("formatPrice", function(value) {
