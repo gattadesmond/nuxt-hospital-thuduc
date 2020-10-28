@@ -362,8 +362,9 @@ export default {
     // console.log(this.$route.fullPath.replace(/\/$/, ""));
 
     this.getServiceId =
-      this.menus.filter((sId) => sId.url.includes(this.$route.fullPath.replace(/\/$/, "")))[0].id |
-      0;
+      this.menus.filter((sId) =>
+        sId.url.includes(this.$route.fullPath.replace(/\/$/, ""))
+      )[0].id | 0;
   },
   methods: {
     comeBack() {
@@ -372,6 +373,10 @@ export default {
       });
     },
     handleOK() {
+      const isEmptyUserData = Object.values(this.$auth.user).every(
+        (x) => x != ""
+      );
+
       if (this.checkOK == "not_accepted") {
         this.$alert(
           "Bạn cần đồng ý để có thể tiếp tục sử dụng dịch vụ",
@@ -381,11 +386,28 @@ export default {
             callback: (action) => {},
           }
         );
+      } else if (!isEmptyUserData) {
+        console.log(this.$auth.user);
+        this.$alert(
+          "Bạn chưa cập nhập đầy đủ thông tin cá nhân, Vui lòng click vào đây để tới trang thông tin cá nhân",
+          "Thông báo",
+          {
+            confirmButtonText: "Tới trang cá nhân",
+            type: "error",
+            closable: false,
+            callback: (action) => {
+              this.$router.push({
+                path: "/profile",
+              });
+            },
+          }
+        );
       } else {
         // this.dialogVisible = false;
         var serviceNameId =
-          this.menus.filter((sId) => sId.url.includes(this.$route.fullPath.replace(/\/$/, "")))[0]
-            .id | 0;
+          this.menus.filter((sId) =>
+            sId.url.includes(this.$route.fullPath.replace(/\/$/, ""))
+          )[0].id | 0;
 
         console.log(serviceNameId);
 

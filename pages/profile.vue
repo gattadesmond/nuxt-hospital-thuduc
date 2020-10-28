@@ -246,7 +246,7 @@
 <script>
 import { diff } from "deep-diff";
 
- var defaultForm = {};
+var defaultForm = {};
 
 export default {
   auth: true,
@@ -301,7 +301,8 @@ export default {
         phoneNumber: [
           {
             required: true,
-            message: "Vui lòng nhập số điện thoại",
+            pattern: /((09|03|07|08|05)+([0-9]{8})\b)/g,
+            message: "Vui lòng nhập số điện thoại hợp lệ",
             trigger: "blur",
           },
         ],
@@ -385,7 +386,7 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          console.log(this.form.birthDay);
+          // console.log(this.form.birthDay);
           // alert("fewe");
           this.$axios
             .post("Users/MyProfile", {
@@ -454,19 +455,7 @@ export default {
               });
               // this.errored = true;
             });
-        } else {
-          this.$alert("Cập nhập thông tin thất bại", "Thông báo", {
-            confirmButtonText: "Đóng",
-            type: "error",
-            callback: (action) => {
-              // this.$message({
-              //   type: "info",
-              //   message: `action: ${action}`
-              // });
-            },
-          });
-          return false;
-        }
+        } 
       });
     },
   },
@@ -482,7 +471,7 @@ export default {
     }
 
     if (this.$auth.loggedIn) {
-       defaultForm = {
+      defaultForm = {
         fullName: this.$auth.user.fullName,
         birthDay: this.$auth.user.birthDay,
         email: this.$auth.user.email,
