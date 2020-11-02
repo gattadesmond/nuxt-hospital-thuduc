@@ -23,7 +23,7 @@
         </div>
       </div>
 
-      <div class="s-heading-bg w-100" style="background-image: url(img/bv/bg-heading.jpg)"></div>
+      <div class="s-heading-bg w-100" style="background-image: url(/img/bv/bg-heading.jpg)"></div>
     </section>
 
     <section class="section section-space pt-0 section-bacsi">

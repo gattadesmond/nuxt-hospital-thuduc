@@ -194,7 +194,7 @@
                     <img
                       class="avatar rounded-circle"
                       alt="User Image"
-                      src="img/patients/patient6.jpg"
+                      src="/img/patients/patient6.jpg"
                     />
                     <div class="comment-body">
                       <div class="meta-data">

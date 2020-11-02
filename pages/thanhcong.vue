@@ -1,7 +1,7 @@
 <template>
   <section
     class="section section-space section-bg section-home"
-    style="background-image: url(img/background-doctor.jpg)"
+    style="background-image: url(/img/background-doctor.jpg)"
   >
     <div class="container">
       <div class="row justify-content-center">

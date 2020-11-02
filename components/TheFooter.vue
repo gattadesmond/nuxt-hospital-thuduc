@@ -54,7 +54,7 @@
                   <i class="fa fa-fax" aria-hidden="true"></i>
                 </div>
                 <div class="page-footer-item-content">
-                  <b>Fax :</b> <span>(028) 3722 2522</span>
+                  <b>Fax :</b> <span>(028) 3724 5959</span>
                 </div>
               </div>
 

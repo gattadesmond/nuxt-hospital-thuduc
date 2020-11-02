@@ -320,7 +320,7 @@ export default {
         },
       ],
       radiograpyList: [],
-      url: "img/btn-xem.svg",
+      url: "/img/btn-xem.svg",
     };
   },
   methods: {

@@ -34,7 +34,7 @@
 
       <div
         class="s-heading-bg w-100"
-        style="background-image: url(img/bv/bg-heading.jpg)"
+        style="background-image: url(/img/bv/bg-heading.jpg)"
       ></div>
     </section>
 
@@ -259,7 +259,7 @@ export default {
       },
 
       dataList: [],
-      url: "img/btn-xem.svg",
+      url: "/img/btn-xem.svg",
     };
   },
   mounted() {

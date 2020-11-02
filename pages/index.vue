@@ -1,14 +1,14 @@
 <template>
   <section
     class="section section-space pt-4 section-bg section-home"
-    style="background-image: url(img/func/h2_slider2.jpg)"
+    style="background-image: url(/img/func/h2_slider2.jpg)"
   >
     <div class="container container-index">
       <div class="row">
         <div class="col-12">
           <div
             class="main__banner mb-5"
-            style="background-image: url(img/func/banner-hospital.jpg)"
+            style="background-image: url(/img/func/banner-hospital.jpg)"
           >
             <h1 class="text-primary">
               Thông tin sức khỏe của bạn
