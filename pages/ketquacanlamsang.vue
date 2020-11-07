@@ -68,7 +68,8 @@
                   no-close-on-esc
                   no-close-on-backdrop
                   cancelTitle="Đóng cửa sổ"
-                  okTitle="Gửi yêu cầu"
+                  okTitle="Thanh toán với MoMo"
+                  ok-variant="momo"
                   title="Yêu cầu kết quả xét nghiệm"
                   @ok="submitForm"
                   size="lg"
@@ -104,7 +105,9 @@
                           </div>
 
                           <div class="col-6">
-                            <div class="mb-2">Chọn khoảng thời gian xét nghiệm</div>
+                            <div class="mb-2">
+                              Chọn khoảng thời gian xét nghiệm
+                            </div>
                             <!-- <el-date-picker
                               v-model="form.dateSelect"
                               type="date"
@@ -235,11 +238,12 @@
                                 :preview-src-list="item.fullFiles"
                               ></el-image>
 
-
-
                               <!-- <img src="img/btn-xem.svg" alt /> -->
 
-                              <a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
+                              <a
+                                href="javascript:void(0);"
+                                class="btn btn-sm bg-primary-light"
+                              >
                                 <i class="fas fa-download"></i> Tải về
                               </a>
                             </div>
@@ -259,8 +263,6 @@
         </div>
       </div>
     </section>
-
- 
   </div>
 </template>
 
@@ -291,7 +293,7 @@ export default {
         loaiHinh: "",
         dateSelect: "",
         checkrule: false,
-        address: ""
+        address: "",
       },
       filtersList: [
         {
@@ -420,7 +422,7 @@ export default {
             setTimeout(() => {
               loading.close();
               // console.log(response);
-              window.location.href = response.data.data.callbackUrl 
+              window.location.href = response.data.data.callbackUrl;
 
               // this.$router.push({ name: response.data.data.callbackUrl })
               // this.$router.go({

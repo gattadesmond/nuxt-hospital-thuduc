@@ -291,3 +291,15 @@ a {
   // padding: 1rem 0.75rem;
   white-space: inherit !important;
 }
+
+.btn-momo{
+  background-color: #a50064;
+  color: white;
+  outline: none;
+  box-shadow: none;
+  @include hover-focus(){
+   
+    color: white;
+    background-color: lighten(#a50064, 5%);
+  }
+}

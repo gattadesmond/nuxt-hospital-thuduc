@@ -64,7 +64,8 @@
               no-close-on-esc
               no-close-on-backdrop
               cancelTitle="Đóng cửa sổ"
-              okTitle="Gửi câu hỏi"
+              okTitle="Thanh toán với MoMo"
+              ok-variant="momo"
               title="Gửi câu hỏi"
               @ok="submitForm"
               size="lg"
@@ -194,7 +195,7 @@
                     <img
                       class="avatar rounded-circle"
                       alt="User Image"
-                      src="/img/patients/patient6.jpg"
+                      :src="`http://myhealthdemo.benhvienkhuvucthuduc.vn/${question.userAskAvatar}`"
                     />
                     <div class="comment-body">
                       <div class="meta-data">
@@ -231,13 +232,13 @@
                         <img
                           class="avatar rounded-circle"
                           alt="User Image"
-                          src="http://benhvienkhuvucthuduc.vn/Content/uploads/ImageDoctors/6fb28875-81e8-4f0b-8340-a9d00120a18b_truong-khoa.jpg"
+                          :src="`http://myhealthdemo.benhvienkhuvucthuduc.vn/${question.userAnswerAvatar}`"
                         />
                         <div class="comment-body">
                           <div class="meta-data">
                             <span class="comment-author">
                               <a href>
-                                <b>BS CKII.Từ Văn Lai</b>
+                                <b>{{question.userAnswerFullName}}</b>
                               </a>
                             </span>
                             <span class="comment-date"

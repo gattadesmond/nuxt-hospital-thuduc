@@ -61,7 +61,8 @@
                   no-close-on-esc
                   no-close-on-backdrop
                   cancelTitle="Đóng cửa sổ"
-                  okTitle="Đăng ký"
+                  okTitle="Thanh toán với MoMo"
+                  ok-variant="momo"
                   title="Đăng ký khám bệnh"
                   @ok="submitForm"
                   size="xl"
@@ -180,7 +181,7 @@
                               <i> {{ item.content }}</i>
                             </div>
                           </td>
-                           <!-- <td>{{ item.intendTime | formatDate }}</td> -->
+                          <!-- <td>{{ item.intendTime | formatDate }}</td> -->
                           <td>
                             <span
                               v-if="item.isPaid == true"
@@ -193,10 +194,7 @@
                               class="ml-1 badge badge-pill bg-primary-light"
                               >Đang chờ</span
                             >
-
-                        
                           </td>
-                       
                         </tr>
                       </tbody>
                     </table>

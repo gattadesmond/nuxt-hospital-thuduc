@@ -43,23 +43,12 @@
                     >Đăng nhập</button>
                   </el-form-item>
                 </el-form>
-
+<!-- 
                 <div class="login-or">
                   <span class="or-line"></span>
                   <span class="span-or">or</span>
                 </div>
-
-                <div class="text-center dont-have">
-                  Tải khoản demo
-                  <div>
-                    username :
-                    <strong>123456</strong>
-                  </div>
-                  <div>
-                    password :
-                    <strong>Mh@0269</strong>
-                  </div>
-                </div>
+         -->
               </div>
             </div>
           </div>

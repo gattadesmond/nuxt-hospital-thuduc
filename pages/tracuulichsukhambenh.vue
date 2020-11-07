@@ -62,7 +62,8 @@
                   no-close-on-esc
                   no-close-on-backdrop
                   cancelTitle="Đóng cửa sổ"
-                  okTitle="Yêu cầu"
+                  okTitle="Thanh toán với MoMo"
+                  ok-variant="momo"
                   title="Yêu cầu đơn thuốc"
                   @ok="submitForm"
                   size="lg"
@@ -220,8 +221,6 @@
                 </div>
               </div>
             </template>
-
-         
           </div>
 
           <div class="col-md-4">
@@ -328,7 +327,7 @@ export default {
 
       this.$axios
         .post("Prescription/Insert", {
-           requestTime: this.form.dateSelect.join(" - "),
+          requestTime: this.form.dateSelect.join(" - "),
           note: this.form.noidung,
         })
         .then((response) => {
