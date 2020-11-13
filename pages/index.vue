@@ -48,11 +48,11 @@
                 ></nuxt-link>
                 <div class="function__image">
                   <div
-                    class="embed-responsive embed-responsive-21by9 overflow-hidden"
+                    class="embed-responsive embed-responsive-func overflow-hidden"
                   >
                     <img
                       v-bind:src="item.avatar"
-                      class="embed-responsive-img img-cover"
+                      class="embed-responsive-img "
                       loading="lazy"
                       alt
                     />

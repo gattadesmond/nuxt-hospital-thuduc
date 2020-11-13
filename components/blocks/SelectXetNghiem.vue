@@ -5,7 +5,7 @@
     class="form-soju-input"
     clearable
     no-match-text="Không có kết quả "
-    placeholder="Loại xét nghiệm"
+    placeholder="Loại cận lâm sàng"
     @change="$emit('select-xetnghiem', loaiXetNghiemSelect)"
   >
     <el-option v-for="item in loaiXetNghiem" :key="item.id" :label="item.name" :value="item.id">

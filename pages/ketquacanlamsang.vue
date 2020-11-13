@@ -70,7 +70,7 @@
                   cancelTitle="Đóng cửa sổ"
                   okTitle="Thanh toán với MoMo"
                   ok-variant="momo"
-                  title="Yêu cầu kết quả xét nghiệm"
+                  title="Yêu cầu kết quả các cận lâm sàng"
                   @ok="submitForm"
                   size="lg"
                 >
@@ -86,7 +86,7 @@
 
                         <div class="row sm-gutters mt-3">
                           <div class="col-6">
-                            <div class="mb-2">Chọn lại xét nghiệm:</div>
+                            <div class="mb-2">Chọn lại cận lâm sàng:</div>
 
                             <SelectXetNghiem
                               @select-xetnghiem="getSelectXetNghiem"
@@ -362,7 +362,7 @@ export default {
     submitForm(bvModalEvt) {
       bvModalEvt.preventDefault();
       if (this.form.loaiHinh == "") {
-        this.$alert("Bạn chưa chọn loại xét nghiệm", "Thông báo", {
+        this.$alert("Bạn chưa chọn loại cận lâm sàng", "Thông báo", {
           confirmButtonText: "Đóng",
           type: "error",
           callback: (action) => {
@@ -491,7 +491,7 @@ export default {
   },
   head() {
     return {
-      title: "Kết quả xét nghiệm",
+      title: "Kết quả cận lâm sàng",
     };
   },
 };

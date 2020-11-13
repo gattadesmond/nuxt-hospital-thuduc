@@ -73,6 +73,11 @@
 
 .function__image {
 }
+.embed-responsive-func{
+  &:before{
+    padding-top: percentage(4/8)
+  }
+}
 
 .function__body {
   padding: 15px 25px;

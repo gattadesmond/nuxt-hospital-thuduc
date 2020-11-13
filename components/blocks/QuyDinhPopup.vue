@@ -314,7 +314,7 @@
           </div>
         </template>
 
-        <p class="mt-4" v-if="recentOpen == false">
+        <p class="mt-4 font-weight-bold" v-if="recentOpen == false">
           <b-form-checkbox
             id="checkbox-1"
             v-model="checkOK"
